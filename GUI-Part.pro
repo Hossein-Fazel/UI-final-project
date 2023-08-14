@@ -17,8 +17,10 @@ SOURCES += \
     Tweet_Class.cpp \
     Twitterak_Class.cpp \
     User_Class.cpp \
+    login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    signup.cpp
 
 HEADERS += \
     Anonymous_User.hpp \
@@ -29,10 +31,14 @@ HEADERS += \
     Tweet_Class.hpp \
     Twitterak_Class.hpp \
     User_Class.hpp \
-    mainwindow.h
+    login.h \
+    mainwindow.h \
+    signup.h
 
 FORMS += \
-    mainwindow.ui
+    login.ui \
+    mainwindow.ui \
+    signup.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>login</class>
+ <widget class="QMainWindow" name="login">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,33 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="signup_btn">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>80</y>
-      <width>151</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>signup</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="login_btn">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>180</y>
-      <width>151</width>
+      <x>310</x>
+      <y>350</y>
+      <width>211</width>
       <height>61</height>
      </rect>
     </property>
@@ -48,21 +27,18 @@
      <font>
       <pointsize>15</pointsize>
      </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
     </property>
     <property name="text">
      <string>login</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="help_btn">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>280</y>
-      <width>151</width>
-      <height>61</height>
+      <x>180</x>
+      <y>130</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -70,20 +46,17 @@
       <pointsize>15</pointsize>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
     <property name="text">
-     <string>help</string>
+     <string>Username :</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="exit_btn">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>380</y>
-      <width>151</width>
-      <height>61</height>
+      <x>180</x>
+      <y>240</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -91,34 +64,42 @@
       <pointsize>15</pointsize>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
     <property name="text">
-     <string>exit</string>
+     <string>Password :</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QLineEdit" name="ln_username">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>50</y>
-      <width>691</width>
-      <height>441</height>
+      <x>330</x>
+      <y>131</y>
+      <width>221</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="title">
-     <string>Menu</string>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
     </property>
    </widget>
-   <zorder>groupBox</zorder>
-   <zorder>signup_btn</zorder>
-   <zorder>login_btn</zorder>
-   <zorder>help_btn</zorder>
-   <zorder>exit_btn</zorder>
+   <widget class="QLineEdit" name="ln_pass">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>240</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+   </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QMenuBar" name="menuBar">
+  <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -128,6 +109,7 @@
     </rect>
    </property>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

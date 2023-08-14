@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <QMessageBox>
 
 #include "Twitterak_Class.hpp"
 #include "Organisation_User.hpp"
@@ -10,7 +11,8 @@
 // shows the usernsmae of an organisation's manager
 std::string Organisation::get_manager_username() const
 {
-    return manager->get_username();
+    std::string mUSername = manager->get_username();
+    return mUSername;
 }
 
 //------------------------------------------------------------------------
@@ -45,31 +47,27 @@ std::unordered_map<std::string , std::unordered_set<int>> Organisation::get_twee
 
 //==================================================================  Set_Functions =================================================================
 // sets the usernsmae of an organisation's manager 
-void Organisation::set_manager_username(twitterak app,std::string username)
+bool Organisation::set_manager_username(twitterak app,std::string username)
 {
+    QMessageBox msg;
     if (username[0] == '@')
         username = remove_atsing(username);
 
     username = to_lower(username);
 
-    while (1)
+    if (app.users.count(username) == 1)
     {
-        if (app.users.count(username) == 1)
-        {
-            manager = &(app.users[username]);
-            break;
-        }
-
-        else 
-        {
-            std::cout << "! The username doesn't exist.\n";
-            std::cout << "$ Manager username : ";
-            std::cin >> username;
-        }
+        manager = &(app.users[username]);
+        return true;
     }
-    
-}
 
+    else
+    {
+        msg.setText("! The username doesn't exist.");
+        msg.exec();
+        return false;
+    }
+}
 //------------------------------------------------------------------------
 // sets the biography of an organisation
 void Organisation::set_biography(std::string bio)

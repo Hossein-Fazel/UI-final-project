@@ -2,6 +2,7 @@
 #include <unordered_set>
 #include <cctype>
 #include <ctype.h>
+#include <QMessageBox>
 
 #include "Base_User.hpp"
 #include "Twitterak_Class.hpp"
@@ -87,79 +88,72 @@ void Base_User::set_name(std::string name)
 
 //------------------------------------------------------------------------
 // sets the username of a user with a validation
-void Base_User::set_username(std::string user_name)                                     
+bool Base_User::set_username(std::string user_name)
 {
-    while (1)
+    if ((Validating_Username(user_name)) == 0)
     {
-        if ((Validating_Username(user_name)) == 0)
-        {
-            std::cerr << "! Username must have at least 5 characters.\n";
-            std::cout << "$ Username : @";
-            std::cin >> user_name;
+        QMessageBox msg;
+        msg.setText("! Username must have at least 5 characters.");
+        msg.exec();
+        return false;
+    }
 
-            std::cin.ignore();
-        }
+    else if ((Validating_Username(user_name)) == -1)
+    {
+        QMessageBox msg;
+        msg.setText("! Username must not have characters.");
+        msg.exec();
+        return false;
+    }
 
-        else if ((Validating_Username(user_name)) == -1)
-        {
-            std::cerr << "! Username must not have characters.\n";
-            std::cout << "$ Username : @";
-            std::cin >> user_name;
+    else if ((Validating_Username(user_name)) == -2)
+    {
+        QMessageBox msg;
+        msg.setText("! Username must not be the commands of the program.");
+        msg.exec();
+        return false;
+    }
 
-            std::cin.ignore();
-        }
-            
-        else if ((Validating_Username(user_name)) == -2)
-        {
-            std::cerr << "! Username must not be the commands of the program.\n";
-            std::cout << "$ Username : @";
-            std::cin >> user_name;
+    else
+    {
+        if (Username[0] == '@')
+            Username = remove_atsing(user_name);
 
-            std::cin.ignore();
-        }
-
-        else
-        {
-            if (Username[0] == '@') 
-                Username = remove_atsing(user_name);
-
-            Username = to_lower(user_name);
-
-            break;
-        }
+        Username = to_lower(user_name);
+        return true;
     }
 }
 
 //------------------------------------------------------------------------
 // sets the password of the user's account
-void Base_User::set_password(std::string input_pass)                                   
+bool Base_User::set_password(std::string input_pass)
 {
-    while (1)
+
+    if ((validate_password(input_pass)) == 1)
     {
-        if ((validate_password(input_pass)) == 1)
-        {
-            Password = input_pass;
-            passwords.insert(Password);
-            break;
-        }
-        else if ((validate_password(input_pass)) == 0)
-        {
-            std::cout << "! Wrong Password.Your Password must include number, letter and charector.\n";
-            std::cout << "$ Password : ";
-            std::cin >> input_pass;
-        }
-        else if ((validate_password(input_pass)) == -1)
-        {
-            std::cout << "! Duplicate Password.This password is already repeated.\n";
-            std::cout << "$ Password : ";
-            std::cin >> input_pass;
-        }
-        else if ((validate_password(input_pass)) == 2)
-        {
-            std::cout << "! Short Password.You're password at least must be 6 character.\n";
-            std::cout << "$ Password : ";
-            std::cin >> input_pass;
-        }
+        Password = input_pass;
+        passwords.insert(Password);
+    }
+    else if ((validate_password(input_pass)) == 0)
+    {
+        QMessageBox msg;
+        msg.setText("! Wrong Password.Your Password must include number, letter and charector.");
+        msg.exec();
+        return false;
+    }
+    else if ((validate_password(input_pass)) == -1)
+    {
+        QMessageBox msg;
+        msg.setText("! Duplicate Password.This password is already repeated.");
+        msg.exec();
+        return false;
+    }
+    else if ((validate_password(input_pass)) == 2)
+    {
+        QMessageBox msg;
+        msg.setText("! Short Password.You're password at least must be 6 character");
+        msg.exec();
+        return false;
     }
 }
 

@@ -30,9 +30,13 @@ friend void user::unfollow_followers(twitterak &app);
 friend void display::login(twitterak  &,std::string, std::string);
 friend void display::login(twitterak  &);
 friend void display::login(twitterak  &, std::string);
-friend void display::signup(twitterak &);
+friend bool display::signup(twitterak &, std::string Ausername, std::string Apassword);
 friend void display::help(twitterak &);
-friend void display::signup(twitterak &, std::string);
+friend bool display::signup(twitterak &, std::string Aname, std::string Ausername, std::string Apassword, std::string bio,
+                            std::string country, std::string birth, std::string phone, std::string link, std::string color);
+
+friend bool display::signupM(twitterak &, std::string Aname, std::string Ausername, std::string Apassword, std::string manager,
+                             std::string bio, std::string country, std::string phone, std::string link, std::string color);
 friend void display::show_tweet(twitterak, std::string, int);
 friend void display::show_tweet(twitterak, std::string);
 friend void display::show_mentions(twitterak, std::string user_name, int tweet_number);
@@ -42,7 +46,7 @@ friend void tweet::edit_tweet(twitterak &);                               // fri
 friend void tweet::fetch_hashtags(twitterak &);                           // friend with Twitterak_Class to fecth hashtags from tweets
 friend void tweet::delete_hashtags(twitterak &); 
 
-friend void Organisation::set_manager_username(twitterak ,std::string);
+friend bool Organisation::set_manager_username(twitterak ,std::string);
 friend void Organisation::Edit(twitterak &, std::string, std::string);
 friend void Organisation::follow(twitterak &app, std::string uName);
 friend void Organisation::del_myMentions(twitterak &);
@@ -60,6 +64,7 @@ friend void Anonymous::unfollow_followers(twitterak &app);
 
 
     public:
+        display d1;
         twitterak();
         void put_users();
         void read_users();
@@ -71,11 +76,10 @@ friend void Anonymous::unfollow_followers(twitterak &app);
         void serch_hashtag(std::string);
         bool get_userName_number(std:: string, std::string &, int &);
         void del_atsign(std::string &);
-
         void read_from_file();                                              // read tweets and mentions from a text file
 
     private:
-        Base_User* li_user;
+        Base_User *li_user;
         bool is_logedin = false;
         std:: string logedin_user;
         

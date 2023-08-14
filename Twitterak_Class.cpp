@@ -112,8 +112,9 @@ void twitterak::put_users()
         wuser << "country:" << i.second.get_country() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
-        wuser << "manager:" << i.second.get_manager_username() << std::endl;
-
+        std::cout << "test\n";
+//        wuser << "manager:" << i.second.get_manager_username() << std::endl;
+        std::cout << "test2\n";
         wuser << "followers:";
         for(auto j : i.second.get_followers())
         {
@@ -1238,11 +1239,11 @@ void twitterak::run()
                 {
                     if(commands.size() == 2)
                     {
-                        d1.signup(*this, commands[1]);
+//                        d1.signup(*this, commands[1]);
                     }
                     else
                     {
-                        d1.signup(*this);
+//                        d1.signup(*this);
                     }
                     std::cin.ignore();
                 }

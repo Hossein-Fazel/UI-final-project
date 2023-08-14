@@ -25,7 +25,7 @@ class Organisation : public Base_User
 
 //========================================= Set_Functions =====================================
 
-        void set_manager_username(twitterak, std::string);                       // sets the usernsmae of an organisation's manager
+        bool set_manager_username(twitterak, std::string);                       // sets the usernsmae of an organisation's manager
         void set_biography(std::string);                                         // sets the biography of an organisation
         void set_lastNum(int);
 

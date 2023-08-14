@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "Twitterak_Class.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,6 +15,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_exit_btn_clicked();
+
+    void on_login_btn_clicked();
+
+    void on_signup_btn_clicked();
 
 private:
     Ui::MainWindow *ui;

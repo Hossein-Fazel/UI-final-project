@@ -15,8 +15,8 @@ class Base_User
 //========================================= Set_Functions =====================================
 
         void set_name(std::string);                                       // sets the name of a user
-        void set_username(std::string);                                   // sets the username of a user with a validation
-        void set_password(std::string);                                   // sets the password of the user's account
+        bool set_username(std::string);                                   // sets the username of a user with a validation
+        bool set_password(std::string);                                   // sets the password of the user's account
         void set_pass_wHash(std::string);                                 // sets the password without hashing
         void set_link(std::string);                                       // sets the link of a user
         void set_phone(std::string);                                      // sets the phone number of a user

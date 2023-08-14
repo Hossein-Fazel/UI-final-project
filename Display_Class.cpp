@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <stdio.h>
-
+#include <QMessageBox>
 
 #include "Display_Class.hpp"
 #include "Twitterak_Class.hpp"
@@ -71,11 +71,15 @@ void display::login(twitterak &app, std::string user_name, std::string password)
             app.is_logedin = true;
             app.logedin_user = user_name;
             app.li_user = &(app.users[app.logedin_user]);
-            std::cout << "* Login was successful\n";
+            QMessageBox msg;
+            msg.setText("* Login was successful.");
+            msg.exec();
         }
         else
         {
-            std::cout << "! Your password is incorrect\n";
+            QMessageBox msg;
+            msg.setText("! Your password is wrong.");
+            msg.exec();
         }
     }
 
@@ -86,11 +90,15 @@ void display::login(twitterak &app, std::string user_name, std::string password)
             app.is_logedin = true;
             app.logedin_user = user_name;
             app.li_user = &(app.org_user[app.logedin_user]);
-            std::cout << "* Login was successful\n";
+            QMessageBox msg;
+            msg.setText("* Login was successful.");
+            msg.exec();
         }
         else
         {
-            std::cout << "! Your password is incorrect\n";
+            QMessageBox msg;
+            msg.setText("! Your password is wrong.");
+            msg.exec();
         }
     }
 
@@ -101,17 +109,23 @@ void display::login(twitterak &app, std::string user_name, std::string password)
             app.is_logedin = true;
             app.logedin_user = user_name;
             app.li_user = &(app.ans_user[app.logedin_user]);
-            std::cout << "* Login was successful\n";
+            QMessageBox msg;
+            msg.setText("! Your password is wrong.");
+            msg.exec();
         }
         else
         {
-            std::cout << "! Your password is incorrect\n";
+            QMessageBox msg;
+            msg.setText("! Your password is wrong.");
+            msg.exec();
         }
     }
 
     else
     {
-        std::cout << "! Your username is incorrect\n";
+        QMessageBox msg;
+        msg.setText("! Your username is wrong.");
+        msg.exec();
     }
 }
 
@@ -249,360 +263,151 @@ void display::login(twitterak &app)
 
 //============================================================= Sign-up_Function ============================================================= 
 
-void display::signup(twitterak &app)
+bool display::signup(twitterak &app, std::string Ausername, std::string Apassword)
 {
-    std::string st;
-    std::cout << " 1_ Personal\n";
-    std::cout << " 2_ Organisation\n";
-    std::cout << " 3_ Anonymous\n";
-    std::cout << "? Select the type of user : ";
+    bool sUsername = true, sPass = true;
+    Anonymous ans1;
 
-    std::cin >> st;
-    st = app.lower(st);
+    sUsername = ans1.set_username(Ausername);
 
-    if(st == "1" or st == "personal")
+    if(app.users.count(ans1.get_username()) == 1 or app.org_user.count(ans1.get_username()) == 1 or app.ans_user.count(ans1.get_username()) == 1)
     {
-        std::string Full_Name;
-        std::string Username;
-        std::string Pass;
-        std::string birthday;
-        std::string phone_number;
-
-        user u1;
-
-        std::cout << "$ Name : ";
-        std::cin >> Full_Name;
-        u1.set_name(Full_Name);
-
-        std::cout << "$ Username : @";
-        std::cin >> Username;
-        u1.set_username(Username);
-
-        while(1)
-        {
-            if(app.users.count(u1.get_username()) == 1 or app.org_user.count(u1.get_username()) == 1 or app.ans_user.count(u1.get_username()) == 1)
-            {
-                std::cout << "! Your username is invalid.\n";
-                std::cout << "$ Username : @";
-                std::cin >> Username;
-                u1.set_username(Username);
-            }
-
-            else
-            {
-                break;
-            }
-        }
-
-        std::cout << "$ Phone number : ";
-        std::cin >> phone_number;
-        u1.set_phone(phone_number);
-
-        std::cout << "Enter your birthday wtih this fromat : 2022/11/15\n";
-        std::cout << "$ Birthday : ";
-        std::cin >> birthday;
-        u1.set_birthday(birthday);
-
-        std::cout << "$ Password : ";
-        std::cin >> Pass;
-
-        while (Pass.empty())
-        {
-            std::cout << "! please enter a password\n";
-            std::cout << "$ Password : ";
-            std::cin >> Pass;
-        }
-
-        u1.set_password(Pass);
-
-        app.users[u1.get_username()] = u1;
-        app.is_logedin = true;
-        app.logedin_user = u1.get_username();
-        app.li_user = &(app.users[app.logedin_user]);
-
-        std::cout << "* Registration was successful.\n";
+        QMessageBox msg;
+        msg.setText("! Your username is not valid.");
+        msg.exec();
+        sUsername = false;
     }
 
-    else if(st == "2" or st == "organisation")
+    sPass = ans1.set_password(Apassword);
+
+    if(sPass == true and sUsername == true)
     {
-        std::string Full_Name;
-        std::string Username;
-        std::string Pass;
-        std::string phone_number;
-        std::string managerUser;
-
-        Organisation org1;
-
-        std::cout << "$ Name : ";
-        std::cin >> Full_Name;
-        org1.set_name(Full_Name);
-
-        std::cout << "$ Username : @";
-        std::cin >> Username;
-        org1.set_username(Username);
-
-        while(1)
-        {
-            if(app.users.count(org1.get_username()) == 1 or app.org_user.count(org1.get_username()) == 1 or app.ans_user.count(org1.get_username()) == 1)
-            {
-                std::cout << "! Your username is invalid.\n";
-                std::cout << "$ Username : @";
-                std::cin >> Username;
-                org1.set_username(Username);
-            }
-
-            else
-            {
-                break;
-            }
-        }
-
-        std::cout << "$ Phone number : ";
-        std::cin >> phone_number;
-        org1.set_phone(phone_number);
-
-        std::cout << "$ Manager username : ";
-        std::cin >> managerUser;
-        org1.set_manager_username(app, managerUser);
-
-
-
-        std::cout << "$ Password : ";
-        std::cin >> Pass;
-
-        while (Pass.empty())
-        {
-            std::cout << "! please enter a password\n";
-            std::cout << "$ Password : ";
-            std::cin >> Pass;
-        }
-        org1.set_password(Pass);
-
-        app.org_user[org1.get_username()] = org1;
-        app.is_logedin = true;
-        app.logedin_user = org1.get_username();
-        app.li_user = &(app.org_user[app.logedin_user]);
-
-        std::cout << "* Registration was successful.\n";
-    }
-
-    else if(st == "3" or st == "anonymous")
-    {
-        std::string Username;
-        std::string Pass;
-
-        Anonymous ans1;
-
-        std::cout << "$ Username : @";
-        std::cin >> Username;
-        ans1.set_username(Username);
-
-        while(1)
-        {
-            if(app.users.count(ans1.get_username()) == 1 or app.org_user.count(ans1.get_username()) == 1 or app.ans_user.count(ans1.get_username()) == 1)
-            {
-                std::cout << "! Your username is invalid.\n";
-                std::cout << "$ Username : @";
-                std::cin >> Username;
-                ans1.set_username(Username);
-            }
-
-            else
-            {
-                break;
-            }
-        }
-
-        std::cout << "$ Password : ";
-        std::cin >> Pass;
-
-        ans1.set_password(Pass);
-
         app.ans_user[ans1.get_username()] = ans1;
-        app.is_logedin = true;
-        app.logedin_user = ans1.get_username();
-        app.li_user = &(app.ans_user[app.logedin_user]);
-
-        std::cout << "* Registration was successful.\n";
+        QMessageBox msg;
+        msg.setText("* Registration was successful.");
+        msg.exec();
+        return true;
     }
-
-    else
-    {
-        std::cout << "! Your selected type is undefined.\n";
-    }
-
 }
 
 //------------------------------------------------------------------------------------------
 
-void display::signup(twitterak &app, std::string user_name)
+bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, std::string Apassword, std::string manager,
+                      std::string bio, std::string country, std::string phone, std::string link, std::string color)
 {
-    std::string st;
-    std::cout << " 1_ Personal User\n";
-    std::cout << " 2_ Organisation User\n";
-    std::cout << " 3_ Anonymous User\n";
-    std::cout << "? Select the type of user : ";
+    bool sUsername = true, sPass = true, sManager = true;
+    Organisation org1;
 
-    std::cin >> st;
-    st = app.lower(st);
+    sUsername = org1.set_username(Ausername);
 
-    if(st == "1" or st == "personal")
+    if(app.users.count(org1.get_username()) == 1 or app.org_user.count(org1.get_username()) == 1 or app.ans_user.count(org1.get_username()) == 1)
     {
-        std::string Full_Name;
-        std::string Pass;
-        std::string birthday;
-        std::string phone_number;
-
-        user u1;
-
-        std::cout << "$ Name : ";
-        std::cin >> Full_Name;
-        u1.set_name(Full_Name);
-
-        u1.set_username(user_name);
-
-        while(1)
-        {
-            if(app.users.count(u1.get_username()) == 1 or app.org_user.count(u1.get_username()) == 1 or app.ans_user.count(u1.get_username()) == 1)
-            {
-                std::cout << "! Your username is invalid.\n";
-                std::cout << "$ Username : @";
-                std::cin >> user_name;
-                u1.set_username(user_name);
-            }
-
-            else
-            {
-                break;
-            }
-        }
-
-        std::cout << "$ Phone number : ";
-        std::cin >> phone_number;
-        u1.set_phone(phone_number);
-
-        std::cout << "Enter your birthday wtih this fromat : 2022/11/15\n";
-        std::cout << "$ Birthday : ";
-        std::cin >> birthday;
-        u1.set_birthday(birthday);
-
-        std::cout << "$ Password : ";
-        std::cin >> Pass;
-
-        while (Pass.empty())
-        {
-            std::cout << "! please enter a password\n";
-            std::cout << "$ Password : ";
-            std::cin >> Pass;
-        }
-
-        u1.set_password(Pass);
-
-        app.users[u1.get_username()] = u1;
-        app.is_logedin = true;
-        app.logedin_user = u1.get_username();
-        app.li_user = &(app.users[app.logedin_user]);
-
-        std::cout << "* Registration was successful.\n";
+        QMessageBox msg;
+        msg.setText("! Your username is not valid.");
+        msg.exec();
+        sUsername = false;
     }
 
-    else if(st == "2" or st == "organisation")
+    org1.set_name(Aname);
+    sPass = org1.set_password(Apassword);
+    if(!manager.empty())
     {
-        std::string Full_Name;
-        std::string Pass;
-        std::string phone_number;
-        std::string managerUser;
+        sManager = org1.set_manager_username(app,manager);
+    }
 
-        Organisation org1;
+    if(!country.empty())
+    {
+        org1.set_biography(bio);
+    }
 
-        std::cout << "$ Name : ";
-        std::cin >> Full_Name;
-        org1.set_name(Full_Name);
+    if(!country.empty())
+    {
+        org1.set_country(country);
+    }
 
-        org1.set_username(user_name);
+    if(!phone.empty())
+    {
+        org1.set_phone(phone);
+    }
 
-        while(1)
-        {
-            if(app.users.count(org1.get_username()) == 1 or app.org_user.count(org1.get_username()) == 1 or app.ans_user.count(org1.get_username()) == 1)
-            {
-                std::cout << "! Your username is invalid.\n";
-                std::cout << "$ Username : @";
-                std::cin >> user_name;
-                org1.set_username(user_name);
-            }
+    if(!link.empty())
+    {
+        org1.set_link(link);
+    }
 
-            else
-            {
-                break;
-            }
-        }
+    if(!color.empty())
+    {
+        org1.set_header(color);
+    }
 
-        std::cout << "$ Phone number : ";
-        std::cin >> phone_number;
-        org1.set_phone(phone_number);
-
-        std::cout << "$ Manager username : ";
-        std::cin >> managerUser;
-        org1.set_manager_username(app, managerUser);
-
-        std::cout << "$ Password : ";
-        std::cin >> Pass;
-        while (Pass.empty())
-        {
-            std::cout << "! please enter a password\n";
-            std::cout << "$ Password : ";
-            std::cin >> Pass;
-        }
-        org1.set_password(Pass);
-
+    if(sManager == true and sPass == true and sUsername == true)
+    {
         app.org_user[org1.get_username()] = org1;
-        app.is_logedin = true;
-        app.logedin_user = org1.get_username();
-        app.li_user = &(app.org_user[app.logedin_user]);
-
-        std::cout << "* Registration was successful.\n";
+        QMessageBox msg;
+        msg.setText("* Registration was successful.");
+        msg.exec();
+        return true;
     }
+}
 
-    else if(st == "3" or st == "anonymous")
+
+//------------------------------------------------------------------------------------------
+
+bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std::string Apassword,std::string bio ,std::string country,
+                     std::string birth ,std::string phone ,std::string link ,std::string color )
+{
+    bool sUsername = true, sPass = true;
+    user u1;
+
+    sUsername = u1.set_username(Ausername);
+
+    if(app.users.count(u1.get_username()) == 1 or app.org_user.count(u1.get_username()) == 1 or app.ans_user.count(u1.get_username()) == 1)
     {
-        std::string Pass;
-
-        Anonymous ans1;
-        ans1.set_username(user_name);
-
-        while(1)
-        {
-            if(app.users.count(ans1.get_username()) == 1 or app.org_user.count(ans1.get_username()) == 1 or app.ans_user.count(ans1.get_username()) == 1)
-            {
-                std::cout << "! Your username is invalid.\n";
-                std::cout << "$ Username : @";
-                std::cin >> user_name;
-                ans1.set_username(user_name);
-            }
-
-            else
-            {
-                break;
-            }
-        }
-
-        std::cout << "$ Password : ";
-        std::cin >> Pass;
-        ans1.set_password(Pass);
-
-        app.ans_user[ans1.get_username()] = ans1;
-        app.is_logedin = true;
-        app.logedin_user = ans1.get_username();
-        app.li_user = &(app.ans_user[app.logedin_user]);
-
-        std::cout << "* Registration was successful.\n";
+        QMessageBox msg;
+        msg.setText("! Your username is not valid.");
+        msg.exec();
+        sUsername = false;
     }
 
-    else
+    u1.set_name(Aname);
+    sPass = u1.set_password(Apassword);
+    if(!bio.empty())
     {
-        std::cout << "! Your selected type is undefined.\n";
+        u1.set_biography(bio);
     }
 
+    if(!country.empty())
+    {
+        u1.set_country(country);
+    }
+    if(!birth.empty())
+    {
+        u1.set_birthday(birth);
+    }
+
+    if(!phone.empty())
+    {
+        u1.set_phone(phone);
+    }
+
+    if(!link.empty())
+    {
+        u1.set_link(link);
+    }
+
+    if(!color.empty())
+    {
+        u1.set_header(color);
+    }
+
+    if(sPass == true and sUsername == true)
+    {
+        app.users[u1.get_username()] = u1;
+        QMessageBox msg;
+        msg.setText("* Registration was successful.");
+        msg.exec();
+        return true;
+    }
 }
 
 //------------------------------------------------------------------------------------------
