@@ -3,6 +3,7 @@
 #include "login.h"
 #include "signup.h"
 
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -17,7 +18,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_exit_btn_clicked()
 {
-    exit(0);
+    QMessageBox msg;
+    msg.setWindowTitle("Exit");
+    msg.setText("Are you sure ?");
+    msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    if (msg.exec() == QMessageBox::Yes)
+    {
+        exit(0);
+    }
 }
 void MainWindow::on_login_btn_clicked()
 {

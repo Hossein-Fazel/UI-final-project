@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Twitterak</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="login_btn">
@@ -82,6 +82,9 @@
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="toolTip">
+     <string>Your username</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="ln_pass">
     <property name="geometry">
@@ -97,7 +100,40 @@
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="toolTip">
+     <string>Your password</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
    </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>60</y>
+      <width>651</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="title">
+     <string>Login</string>
+    </property>
+   </widget>
+   <zorder>groupBox</zorder>
+   <zorder>login_btn</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>ln_username</zorder>
+   <zorder>ln_pass</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
