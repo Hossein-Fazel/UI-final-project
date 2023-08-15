@@ -11,8 +11,7 @@
 // shows the usernsmae of an organisation's manager
 std::string Organisation::get_manager_username() const
 {
-    std::string mUSername = manager->get_username();
-    return mUSername;
+    return manager->get_username();
 }
 
 //------------------------------------------------------------------------
