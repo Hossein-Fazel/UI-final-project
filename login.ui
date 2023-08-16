@@ -103,12 +103,9 @@
     <property name="toolTip">
      <string>Your password</string>
     </property>
-<<<<<<< HEAD
     <property name="echoMode">
      <enum>QLineEdit::Password</enum>
     </property>
-=======
->>>>>>> 9f56d0962177a5a53ccf61a3deb0775b0087f08a
    </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
