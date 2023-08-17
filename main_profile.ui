@@ -7,8 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>1141</width>
-    <height>842</height>
+    <height>839</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -18,9 +23,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
+      <y>0</y>
       <width>291</width>
-      <height>791</height>
+      <height>785</height>
      </rect>
     </property>
     <property name="font">
@@ -29,7 +34,7 @@
      </font>
     </property>
     <property name="title">
-     <string>profile</string>
+     <string>Profile</string>
     </property>
     <widget class="QListWidget" name="listWidget">
      <property name="geometry">
@@ -458,6 +463,613 @@
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="box_search">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>0</y>
+      <width>291</width>
+      <height>372</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Saerch</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ln_search">
+    <property name="geometry">
+     <rect>
+      <x>843</x>
+      <y>33</y>
+      <width>180</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>@Username  #Hashtag</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_search">
+    <property name="geometry">
+     <rect>
+      <x>1045</x>
+      <y>33</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>search</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="box_tweet">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>0</y>
+      <width>482</width>
+      <height>185</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Show Tweets</string>
+    </property>
+    <widget class="QLineEdit" name="ln_usrtweet">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>33</y>
+       <width>125</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_showtweet">
+     <property name="geometry">
+      <rect>
+       <x>157</x>
+       <y>33</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>show</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="box_menetion">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>187</y>
+      <width>482</width>
+      <height>185</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Show Mentions</string>
+    </property>
+    <widget class="QLineEdit" name="ln_usrmention">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>33</y>
+       <width>103</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_nummention">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>33</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Number</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_showmention">
+     <property name="geometry">
+      <rect>
+       <x>164</x>
+       <y>33</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>show</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="box_makeTweet">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>372</y>
+      <width>482</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Tweet</string>
+    </property>
+    <widget class="QRadioButton" name="radio_tweet">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>30</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tweet</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>194</x>
+       <y>30</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Retweet</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_3">
+     <property name="geometry">
+      <rect>
+       <x>345</x>
+       <y>30</y>
+       <width>87</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Qoutetweet</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="te_normalTweet">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>60</y>
+       <width>120</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tweet Text</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_normalTweet">
+     <property name="geometry">
+      <rect>
+       <x>39</x>
+       <y>173</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>submit</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_Retweet">
+     <property name="geometry">
+      <rect>
+       <x>199</x>
+       <y>173</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>submit</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_Qoutetweet">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>173</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>submit</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_usrRetweet">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>60</y>
+       <width>110</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_tweetNumber_Retweet">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>100</y>
+       <width>110</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tweet Number</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_usrQoutetweet">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>60</y>
+       <width>90</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_tweetNumber_Qoutetweet">
+     <property name="geometry">
+      <rect>
+       <x>429</x>
+       <y>60</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Num</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>90</y>
+       <width>130</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tweet Text</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="box_makeMention">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>585</y>
+      <width>233</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Mention</string>
+    </property>
+    <widget class="QLineEdit" name="ln_tweetNumber_Mention">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>33</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tweet Number</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_usrMention">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>33</y>
+       <width>103</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_makMention">
+     <property name="geometry">
+      <rect>
+       <x>164</x>
+       <y>33</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>submit</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="box_follow">
+    <property name="geometry">
+     <rect>
+      <x>579</x>
+      <y>585</y>
+      <width>233</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Follow</string>
+    </property>
+    <widget class="QLineEdit" name="ln_usrtweet_2">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>33</y>
+       <width>125</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_showtweet_2">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>33</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>show</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="box_deleteTweet">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>585</y>
+      <width>291</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Delete Tweet</string>
+    </property>
+    <widget class="QLineEdit" name="ln_tweetNumber">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>33</y>
+       <width>125</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Number of the tweet</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_DeleteTweet">
+     <property name="geometry">
+      <rect>
+       <x>157</x>
+       <y>33</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>submit</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="box_makeLike">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>372</y>
+      <width>291</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Like</string>
+    </property>
+    <widget class="QPushButton" name="btn_makeLike_Mention">
+     <property name="geometry">
+      <rect>
+       <x>215</x>
+       <y>53</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>submit</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_usrLike">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>53</y>
+       <width>103</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_tweetNumber_Like">
+     <property name="geometry">
+      <rect>
+       <x>131</x>
+       <y>53</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tweet Number&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Tweet Number</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_makeLike_Tweet">
+     <property name="geometry">
+      <rect>
+       <x>175</x>
+       <y>133</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>submit</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_tweetNumber_Like_2">
+     <property name="geometry">
+      <rect>
+       <x>131</x>
+       <y>133</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Tweet Number</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_usrLike_tweet">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>133</y>
+       <width>103</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lab_likeMention">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>33</y>
+       <width>80</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Like  Mentions</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lab_likeMention_2">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>113</y>
+       <width>70</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Like Tweets</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ln_mentionNumber_Like">
+     <property name="geometry">
+      <rect>
+       <x>175</x>
+       <y>53</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mention Number&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Mention Number</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -465,7 +1077,7 @@
      <x>0</x>
      <y>0</y>
      <width>1141</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
