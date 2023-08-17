@@ -56,7 +56,7 @@
      <string>login</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="help_btn">
+   <widget class="QPushButton" name="btn_about">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -74,7 +74,7 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>help</string>
+     <string>About</string>
     </property>
    </widget>
    <widget class="QPushButton" name="exit_btn">
@@ -121,7 +121,7 @@
    <zorder>groupBox</zorder>
    <zorder>signup_btn</zorder>
    <zorder>login_btn</zorder>
-   <zorder>help_btn</zorder>
+   <zorder>btn_about</zorder>
    <zorder>exit_btn</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
