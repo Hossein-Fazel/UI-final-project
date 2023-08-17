@@ -295,6 +295,10 @@ bool display::signup(twitterak &app, std::string Ausername, std::string Apasswor
         msg.exec();
         return true;
     }
+    else
+    {
+        return false;
+    }
 }
 
 //------------------------------------------------------------------------------------------
@@ -302,7 +306,7 @@ bool display::signup(twitterak &app, std::string Ausername, std::string Apasswor
 bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, std::string Apassword, std::string manager,
                       std::string bio, std::string country, std::string phone, std::string link, std::string color)
 {
-    bool sUsername = true, sPass = true, sManager = true;
+    bool sUsername = true, sPass = true, sManager = true, sPhone = true;
     Organisation org1;
 
     sUsername = org1.set_username(Ausername);
@@ -334,7 +338,7 @@ bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, 
 
     if(!phone.empty())
     {
-        org1.set_phone(phone);
+        sPhone = org1.set_phone(phone);
     }
 
     if(!link.empty())
@@ -347,13 +351,17 @@ bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, 
         org1.set_header(color);
     }
 
-    if(sManager == true and sPass == true and sUsername == true)
+    if(sManager == true and sPass == true and sUsername == true and sPhone == true)
     {
         app.org_user[org1.get_username()] = org1;
         QMessageBox msg;
         msg.setText("* Registration was successful.");
         msg.exec();
         return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -363,7 +371,7 @@ bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, 
 bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std::string Apassword,std::string bio ,std::string country,
                      std::string birth ,std::string phone ,std::string link ,std::string color )
 {
-    bool sUsername = true, sPass = true;
+    bool sUsername = true, sPass = true, sPhone = true;
     user u1;
 
     sUsername = u1.set_username(Ausername);
@@ -394,7 +402,7 @@ bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std
 
     if(!phone.empty())
     {
-        u1.set_phone(phone);
+        sPhone = u1.set_phone(phone);
     }
 
     if(!link.empty())
@@ -407,13 +415,17 @@ bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std
         u1.set_header(color);
     }
 
-    if(sPass == true and sUsername == true)
+    if(sPass == true and sUsername == true and sPhone == true)
     {
         app.users[u1.get_username()] = u1;
         QMessageBox msg;
         msg.setText("* Registration was successful.");
         msg.exec();
         return true;
+    }
+    else
+    {
+        return false;
     }
 }
 

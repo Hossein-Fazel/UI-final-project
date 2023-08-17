@@ -65,6 +65,7 @@ void signup::on_signup_btn_clicked()
                     login_status = app.d1.login(app,Ac_username, Ac_password);
                     if(login_status == true)
                     {
+                        app.put_users();
                         prof = new main_profile;
                         prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
                         prof->fill_out();
@@ -98,6 +99,7 @@ void signup::on_signup_btn_clicked()
                     login_status = app.d1.login(app,Ac_username, Ac_password);
                     if(login_status == true)
                     {
+                        app.put_users();
                         prof = new main_profile;
                         prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
                         prof->fill_out();
@@ -106,6 +108,7 @@ void signup::on_signup_btn_clicked()
                 }
             }
         }
+
         else if(ui->type->currentText() == "Anonymous User")
         {
             is_complete = app.d1.signup(app, Ac_username, Ac_password);
@@ -115,6 +118,7 @@ void signup::on_signup_btn_clicked()
                login_status = app.d1.login(app,Ac_username, Ac_password);
                if(login_status == true)
                {
+                   app.put_users();
                    prof = new main_profile;
                    prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
                    prof->fill_out();
@@ -123,14 +127,13 @@ void signup::on_signup_btn_clicked()
             }
         }
     }
+
     else
     {
         QMessageBox msg;
         msg.setText("! The username and password can not be empty.");
         msg.exec();
     }
-
-    app.put_users();
 }
 
 

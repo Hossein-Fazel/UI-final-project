@@ -174,21 +174,19 @@ void Base_User::set_link(std::string link)
 
 //------------------------------------------------------------------------
 // sets the phone number of a user
-void Base_User::set_phone(std::string phone)                                           
+bool Base_User::set_phone(std::string phone)
 {
-    while (1)
+    if (!(validate_phone_number(phone)))
     {
-        if (!(validate_phone_number(phone)))
-        {
-            std::cout << "! You're phone number is invalid.\n";
-            std::cout << "$ Phone_Number : ";
-            std::cin >> phone;
-        }
-        else
-        {
-            Phone_Number = phone;
-            break;
-        }
+        QMessageBox msg;
+        msg.setText("! Your phone number is invalid.");
+        msg.exec();
+        return false;
+    }
+    else
+    {
+        Phone_Number = phone;
+        return true;
     }
 }                 
 

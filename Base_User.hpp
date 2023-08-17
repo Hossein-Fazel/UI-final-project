@@ -20,7 +20,7 @@ class Base_User
         bool set_password(std::string);                                   // sets the password of the user's account
         void set_pass_wHash(std::string);                                 // sets the password without hashing
         void set_link(std::string);                                       // sets the link of a user
-        void set_phone(std::string);                                      // sets the phone number of a user
+        bool set_phone(std::string);                                      // sets the phone number of a user
         void set_header(std::string);                                     // sets the color of the header that user had chosen
         void set_country(std::string);                                    // sets the country of the user
 

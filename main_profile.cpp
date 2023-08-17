@@ -2,6 +2,7 @@
 #include "ui_main_profile.h"
 
 #include <QMessageBox>
+#include <Qstring>
 #include <QString>
 #include <fstream>
 
@@ -40,6 +41,8 @@ void main_profile::fill_out()
         ui->te_bio->setEnabled(false);
         ui->dt_birthday->setEnabled(false);
         ui->ln_header->setEnabled(false);
+        ui->ln_follower->setEnabled(false);
+        ui->ln_following->setText(QString::number(li_user->get_following_num()));
 
         ui->ln_pass->setText(QString::fromStdString(li_user->get_password()));
     }
@@ -52,6 +55,10 @@ void main_profile::fill_out()
         if(org_user.count(li_user->get_username()) == 1)
         {
             ui->dt_birthday->setEnabled(false);
+            ui->ln_manager->setEnabled(true);
+            ui->ln_manager->setReadOnly(true);
+            ui->ln_follower->setText(QString::number(li_user->get_followers_num()));
+            ui->ln_following->setEnabled(false);
         }
 
         else
@@ -65,6 +72,8 @@ void main_profile::fill_out()
             ui->dt_birthday->setDate(date);
 
             ui->ln_manager->setEnabled(false);
+            ui->ln_follower->setText(QString::number(li_user->get_followers_num()));
+            ui->ln_following->setText(QString::number(li_user->get_followers_num()));
         }
 
         ui->ln_phone->setText(QString::fromStdString(li_user->get_phone()));
@@ -226,9 +235,7 @@ void main_profile::put_users()
         wuser << "country:" << i.second.get_country() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
-        std::cout << "test\n";
 //        wuser << "manager:" << i.second.get_manager_username() << std::endl;
-        std::cout << "test2\n";
         wuser << "followers:";
         for(auto j : i.second.get_followers())
         {
@@ -369,7 +376,7 @@ void main_profile::set_vars(std::unordered_map<std::string, user> per, std::unor
     }
     else if(org_user.count(username) == 1)
     {
-        li_user = &(users[username]);
+        li_user = &(org_user[username]);
     }
     else
     {
@@ -439,6 +446,7 @@ void main_profile::on_btn_editp_clicked()
     msg.setWindowTitle("Message");
     msg.setText("You can edit your profile now.\nDont forgot click save to save your changes!!");
     msg.exec();
+    ui->btn_editp->setEnabled(false);
 }
 
 
@@ -561,6 +569,7 @@ void main_profile::on_btn_save_clicked()
         ui->btn_discard->hide();
         ui->lb_header->hide();
         ui->ln_header->hide();
+        ui->btn_editp->setEnabled(true);
     }
 }
 
@@ -569,12 +578,17 @@ void main_profile::on_btn_discard_clicked()
 {
     fill_out_old();
     change_ro(1);
+    if(org_user.count(li_user->get_username()) != 1)
+    {
+        ui->ln_manager->setEnabled(false);
+    }
     ui->ln_pass->hide();
     ui->lb_pass->hide();
     ui->btn_save->hide();
     ui->btn_discard->hide();
     ui->lb_header->hide();
     ui->ln_header->hide();
+    ui->btn_editp->setEnabled(true);
 }
 void main_profile::on_btn_logout_clicked()
 {
