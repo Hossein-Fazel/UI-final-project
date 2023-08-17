@@ -11,7 +11,7 @@ class display
 {
     public:
         void help(twitterak &);
-        void login(twitterak &,std::string , std::string);
+        bool login(twitterak &,std::string , std::string);
         void login(twitterak &, std::string );
         void login(twitterak &);
         bool signup(twitterak &,std::string Aname, std::string Ausername,std::string Apassword,std::string bio,std::string country,std::string birth,std::string phone,std::string link,std::string color);

@@ -1,5 +1,8 @@
 #include "login.h"
 #include "ui_login.h"
+#include "main_profile.h"
+
+#include <QtDebug>
 
 login::login(QWidget *parent) :
     QMainWindow(parent),
@@ -15,10 +18,20 @@ login::~login()
 
 void login::on_login_btn_clicked()
 {
+    main_profile *prof;
+
+    bool login_status = true;
     std::string username, password;
     username = ui->ln_username->text().toStdString();
     password = ui->ln_pass->text().toStdString();
 
-    app.d1.login(app, username, password);
-}
+    login_status = app.d1.login(app, username, password);
 
+    if(login_status == true)
+    {
+        prof = new main_profile;
+        prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), username);
+        prof->fill_out();
+        prof->show();
+    }
+}

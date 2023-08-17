@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 #include "Tweet_Class.hpp"
+//#include "main_profile.h"
 
 class Base_User
 {
@@ -50,6 +51,7 @@ class Base_User
 
         virtual std::unordered_map<std::string , std::unordered_set<int>> get_mention_trs();
         virtual std::unordered_map<std::string , std::unordered_set<int>> get_tweetlike_trs();
+        virtual std::string get_manager_username() const;
         virtual std::string get_biography() const;                        // returns the biography of the user
         virtual std::string get_birthday() const;                         // returns the date of birth of the user
         virtual int get_last_number() const;                              // returns the last number of tweet
@@ -59,6 +61,7 @@ class Base_User
 
 //========================= sets ==========================
         virtual void set_lastNum(int);
+        virtual bool set_manager_username(twitterak, std::string);
         virtual void set_biography(std::string);                          // sets the biography of a user
         virtual void set_birthday(std::string);                           // sets the date of birth of a user
 

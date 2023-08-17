@@ -1,5 +1,6 @@
 #include "signup.h"
 #include "ui_signup.h"
+#include "main_profile.h"
 
 #include <QMessageBox>
 
@@ -23,6 +24,8 @@ signup::~signup()
 
 void signup::on_signup_btn_clicked()
 {
+    main_profile *prof;
+
     bool is_complete = true;
     std::string Ac_name = ui->ln_name->text().toStdString(),
             Ac_username = ui->ln_username->text().toStdString(),
@@ -58,7 +61,15 @@ void signup::on_signup_btn_clicked()
                 is_complete = app.d1.signup(app, Ac_name, Ac_username, Ac_password, Ac_bio, Ac_country, Ac_birth, Ac_phone, Ac_link, Ac_color);
                 if(is_complete == true)
                 {
-                    app.d1.login(app,Ac_username, Ac_password);
+                    bool login_status = true;
+                    login_status = app.d1.login(app,Ac_username, Ac_password);
+                    if(login_status == true)
+                    {
+                        prof = new main_profile;
+                        prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
+                        prof->fill_out();
+                        prof->show();
+                    }
                 }
             }
         }
@@ -83,7 +94,15 @@ void signup::on_signup_btn_clicked()
                 is_complete = app.d1.signupM(app,Ac_name,Ac_username,Ac_password,Ac_manager,Ac_bio,Ac_country,Ac_phone,Ac_link,Ac_color);
                 if(is_complete == true)
                 {
-                    app.d1.login(app,Ac_username, Ac_password);
+                    bool login_status = true;
+                    login_status = app.d1.login(app,Ac_username, Ac_password);
+                    if(login_status == true)
+                    {
+                        prof = new main_profile;
+                        prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
+                        prof->fill_out();
+                        prof->show();
+                    }
                 }
             }
         }
@@ -92,7 +111,15 @@ void signup::on_signup_btn_clicked()
             is_complete = app.d1.signup(app, Ac_username, Ac_password);
             if(is_complete == true)
             {
-               app.d1.login(app,Ac_username, Ac_password);
+               bool login_status = true;
+               login_status = app.d1.login(app,Ac_username, Ac_password);
+               if(login_status == true)
+               {
+                   prof = new main_profile;
+                   prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
+                   prof->fill_out();
+                   prof->show();
+               }
             }
         }
     }

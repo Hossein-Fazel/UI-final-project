@@ -18,6 +18,26 @@ twitterak::twitterak()
 
 //------------------------------------------------------------------------------------------
 
+std::unordered_map<std::string, Organisation> twitterak::get_org()
+{
+    return org_user;
+}
+
+std::unordered_map<std::string, user> twitterak::get_users()
+{
+    return users;
+}
+
+std::unordered_map<std::string, Anonymous> twitterak::get_ans()
+{
+    return ans_user;
+}
+
+std::unordered_map<std::string, std::vector<tweet>> twitterak::get_hashtags()
+{
+    return Hashtags;
+}
+
 void twitterak::put_users()
 {
     std::ofstream wuser;

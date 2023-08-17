@@ -27,7 +27,7 @@ friend void user::del_tweetLikes(twitterak &);
 friend void user::follow(twitterak &, std::string);
 friend void user::unfollow_followers(twitterak &app);
 
-friend void display::login(twitterak  &,std::string, std::string);
+friend bool display::login(twitterak  &,std::string, std::string);
 friend void display::login(twitterak  &);
 friend void display::login(twitterak  &, std::string);
 friend bool display::signup(twitterak &, std::string Ausername, std::string Apassword);
@@ -77,6 +77,11 @@ friend void Anonymous::unfollow_followers(twitterak &app);
         bool get_userName_number(std:: string, std::string &, int &);
         void del_atsign(std::string &);
         void read_from_file();                                              // read tweets and mentions from a text file
+
+        std::unordered_map<std::string, user> get_users();
+        std::unordered_map<std::string, Organisation> get_org();
+        std::unordered_map<std::string, Anonymous> get_ans();
+        std::unordered_map<std::string, std::vector<tweet>> get_hashtags();
 
     private:
         Base_User *li_user;

@@ -31,7 +31,6 @@ void MainWindow::on_login_btn_clicked()
 {
     login *login_page = nullptr;
     login_page = new login;
-
     login_page->show();
 }
 

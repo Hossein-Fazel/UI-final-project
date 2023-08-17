@@ -19,6 +19,7 @@ SOURCES += \
     User_Class.cpp \
     login.cpp \
     main.cpp \
+    main_profile.cpp \
     mainwindow.cpp \
     signup.cpp
 
@@ -32,11 +33,13 @@ HEADERS += \
     Twitterak_Class.hpp \
     User_Class.hpp \
     login.h \
+    main_profile.h \
     mainwindow.h \
     signup.h
 
 FORMS += \
     login.ui \
+    main_profile.ui \
     mainwindow.ui \
     signup.ui
 

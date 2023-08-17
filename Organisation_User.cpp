@@ -67,6 +67,7 @@ bool Organisation::set_manager_username(twitterak app,std::string username)
         return false;
     }
 }
+
 //------------------------------------------------------------------------
 // sets the biography of an organisation
 void Organisation::set_biography(std::string bio)

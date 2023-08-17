@@ -56,7 +56,7 @@ void display::show_re(tweet tw)
 
 //============================================================= Login_Functions ============================================================= 
 
-void display::login(twitterak &app, std::string user_name, std::string password)
+bool display::login(twitterak &app, std::string user_name, std::string password)
 {    
     user_name = app.lower(user_name);
     if(user_name[0] == '@')
@@ -74,12 +74,14 @@ void display::login(twitterak &app, std::string user_name, std::string password)
             QMessageBox msg;
             msg.setText("* Login was successful.");
             msg.exec();
+            return true;
         }
         else
         {
             QMessageBox msg;
             msg.setText("! Your password is wrong.");
             msg.exec();
+            return false;
         }
     }
 
@@ -93,12 +95,14 @@ void display::login(twitterak &app, std::string user_name, std::string password)
             QMessageBox msg;
             msg.setText("* Login was successful.");
             msg.exec();
+            return true;
         }
         else
         {
             QMessageBox msg;
             msg.setText("! Your password is wrong.");
             msg.exec();
+            return false;
         }
     }
 
@@ -110,14 +114,16 @@ void display::login(twitterak &app, std::string user_name, std::string password)
             app.logedin_user = user_name;
             app.li_user = &(app.ans_user[app.logedin_user]);
             QMessageBox msg;
-            msg.setText("! Your password is wrong.");
+            msg.setText("* Login was successful.");
             msg.exec();
+            return true;
         }
         else
         {
             QMessageBox msg;
             msg.setText("! Your password is wrong.");
             msg.exec();
+            return false;
         }
     }
 
@@ -126,6 +132,7 @@ void display::login(twitterak &app, std::string user_name, std::string password)
         QMessageBox msg;
         msg.setText("! Your username is wrong.");
         msg.exec();
+        return false;
     }
 }
 
