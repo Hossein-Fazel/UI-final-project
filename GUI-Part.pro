@@ -41,6 +41,7 @@ FORMS += \
     login.ui \
     main_profile.ui \
     mainwindow.ui \
+    other_profile.ui \
     signup.ui
 
 # Default rules for deployment.
