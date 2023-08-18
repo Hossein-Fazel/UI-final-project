@@ -2,7 +2,6 @@
 #include "ui_main_profile.h"
 
 #include <QMessageBox>
-#include <Qstring>
 #include <QString>
 #include <fstream>
 
@@ -590,6 +589,7 @@ void main_profile::on_btn_discard_clicked()
     ui->ln_header->hide();
     ui->btn_editp->setEnabled(true);
 }
+
 void main_profile::on_btn_logout_clicked()
 {
     QMessageBox msg;
@@ -607,5 +607,90 @@ void main_profile::on_btn_logout_clicked()
 void main_profile::on_btn_del_clicked()
 {
 //    li_user->Delete_Account()
+}
+
+
+void main_profile::on_btn_search_clicked()
+{
+    if(!ui->ln_search->text().toStdString().empty())
+    {
+        if(ui->ln_search->text().toStdString()[0] == '#')
+        {
+            std::string hashtag = ui->ln_search->text().toStdString();
+            if(Hashtags.count(hashtag) == 1)
+            {
+                ui->tx_hashtag->clear();
+                for(auto i : Hashtags[hashtag])
+                {
+                    QString tw;
+                    if(i.get_tweetType() == "normal")
+                    {
+                         tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
+                                 "\nname : " + QString::fromStdString(i.get_name()) + "\ntweet : " + QString::fromStdString(i.get_sefTweet())
+                                 + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
+                                 + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
+                                 + " " + QString::fromStdString(i.get_date()) + "\n\n";
+
+                         ui->tx_hashtag->insertPlainText(tw);
+                    }
+
+                    else if(i.get_tweetType() == "retweet")
+                    {
+                         tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
+                                 "\nname : " + QString::fromStdString(i.get_name()) + "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
+                                 + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
+                                 "\n    owner tweet : " + QString::fromStdString(i.get_sefTweet())
+                                 + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
+                                 + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
+                                 + " " + QString::fromStdString(i.get_date()) + "\n\n";
+
+                         ui->tx_hashtag->insertPlainText(tw);
+                    }
+
+                    else
+                    {
+                         tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
+                                 "\nname : " + QString::fromStdString(i.get_name()) + "\ntweet : " + QString::fromStdString(i.get_sefTweet()) +
+                                 "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
+                                 + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
+                                 "\n    owner tweet : " + QString::fromStdString(i.get_sefTweet())
+                                 + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
+                                 + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
+                                 + " " + QString::fromStdString(i.get_date()) + "\n\n";
+
+                         ui->tx_hashtag->insertPlainText(tw);
+                    }
+                }
+            }
+
+            else
+            {
+                QMessageBox msg;
+                msg.setText("! This hashtag is not exist.");
+                msg.setWindowTitle("Search");
+                msg.exec();
+            }
+        }
+
+        else if(ui->ln_search->text().toStdString()[0] == '@')
+        {
+
+        }
+
+        else
+        {
+            QMessageBox msg;
+            msg.setText("! Invalid search");
+            msg.setWindowTitle("Error");
+            msg.exec();
+        }
+    }
+    else
+    {
+        QMessageBox msg;
+        msg.setText("! search box is empty");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
 }
 

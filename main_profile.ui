@@ -555,6 +555,16 @@
     <property name="title">
      <string>Saerch</string>
     </property>
+    <widget class="QTextBrowser" name="tx_hashtag">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>261</width>
+       <height>291</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QLineEdit" name="ln_search">
     <property name="geometry">
