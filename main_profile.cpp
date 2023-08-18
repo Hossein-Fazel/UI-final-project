@@ -432,16 +432,16 @@ void main_profile::on_btn_editp_clicked()
     ui->lb_header->show();
     ui->cm_header->show();
 
-    old_user.name = li_user->get_name();
-    old_user.username = li_user->get_username();
-    old_user.manager = li_user->get_manager_username();
-    old_user.birth = li_user->get_birthday();
-    old_user.phone = li_user->get_phone();
-    old_user.country = li_user->get_country();
-    old_user.link = li_user->get_link();
-    old_user.bio = li_user->get_biography();
-    old_user.pass = li_user->get_password();
-    old_user.header = li_user->get_header();
+    old_user.name = ui->ln_name->text().toStdString();
+    old_user.username = ui->ln_username->text().toStdString();
+    old_user.manager = ui->ln_manager->text().toStdString();
+    old_user.birth = ui->dt_birthday->text().toStdString();
+    old_user.phone = ui->ln_phone->text().toStdString();
+    old_user.country = ui->ln_country->text().toStdString();
+    old_user.link = ui->ln_link->text().toStdString();
+    old_user.bio = ui->te_bio->toPlainText().toStdString();
+    old_user.pass = ui->ln_pass->text().toStdString();
+    old_user.header = ui->cm_header->currentText().toStdString();
 
     QMessageBox msg;
     msg.setWindowTitle("Message");

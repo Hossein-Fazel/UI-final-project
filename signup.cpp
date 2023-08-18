@@ -152,6 +152,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_bio->setEnabled(true);
         ui->ln_country->setEnabled(true);
         ui->cm_header->setEnabled(true);
+        ui->cm_header->setCurrentText("white");
         ui->ln_birthday->setEnabled(true);
         ui->ln_phone->setEnabled(true);
         ui->ln_manager->setEnabled(false);
@@ -171,6 +172,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_bio->setEnabled(true);
         ui->ln_country->setEnabled(true);
         ui->cm_header->setEnabled(true);
+        ui->cm_header->setCurrentText("white");
         ui->ln_birthday->setEnabled(false);
         ui->ln_phone->setEnabled(true);
         ui->ln_manager->setEnabled(true);
@@ -189,6 +191,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_bio->setEnabled(false);
         ui->ln_country->setEnabled(false);
         ui->cm_header->setEnabled(false);
+        ui->cm_header->setCurrentText("gray");
         ui->ln_birthday->setEnabled(false);
         ui->ln_phone->setEnabled(false);
         ui->ln_manager->setEnabled(false);
