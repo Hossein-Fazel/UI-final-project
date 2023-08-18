@@ -94,6 +94,7 @@ bool Base_User::set_username(std::string user_name)
     {
         QMessageBox msg;
         msg.setText("! Username must have at least 5 characters.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -102,6 +103,7 @@ bool Base_User::set_username(std::string user_name)
     {
         QMessageBox msg;
         msg.setText("! Username must not have characters.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -110,6 +112,7 @@ bool Base_User::set_username(std::string user_name)
     {
         QMessageBox msg;
         msg.setText("! Username must not be the commands of the program.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -138,6 +141,7 @@ bool Base_User::set_password(std::string input_pass)
     {
         QMessageBox msg;
         msg.setText("! Wrong Password.Your Password must include number, letter and charector.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -145,6 +149,7 @@ bool Base_User::set_password(std::string input_pass)
     {
         QMessageBox msg;
         msg.setText("! Duplicate Password.This password is already repeated.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -152,6 +157,7 @@ bool Base_User::set_password(std::string input_pass)
     {
         QMessageBox msg;
         msg.setText("! Short Password.You're password at least must be 6 character");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -180,6 +186,7 @@ bool Base_User::set_phone(std::string phone)
     {
         QMessageBox msg;
         msg.setText("! Your phone number is invalid.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -298,8 +305,10 @@ bool Base_User::validate_phone_number(std::string phone)
     for (int i = 0; i < phone.size(); i++)
     {
         if ((isdigit(phone[i])) == 0)
+        {
             return false;
             break;
+        }
     }
 
     if (phone.length() == 11 || phone.length() == 12 || phone.length() == 13)

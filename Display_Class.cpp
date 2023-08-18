@@ -73,6 +73,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
             app.li_user = &(app.users[app.logedin_user]);
             QMessageBox msg;
             msg.setText("* Login was successful.");
+            msg.setWindowTitle("Login");
             msg.exec();
             return true;
         }
@@ -80,6 +81,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
         {
             QMessageBox msg;
             msg.setText("! Your password is wrong.");
+            msg.setWindowTitle("Error");
             msg.exec();
             return false;
         }
@@ -94,6 +96,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
             app.li_user = &(app.org_user[app.logedin_user]);
             QMessageBox msg;
             msg.setText("* Login was successful.");
+            msg.setWindowTitle("Login");
             msg.exec();
             return true;
         }
@@ -101,6 +104,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
         {
             QMessageBox msg;
             msg.setText("! Your password is wrong.");
+            msg.setWindowTitle("Error");
             msg.exec();
             return false;
         }
@@ -115,6 +119,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
             app.li_user = &(app.ans_user[app.logedin_user]);
             QMessageBox msg;
             msg.setText("* Login was successful.");
+            msg.setWindowTitle("Login");
             msg.exec();
             return true;
         }
@@ -122,6 +127,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
         {
             QMessageBox msg;
             msg.setText("! Your password is wrong.");
+            msg.setWindowTitle("Error");
             msg.exec();
             return false;
         }
@@ -131,6 +137,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
     {
         QMessageBox msg;
         msg.setText("! Your username is wrong.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
@@ -281,6 +288,7 @@ bool display::signup(twitterak &app, std::string Ausername, std::string Apasswor
     {
         QMessageBox msg;
         msg.setText("! Your username is not valid.");
+        msg.setWindowTitle("Error");
         msg.exec();
         sUsername = false;
     }
@@ -292,6 +300,7 @@ bool display::signup(twitterak &app, std::string Ausername, std::string Apasswor
         app.ans_user[ans1.get_username()] = ans1;
         QMessageBox msg;
         msg.setText("* Registration was successful.");
+        msg.setWindowTitle("Signup");
         msg.exec();
         return true;
     }
@@ -315,6 +324,7 @@ bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, 
     {
         QMessageBox msg;
         msg.setText("! Your username is not valid.");
+        msg.setWindowTitle("Error");
         msg.exec();
         sUsername = false;
     }
@@ -356,6 +366,7 @@ bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, 
         app.org_user[org1.get_username()] = org1;
         QMessageBox msg;
         msg.setText("* Registration was successful.");
+        msg.setWindowTitle("Signup");
         msg.exec();
         return true;
     }
@@ -380,6 +391,7 @@ bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std
     {
         QMessageBox msg;
         msg.setText("! Your username is not valid.");
+        msg.setWindowTitle("Error");
         msg.exec();
         sUsername = false;
     }
@@ -420,6 +432,7 @@ bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std
         app.users[u1.get_username()] = u1;
         QMessageBox msg;
         msg.setText("* Registration was successful.");
+        msg.setWindowTitle("Signup");
         msg.exec();
         return true;
     }

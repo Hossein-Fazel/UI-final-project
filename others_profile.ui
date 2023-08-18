@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>others_profile</class>
  <widget class="QMainWindow" name="others_profile">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Twitterak</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
@@ -388,7 +391,7 @@
      <x>0</x>
      <y>0</y>
      <width>352</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

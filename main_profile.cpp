@@ -1,5 +1,6 @@
 #include "main_profile.h"
 #include "ui_main_profile.h"
+#include "others_profile.h"
 
 #include <QMessageBox>
 #include <QString>
@@ -623,6 +624,7 @@ void main_profile::on_btn_search_clicked()
             std::string hashtag = ui->ln_search->text().toStdString();
             if(Hashtags.count(hashtag) == 1)
             {
+                ui->ln_search->clear();
                 ui->tx_hashtag->clear();
                 for(auto i : Hashtags[hashtag])
                 {
@@ -678,7 +680,40 @@ void main_profile::on_btn_search_clicked()
 
         else if(ui->ln_search->text().toStdString()[0] == '@')
         {
+            std::string username = ui->ln_search->text().toStdString().erase(0, 1);
+            ui->ln_search->clear();
+            ui->tx_hashtag->clear();
+            if(users.count(username) == 1)
+            {
+                others_profile *op = nullptr;
+                op = new others_profile;
+                op->fill_out(&(users[username]), "user");
+                op->show();
+            }
 
+            else if(org_user.count(username) == 1)
+            {
+                others_profile *op = nullptr;
+                op = new others_profile;
+                op->fill_out(&(org_user[username]), "org");
+                op->show();
+            }
+
+            else if(ans_user.count(username) == 1)
+            {
+                others_profile *op = nullptr;
+                op = new others_profile;
+                op->fill_out(&(ans_user[username]), "ans");
+                op->show();
+            }
+
+            else
+            {
+                QMessageBox msg;
+                msg.setText("! This user does not exist");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
         }
 
         else
@@ -697,4 +732,3 @@ void main_profile::on_btn_search_clicked()
         msg.exec();
     }
 }
-

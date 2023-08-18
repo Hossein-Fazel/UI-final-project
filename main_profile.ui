@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Twitterak</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
@@ -1242,7 +1242,7 @@
      <x>0</x>
      <y>0</y>
      <width>1141</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>

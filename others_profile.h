@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "Base_User.hpp"
+
 namespace Ui {
 class others_profile;
 }
@@ -14,6 +16,8 @@ class others_profile : public QMainWindow
 public:
     explicit others_profile(QWidget *parent = nullptr);
     ~others_profile();
+
+    void fill_out(Base_User *user, std::string type);
 
 private:
     Ui::others_profile *ui;

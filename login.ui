@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Twitterak</string>
+   <string>Login</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="login_btn">

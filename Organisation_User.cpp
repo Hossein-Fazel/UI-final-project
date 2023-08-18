@@ -63,6 +63,7 @@ bool Organisation::set_manager_username(twitterak app,std::string username)
     else
     {
         msg.setText("! The username doesn't exist.");
+        msg.setWindowTitle("Error");
         msg.exec();
         return false;
     }
