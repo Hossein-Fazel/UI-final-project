@@ -5,6 +5,7 @@
 #include <string>
 #include <ctime>
 #include <unordered_set>
+#include "QMessageBox"
 
 #include "User_Class.hpp"
 #include "Tweet_Class.hpp"
@@ -441,6 +442,14 @@ void tweet::mention_like(std::string uName, int mNumber)
 
                 break;
             }
+        }
+
+        if (find_mention == false)
+        {
+            QMessageBox msg;
+            msg.setText("! There is no mention with this number.");
+            msg.setWindowTitle("Error");
+            msg.exec();
         }
 
         if(find_mention)

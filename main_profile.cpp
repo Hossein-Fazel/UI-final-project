@@ -707,6 +707,9 @@ void main_profile::on_btn_search_clicked()
 // radio button normal tweet
 void main_profile::on_radio_tweet_clicked()
 {
+    ui->te_normalTweet->setEnabled(true);
+    ui->btn_normalTweet->setEnabled(true);
+
     ui->ln_usrRetweet->setEnabled(false);
     ui->ln_tweetNumber_Retweet->setEnabled(false);
     ui->btn_Retweet->setEnabled(false);
@@ -739,6 +742,10 @@ void main_profile::on_btn_normalTweet_clicked()
 // raido button retweet
 void main_profile::on_radio_retweet_clicked()
 {
+    ui->ln_usrRetweet->setEnabled(true);
+    ui->ln_tweetNumber_Retweet->setEnabled(true);
+    ui->btn_Retweet->setEnabled(true);
+
     ui->te_normalTweet->setEnabled(false);
     ui->btn_normalTweet->setEnabled(false);
 
@@ -763,14 +770,20 @@ void main_profile::on_btn_Retweet_clicked()
         msg.exec();
     }
 
-    else if ()
+    else if ((users.count(username) != 1) && (org_user.count(username) != 1) && (ans_user.count(username) != 1))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no user with this username.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
-    else if ()
+    else if (!(li_user->get_tweets().count(tweet_number)))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no tweet with this number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
     else
@@ -783,6 +796,11 @@ void main_profile::on_btn_Retweet_clicked()
 // radio button qoutetweet
 void main_profile::on_raido_qoutetweet_clicked()
 {
+    ui->ln_usrQoutetweet->setEnabled(true);
+    ui->ln_tweetNumber_Qoutetweet->setEnabled(true);
+    ui->te_qoutetweet->setEnabled(true);
+    ui->btn_Qoutetweet->setEnabled(true);
+
     ui->te_normalTweet->setEnabled(false);
     ui->btn_normalTweet->setEnabled(false);
 
@@ -807,14 +825,20 @@ void main_profile::on_btn_Qoutetweet_clicked()
         msg.exec();
     }
 
-    else if ()
+    else if ((users.count(username) != 1) && (org_user.count(username) != 1) && (ans_user.count(username) != 1))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no user with this username.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
-    else if ()
+    else if (!(li_user->get_tweets().count(tweet_number)))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no tweet with this number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
     else
@@ -828,24 +852,32 @@ void main_profile::on_btn_Qoutetweet_clicked()
 void main_profile::on_btn_makMention_clicked()
 {
     std::string username = ui->ln_usrMention->text().toStdString();
+    std::string mention_text = ui->te_mention_text->toPlainText().toStdString();
     int tweet_number = ui->ln_tweetNumber_Mention->text().toInt();
 
-    if ((ui->ln_usrMention->text().toStdString().empty()) || (ui->ln_tweetNumber_Mention->text().toStdString().empty()))
+    if ((ui->ln_usrMention->text().toStdString().empty()) || (ui->ln_tweetNumber_Mention->text().toStdString().empty())
+            || (ui->te_mention_text->toPlainText().toStdString().empty()))
     {
         QMessageBox msg;
-        msg.setText("! Empty username or tweet number.");
+        msg.setText("! Empty username or tweet number or mention text.");
         msg.setWindowTitle("Error");
         msg.exec();
     }
 
-    else if ()
+    else if ((users.count(username) != 1) && (org_user.count(username) != 1) && (ans_user.count(username) != 1))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no user with this username.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
-    else if ()
+    else if (!(li_user->get_tweets().count(tweet_number)))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no tweet with this number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
     else
@@ -868,9 +900,12 @@ void main_profile::on_btn_Follow_clicked()
         msg.exec();
     }
 
-    else if ()
+    else if ((users.count(username) != 1) && (org_user.count(username) != 1) && (ans_user.count(username) != 1))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no user with this username.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
     else
@@ -893,9 +928,12 @@ void main_profile::on_btn_DeleteTweet_clicked()
         msg.exec();
     }
 
-    else if ()
+    else if (!(li_user->get_tweets().count(tweet_number)))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no tweet with this number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
     else ()
@@ -908,7 +946,7 @@ void main_profile::on_btn_DeleteTweet_clicked()
 //like a mention
 void main_profile::on_btn_makeLike_Mention_clicked()
 {
-    std::String username = ui->ln_usrLike->text().toStdString();
+    std::string username = ui->ln_usrLike->text().toStdString();
     int tweet_number = ui->ln_tweetNumber_Like->text().toInt();
     int mention_number = ui->ln_mentionNumber_Like->text().toInt();
 
@@ -921,14 +959,20 @@ void main_profile::on_btn_makeLike_Mention_clicked()
         msg.exec();
     }
 
-    else if ()
+    else if ((users.count(username) != 1) && (org_user.count(username) != 1) && (ans_user.count(username) != 1))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no user with this username.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
-    else if ()
+    else if (!(li_user->get_tweets().count(tweet_number)))
     {
-
+        QMessageBox msg;
+        msg.setText("! There is no tweet with this number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
     else ()
@@ -952,9 +996,20 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
         msg.exec();
     }
 
-    else if ()
+    else if ((users.count(username) != 1) && (org_user.count(username) != 1) && (ans_user.count(username) != 1))
     {
+        QMessageBox msg;
+        msg.setText("! There is no user with this username.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
 
+    else if (!(li_user->get_tweets().count(tweet_number)))
+    {
+        QMessageBox msg;
+        msg.setText("! There is no tweet with this number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 
     else ()

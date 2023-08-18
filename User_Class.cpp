@@ -295,11 +295,11 @@ std::unordered_map <int, tweet> user::get_tweets()
 
 //------------------------------------------------------------------------
 
-bool user::add_mention(int tweet_number, std::string got_name, std::string got_user_name)
+bool user::add_mention(int tweet_number, std::string got_name, std::string got_user_name, std::string tweet_text)
 {
     if(tweets.count(tweet_number) == 1)
     {
-        tweets[tweet_number].creat_mention(got_user_name, got_name);
+        tweets[tweet_number].creat_mention(got_user_name, got_name,tweet_text);
         return true;
     }
     else

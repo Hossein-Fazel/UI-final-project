@@ -1001,6 +1001,16 @@
       <string>submit</string>
      </property>
     </widget>
+    <widget class="QTextEdit" name="te_mention_text">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>60</y>
+       <width>210</width>
+       <height>50</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="box_follow">
     <property name="geometry">
@@ -1014,7 +1024,7 @@
     <property name="title">
      <string>Follow</string>
     </property>
-    <widget class="QLineEdit" name="ln_usrtweet_2">
+    <widget class="QLineEdit" name="ln_usrfollow">
      <property name="geometry">
       <rect>
        <x>16</x>
