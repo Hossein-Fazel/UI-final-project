@@ -343,16 +343,6 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="ln_header">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>518</y>
-       <width>171</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="btn_editp">
      <property name="geometry">
       <rect>
@@ -514,8 +504,95 @@
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QComboBox" name="cm_header">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>520</y>
+       <width>171</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
+       <string>white</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>black</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>green</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>yellow</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>blue</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>purple</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>orange</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>brown</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>red</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>cyan</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>gray</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>lightgreen</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>lightyellow</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>lightblue</string>
+      </property>
+     </item>
+    </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
+   <widget class="QGroupBox" name="gb_picture">
     <property name="geometry">
      <rect>
       <x>10</x>

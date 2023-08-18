@@ -18,7 +18,7 @@ main_profile::main_profile(QWidget *parent) :
     ui->btn_discard->hide();
     ui->btn_save->hide();
     ui->lb_header->hide();
-    ui->ln_header->hide();
+    ui->cm_header->hide();
 }
 
 main_profile::~main_profile()
@@ -39,7 +39,8 @@ void main_profile::fill_out()
         ui->ln_link->setEnabled(false);
         ui->te_bio->setEnabled(false);
         ui->dt_birthday->setEnabled(false);
-        ui->ln_header->setEnabled(false);
+        ui->cm_header->setEnabled(false);
+        ui->gb_picture->setStyleSheet("background-color: gray;");
         ui->ln_follower->setEnabled(false);
         ui->ln_following->setText(QString::number(li_user->get_following_num()));
 
@@ -75,12 +76,15 @@ void main_profile::fill_out()
             ui->ln_following->setText(QString::number(li_user->get_followers_num()));
         }
 
+        QString style = "background-color: " + QString::fromStdString(li_user->get_header()) + ';';
+        ui->gb_picture->setStyleSheet(style);
+
         ui->ln_phone->setText(QString::fromStdString(li_user->get_phone()));
         ui->ln_country->setText(QString::fromStdString(li_user->get_country()));
         ui->ln_link->setText(QString::fromStdString(li_user->get_link()));
         ui->te_bio->setText(QString::fromStdString(li_user->get_biography()));
         ui->ln_pass->setText(QString::fromStdString(li_user->get_password()));
-        ui->ln_header->setText(QString::fromStdString(li_user->get_header()));
+        ui->cm_header->setCurrentText(QString::fromStdString(li_user->get_header()));
     }
 }
 
@@ -98,7 +102,7 @@ void main_profile::fill_out_old()
         ui->ln_link->setEnabled(false);
         ui->te_bio->setEnabled(false);
         ui->dt_birthday->setEnabled(false);
-        ui->ln_header->setEnabled(false);
+        ui->cm_header->setEnabled(false);
 
         ui->ln_pass->setText(QString::fromStdString(old_user.pass));
     }
@@ -131,7 +135,7 @@ void main_profile::fill_out_old()
         ui->ln_link->setText(QString::fromStdString(old_user.link));
         ui->te_bio->setText(QString::fromStdString(old_user.bio));
         ui->ln_pass->setText(QString::fromStdString(old_user.pass));
-        ui->ln_header->setText(QString::fromStdString(old_user.header));
+        ui->cm_header->setCurrentText(QString::fromStdString(old_user.header));
     }
 }
 
@@ -396,7 +400,6 @@ void main_profile::change_ro(int type)
         ui->ln_country->setReadOnly(true);
         ui->ln_pass->setReadOnly(true);
         ui->ln_link->setReadOnly(true);
-        ui->ln_header->setReadOnly(true);
     }
 
     else
@@ -409,7 +412,6 @@ void main_profile::change_ro(int type)
         ui->ln_country->setReadOnly(false);
         ui->ln_pass->setReadOnly(false);
         ui->ln_link->setReadOnly(false);
-        ui->ln_header->setReadOnly(false);
     }
 }
 void main_profile::on_btn_editp_clicked()
@@ -428,7 +430,7 @@ void main_profile::on_btn_editp_clicked()
     ui->btn_save->show();
     ui->btn_discard->show();
     ui->lb_header->show();
-    ui->ln_header->show();
+    ui->cm_header->show();
 
     old_user.name = li_user->get_name();
     old_user.username = li_user->get_username();
@@ -535,7 +537,9 @@ void main_profile::on_btn_save_clicked()
 
         li_user->set_link(ui->ln_link->text().toStdString());
         li_user->set_biography(ui->te_bio->toPlainText().toStdString());
-        li_user->set_header(ui->ln_header->text().toStdString());
+        li_user->set_header(ui->cm_header->currentText().toStdString());
+        QString style = "background-color: " + QString::fromStdString(li_user->get_header()) + ';';
+        ui->gb_picture->setStyleSheet(style);
 
         if(ui->ln_pass->text().toStdString() != old_user.pass)
         {
@@ -567,7 +571,7 @@ void main_profile::on_btn_save_clicked()
         ui->btn_save->hide();
         ui->btn_discard->hide();
         ui->lb_header->hide();
-        ui->ln_header->hide();
+        ui->cm_header->hide();
         ui->btn_editp->setEnabled(true);
     }
 }
@@ -586,7 +590,7 @@ void main_profile::on_btn_discard_clicked()
     ui->btn_save->hide();
     ui->btn_discard->hide();
     ui->lb_header->hide();
-    ui->ln_header->hide();
+    ui->cm_header->hide();
     ui->btn_editp->setEnabled(true);
 }
 

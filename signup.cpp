@@ -36,7 +36,7 @@ void signup::on_signup_btn_clicked()
             Ac_birth = ui->ln_birthday->text().toStdString(),
             Ac_phone = ui->ln_phone->text().toStdString(),
             Ac_link = ui->ln_link->text().toStdString(),
-            Ac_color = ui->ln_color->text().toStdString();
+            Ac_color = ui->cm_header->currentText().toStdString();
 
     if(!Ac_username.empty() and !Ac_password.empty())
     {
@@ -151,7 +151,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_name->setPlaceholderText("Required *");
         ui->ln_bio->setEnabled(true);
         ui->ln_country->setEnabled(true);
-        ui->ln_color->setEnabled(true);
+        ui->cm_header->setEnabled(true);
         ui->ln_birthday->setEnabled(true);
         ui->ln_phone->setEnabled(true);
         ui->ln_manager->setEnabled(false);
@@ -170,7 +170,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_name->setPlaceholderText("Required *");
         ui->ln_bio->setEnabled(true);
         ui->ln_country->setEnabled(true);
-        ui->ln_color->setEnabled(true);
+        ui->cm_header->setEnabled(true);
         ui->ln_birthday->setEnabled(false);
         ui->ln_phone->setEnabled(true);
         ui->ln_manager->setEnabled(true);
@@ -188,7 +188,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_name->setText("Anonymous User");
         ui->ln_bio->setEnabled(false);
         ui->ln_country->setEnabled(false);
-        ui->ln_color->setEnabled(false);
+        ui->cm_header->setEnabled(false);
         ui->ln_birthday->setEnabled(false);
         ui->ln_phone->setEnabled(false);
         ui->ln_manager->setEnabled(false);

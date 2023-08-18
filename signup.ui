@@ -347,27 +347,6 @@
      <string>Header color :</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="ln_color">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>600</y>
-      <width>171</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="toolTip">
-     <string>A color for header</string>
-    </property>
-    <property name="placeholderText">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="signup_btn">
     <property name="geometry">
      <rect>
@@ -441,6 +420,93 @@
     <property name="title">
      <string>Signup</string>
     </property>
+    <widget class="QComboBox" name="cm_header">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>590</y>
+       <width>171</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <item>
+      <property name="text">
+       <string>white</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>black</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>green</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>yellow</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>blue</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>purple</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>orange</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>brown</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>red</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>cyan</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>gray</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>lightgreen</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>lightyellow</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>lightblue</string>
+      </property>
+     </item>
+    </widget>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -479,7 +545,6 @@
    <zorder>ln_link</zorder>
    <zorder>label_9</zorder>
    <zorder>label_10</zorder>
-   <zorder>ln_color</zorder>
    <zorder>signup_btn</zorder>
    <zorder>ln_manager</zorder>
    <zorder>label_11</zorder>
