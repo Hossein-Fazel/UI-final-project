@@ -1,6 +1,9 @@
 #include "main_profile.h"
 #include "ui_main_profile.h"
 
+#include "Tweet_Class.hpp"
+#include "User_Class.hpp"
+
 #include <QMessageBox>
 #include <QString>
 #include <fstream>
@@ -698,3 +701,264 @@ void main_profile::on_btn_search_clicked()
     }
 }
 
+
+
+//=========================================================================== Tweet ===========================================================================
+// radio button normal tweet
+void main_profile::on_radio_tweet_clicked()
+{
+    ui->ln_usrRetweet->setEnabled(false);
+    ui->ln_tweetNumber_Retweet->setEnabled(false);
+    ui->btn_Retweet->setEnabled(false);
+
+    ui->ln_usrQoutetweet->setEnabled(false);
+    ui->ln_tweetNumber_Qoutetweet->setEnabled(false);
+    ui->te_qoutetweet->setEnabled(false);
+    ui->btn_Qoutetweet->setEnabled(false);
+}
+
+//-------------------------------------------------------------------------------
+// normal tweet
+void main_profile::on_btn_normalTweet_clicked()
+{
+    if (ui->te_normalTweet->toPlainText().toStdString().empty())
+    {
+        QMessageBox msg;
+        msg.setText("! Empty tweet text.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else
+    {
+
+    }
+}
+
+//-------------------------------------------------------------------------------
+// raido button retweet
+void main_profile::on_radio_retweet_clicked()
+{
+    ui->te_normalTweet->setEnabled(false);
+    ui->btn_normalTweet->setEnabled(false);
+
+    ui->ln_usrQoutetweet->setEnabled(false);
+    ui->ln_tweetNumber_Qoutetweet->setEnabled(false);
+    ui->te_qoutetweet->setEnabled(false);
+    ui->btn_Qoutetweet->setEnabled(false);
+}
+
+//-------------------------------------------------------------------------------
+// retweet
+void main_profile::on_btn_Retweet_clicked()
+{
+    std::string username = ui->ln_usrRetweet->text().toStdString();
+    int tweet_number = ui->ln_tweetNumber_Retweet->text().toInt();
+
+    if ((ui->ln_usrRetweet->text().toStdString().empty()) || (ui->ln_tweetNumber_Retweet->text().toStdString().empty()))
+    {
+        QMessageBox msg;
+        msg.setText("! Empty username or tweet number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if ()
+    {
+
+    }
+
+    else if ()
+    {
+
+    }
+
+    else
+    {
+
+    }
+}
+
+//-------------------------------------------------------------------------------
+// radio button qoutetweet
+void main_profile::on_raido_qoutetweet_clicked()
+{
+    ui->te_normalTweet->setEnabled(false);
+    ui->btn_normalTweet->setEnabled(false);
+
+    ui->ln_usrRetweet->setEnabled(false);
+    ui->ln_tweetNumber_Retweet->setEnabled(false);
+    ui->btn_Retweet->setEnabled(false);
+}
+
+//-------------------------------------------------------------------------------
+// qoutetweet
+void main_profile::on_btn_Qoutetweet_clicked()
+{
+    std::string username = ui->ln_usrQoutetweet->text().toStdString();
+    int tweet_number = ui->ln_tweetNumber_Qoutetweet->text().toInt();
+
+    if ((ui->ln_usrQoutetweet->text().toStdString().empty()) || (ui->ln_tweetNumber_Qoutetweet->text().toStdString().empty())
+        || (ui->te_qoutetweet->toPlainText().toStdString().empty()))
+    {
+        QMessageBox msg;
+        msg.setText("! Empty username or tweet number or tweet text.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if ()
+    {
+
+    }
+
+    else if ()
+    {
+
+    }
+
+    else
+    {
+
+    }
+}
+
+//=========================================================================== Make_Mention ===========================================================================
+
+void main_profile::on_btn_makMention_clicked()
+{
+    std::string username = ui->ln_usrMention->text().toStdString();
+    int tweet_number = ui->ln_tweetNumber_Mention->text().toInt();
+
+    if ((ui->ln_usrMention->text().toStdString().empty()) || (ui->ln_tweetNumber_Mention->text().toStdString().empty()))
+    {
+        QMessageBox msg;
+        msg.setText("! Empty username or tweet number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if ()
+    {
+
+    }
+
+    else if ()
+    {
+
+    }
+
+    else
+    {
+
+    }
+}
+
+//=========================================================================== Fllow_User ===========================================================================
+
+void main_profile::on_btn_Follow_clicked()
+{
+    std::string username = ui->ln_usrfollow->text().toStdString();
+
+    if (ui->ln_usrfollow->text().toStdString().empty())
+    {
+        QMessageBox msg;
+        msg.setText("! Empty username.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if ()
+    {
+
+    }
+
+    else
+    {
+
+    }
+}
+
+//=========================================================================== Delete_Tweet ===========================================================================
+
+void main_profile::on_btn_DeleteTweet_clicked()
+{
+    int tweet_number = ui->ln_tweetNumber->text().toInt();
+
+    if (ui->ln_tweetNumber->text().toStdString().empty())
+    {
+        QMessageBox msg;
+        msg.setText("! Empty tweet number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if ()
+    {
+
+    }
+
+    else ()
+    {
+
+    }
+}
+
+//=========================================================================== Like ===========================================================================
+//like a mention
+void main_profile::on_btn_makeLike_Mention_clicked()
+{
+    std::String username = ui->ln_usrLike->text().toStdString();
+    int tweet_number = ui->ln_tweetNumber_Like->text().toInt();
+    int mention_number = ui->ln_mentionNumber_Like->text().toInt();
+
+    if ((ui->ln_usrLike->text().toStdString().empty()) || (ui->ln_tweetNumber_Like->text().toStdString().empty()) ||
+            (ui->ln_mentionNumber_Like->text().toStdString().empty()))
+    {
+        QMessageBox msg;
+        msg.setText("! Empty username or tweet number or mention number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if ()
+    {
+
+    }
+
+    else if ()
+    {
+
+    }
+
+    else ()
+    {
+
+    }
+}
+
+//-------------------------------------------------------------------------------
+// like a tweet
+void main_profile::on_btn_makeLike_Tweet_clicked()
+{
+    std::string username = ui->ln_usrLike_tweet->text().toStdString();
+    int tweet_number = ui->ln_tweetNumber_Like_2->text().toInt();
+
+    if ((ui->ln_usrLike_tweet->text().toStdString().empty()) || (ui->ln_tweetNumber_Like_2->text().toStdString().empty()))
+    {
+        QMessageBox msg;
+        msg.setText("! Empty username or tweet number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if ()
+    {
+
+    }
+
+    else ()
+    {
+
+    }
+}

@@ -355,15 +355,11 @@ bool tweet::tweet_dislike(std::string user_name)
 
 //-----------------------------------------------------------------------
 
-void tweet::creat_mention(std::string guserName, std::string gname)
+void tweet::creat_mention(std::string guserName, std::string gname, std::string tweet_text)
 {
     mention ment;
 
-    std::string txt;
-    std::cout << "$ your mention : ";
-    std::getline(std::cin, txt);
-
-    ment.set_mention(txt);
+    ment.set_mention(tweet_text);
     ment.set_name(gname);
     ment.set_userName(guserName);
     ment.set_number(mentionNumber);

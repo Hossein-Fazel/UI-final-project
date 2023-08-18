@@ -51,7 +51,7 @@ friend void tweet::insert_to_file();
         bool like(std::string ,int);
         bool dislike(std::string, int);
         std::unordered_map<int, tweet> get_tweets();
-        bool add_mention(int, std::string, std::string);
+        bool add_mention(int, std::string, std::string, std::string);
         void follow(twitterak &, std::string);
         void like_mention(int, std::string, int);
         void del_men(int, std::string);                           // delete a mention

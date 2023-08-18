@@ -806,7 +806,7 @@
       <string>Tweet</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QRadioButton" name="radio_retweet">
      <property name="geometry">
       <rect>
        <x>194</x>
@@ -819,7 +819,7 @@
       <string>Retweet</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_3">
+    <widget class="QRadioButton" name="raido_qoutetweet">
      <property name="geometry">
       <rect>
        <x>345</x>
@@ -936,7 +936,7 @@
       <string>Num</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="te_qoutetweet">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -1030,7 +1030,7 @@
       <string>Username</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_showtweet_2">
+    <widget class="QPushButton" name="btn_Follow">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -1040,7 +1040,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>show</string>
+      <string>submit</string>
      </property>
     </widget>
    </widget>

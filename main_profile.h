@@ -49,6 +49,8 @@ private slots:
 
     void on_btn_search_clicked();
 
+    void on_radio_tweet_clicked();
+
 private:
     Ui::main_profile *ui;
 
