@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     main_profile.cpp \
     mainwindow.cpp \
+    others_profile.cpp \
     signup.cpp
 
 HEADERS += \
@@ -35,13 +36,14 @@ HEADERS += \
     login.h \
     main_profile.h \
     mainwindow.h \
+    others_profile.h \
     signup.h
 
 FORMS += \
     login.ui \
     main_profile.ui \
     mainwindow.ui \
-    other_profile.ui \
+    others_profile.ui \
     signup.ui
 
 # Default rules for deployment.
