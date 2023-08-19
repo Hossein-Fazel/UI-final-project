@@ -67,7 +67,7 @@ class Base_User
 
 //================== General_Functions ====================
 
-        virtual void delete_tweet(int, twitterak &app);                                   // delete tweet
+        virtual void delete_tweet(int);                                   // delete tweet
         virtual void Delete_Account(twitterak &);                         // delets the account of the user
         virtual void Show_Profile(twitterak &);                           // shows the information of a user itself
         virtual void Edit(twitterak &, std::string, std::string);         // edits the user's information                                                                    
@@ -78,7 +78,7 @@ class Base_User
         virtual void print_likers(int);                                   // print tweet likers
         virtual bool like(std::string ,int);                              // like a tweet
         virtual bool dislike(std::string, int);                           // dislike a tweet
-        virtual bool add_mention(int, std::string, std::string);          // add a mention to a tweet
+        virtual bool add_mention(int, std::string, std::string,std::string);          // add a mention to a tweet
         virtual void follow(twitterak &, std::string);                    // follow a user
         virtual void like_mention(int, std::string, int);                 // like a mention
         virtual bool isin_following(std::string);                         // check the user name exist in following

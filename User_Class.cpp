@@ -6,6 +6,7 @@
 #include <iterator>
 #include <cctype>
 
+#include "QMessageBox"
 #include "Twitterak_Class.hpp"
 #include "Mention_class.hpp"
 
@@ -295,11 +296,11 @@ std::unordered_map <int, tweet> user::get_tweets()
 
 //------------------------------------------------------------------------
 
-bool user::add_mention(int tweet_number, std::string got_name, std::string got_user_name, std::string tweet_text)
+bool user::add_mention(int tweet_number, std::string got_name, std::string got_user_name, std::string text)
 {
     if(tweets.count(tweet_number) == 1)
     {
-        tweets[tweet_number].creat_mention(got_user_name, got_name,tweet_text);
+        tweets[tweet_number].creat_mention(got_user_name, got_name,text);
         return true;
     }
     else
@@ -405,16 +406,18 @@ void user::unfollow(std::string user_name)
 
 //------------------------------------------------------------------------
 
-void user::delete_tweet(int tNum, twitterak &app)
+void user::delete_tweet(int tNum)
 {
     if(tweets.count(tNum) == 1)
     {
-        tweets[tNum].delete_hashtags(app);
         tweets.erase(tNum);
     }
     else
     {
-        std::cout << "! There is no tweet with this number.\n";
+        QMessageBox msg;
+        msg.setText("! There is no tweet with this number.");
+        msg.setWindowTitle("Error");
+        msg.exec();
     }
 }
 
