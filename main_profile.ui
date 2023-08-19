@@ -364,9 +364,9 @@
     <widget class="QPushButton" name="btn_save">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>154</x>
        <y>555</y>
-       <width>45</width>
+       <width>51</width>
        <height>23</height>
       </rect>
      </property>
@@ -387,7 +387,7 @@
       <rect>
        <x>215</x>
        <y>555</y>
-       <width>45</width>
+       <width>51</width>
        <height>23</height>
       </rect>
      </property>
@@ -808,7 +808,7 @@
       <rect>
        <x>40</x>
        <y>30</y>
-       <width>60</width>
+       <width>81</width>
        <height>20</height>
       </rect>
      </property>
@@ -816,12 +816,12 @@
       <string>Tweet</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QRadioButton" name="radio_retweet">
      <property name="geometry">
       <rect>
        <x>194</x>
        <y>30</y>
-       <width>70</width>
+       <width>91</width>
        <height>20</height>
       </rect>
      </property>
@@ -829,12 +829,12 @@
       <string>Retweet</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_3">
+    <widget class="QRadioButton" name="raido_qoutetweet">
      <property name="geometry">
       <rect>
        <x>345</x>
        <y>30</y>
-       <width>87</width>
+       <width>121</width>
        <height>20</height>
       </rect>
      </property>
@@ -946,7 +946,7 @@
       <string>Num</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="te_qoutetweet">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -1011,6 +1011,16 @@
       <string>submit</string>
      </property>
     </widget>
+    <widget class="QTextEdit" name="te_mention_text">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>60</y>
+       <width>210</width>
+       <height>50</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="box_follow">
     <property name="geometry">
@@ -1024,7 +1034,7 @@
     <property name="title">
      <string>Follow</string>
     </property>
-    <widget class="QLineEdit" name="ln_usrtweet_2">
+    <widget class="QLineEdit" name="ln_usrfollow">
      <property name="geometry">
       <rect>
        <x>16</x>
@@ -1040,7 +1050,7 @@
       <string>Username</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_showtweet_2">
+    <widget class="QPushButton" name="btn_Follow">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -1050,7 +1060,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>show</string>
+      <string>submit</string>
      </property>
     </widget>
    </widget>
@@ -1197,8 +1207,8 @@
       <rect>
        <x>13</x>
        <y>33</y>
-       <width>80</width>
-       <height>12</height>
+       <width>101</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="font">

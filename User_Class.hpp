@@ -39,7 +39,7 @@ friend void tweet::insert_to_file();
 
 //=============== General functions =================
 
-        void delete_tweet(int, twitterak &app);                                   // delete tweet
+        void delete_tweet(int, twitterak &app);                    // delete tweet
         void Delete_Account(twitterak &);                          // delets the account of the user
         void Show_Profile(twitterak &);                            // shows the information of a user itself
         void Edit(twitterak &, std::string, std::string);          // edits the user's information                                                                    
@@ -51,7 +51,7 @@ friend void tweet::insert_to_file();
         bool like(std::string ,int);
         bool dislike(std::string, int);
         std::unordered_map<int, tweet> get_tweets();
-        bool add_mention(int, std::string, std::string);
+        bool add_mention(int, std::string, std::string, std::string);
         void follow(twitterak &, std::string);
         void like_mention(int, std::string, int);
         void del_men(int, std::string);                           // delete a mention

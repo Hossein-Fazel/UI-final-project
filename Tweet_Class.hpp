@@ -66,7 +66,7 @@ class tweet
         bool tweet_dislike(std::string user_name);
         void fetch_hashtags();                                       // finds and saves hashtags of user's tweet
         void fetch_hashtags(twitterak &app);
-        void creat_mention(std::string, std::string);
+        void creat_mention(std::string, std::string, std::string);
         void delete_mentions(std::string);
         void delete_hashtags(twitterak &);
         void dLike(std::string);

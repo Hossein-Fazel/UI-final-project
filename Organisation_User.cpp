@@ -337,11 +337,11 @@ bool Organisation::dislike(std::string user_name, int num)
 
 //------------------------------------------------------------------------
 
-bool Organisation::add_mention(int tweet_number, std::string got_name, std::string got_user_name)
+bool Organisation::add_mention(int tweet_number, std::string got_name, std::string got_user_name, std::string text)
 {
     if(tweets.count(tweet_number) == 1)
     {
-        tweets[tweet_number].creat_mention(got_user_name, got_name);
+        tweets[tweet_number].creat_mention(got_user_name, got_name, text);
         return true;
     }
     else

@@ -1827,7 +1827,7 @@ void twitterak::run()
                             if(li_user->isin_following(commands[1]))
                             {
                                 bool status;
-                                status = users[commands[1]].add_mention(stoi(commands[2]), users[logedin_user].get_name(), logedin_user);
+//                                status = users[commands[1]].add_mention(stoi(commands[2]), users[logedin_user].get_name(), logedin_user);
 
                                 if(status)
                                 {
@@ -1845,7 +1845,7 @@ void twitterak::run()
                             if(li_user->isin_following(commands[1]))
                             {
                                 bool status;
-                                status = org_user[commands[1]].add_mention(stoi(commands[2]), li_user->get_name(), logedin_user);
+//                                status = org_user[commands[1]].add_mention(stoi(commands[2]), li_user->get_name(), logedin_user);
 
                                 if(status)
                                 {
@@ -1868,7 +1868,7 @@ void twitterak::run()
                         if(users.count(commands[1]) == 1)
                         {
                             bool status;
-                            status = users[commands[1]].add_mention(stoi(commands[2]), users[logedin_user].get_name(), logedin_user);
+//                            status = users[commands[1]].add_mention(stoi(commands[2]), users[logedin_user].get_name(), logedin_user);
 
                             if(status)
                             {
@@ -1878,8 +1878,8 @@ void twitterak::run()
 
                         else if(org_user.count(commands[1]) == 1)
                         {
-                            bool status;
-                            status = org_user[commands[1]].add_mention(stoi(commands[2]), li_user->get_name(), logedin_user);
+                            bool status = true;
+//                            status = org_user[commands[1]].add_mention(stoi(commands[2]), li_user->get_name(), logedin_user);
 
                             if(status)
                             {

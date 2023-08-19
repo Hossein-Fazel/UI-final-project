@@ -5,6 +5,7 @@
 #include <string>
 #include <ctime>
 #include <unordered_set>
+#include "QMessageBox"
 
 #include "User_Class.hpp"
 #include "Tweet_Class.hpp"
@@ -403,15 +404,11 @@ bool tweet::tweet_dislike(std::string user_name)
 
 //-----------------------------------------------------------------------
 
-void tweet::creat_mention(std::string guserName, std::string gname)
+void tweet::creat_mention(std::string guserName, std::string gname, std::string tweet_text)
 {
     mention ment;
 
-    std::string txt;
-    std::cout << "$ your mention : ";
-    std::getline(std::cin, txt);
-
-    ment.set_mention(txt);
+    ment.set_mention(tweet_text);
     ment.set_name(gname);
     ment.set_userName(guserName);
     ment.set_number(mentionNumber);
@@ -493,6 +490,14 @@ void tweet::mention_like(std::string uName, int mNumber)
 
                 break;
             }
+        }
+
+        if (find_mention == false)
+        {
+            QMessageBox msg;
+            msg.setText("! There is no mention with this number.");
+            msg.setWindowTitle("Error");
+            msg.exec();
         }
 
         if(find_mention)

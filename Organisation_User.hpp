@@ -42,7 +42,7 @@ class Organisation : public Base_User
         void print_likers(int);                                 
         bool like(std::string ,int);                             
         bool dislike(std::string, int);                           
-        bool add_mention(int, std::string, std::string);         
+        bool add_mention(int, std::string, std::string , std::string);
         void follow(twitterak &, std::string);                   
         void like_mention(int, std::string, int); 
         void unfollow(std::string);                               // unfollow the user name
