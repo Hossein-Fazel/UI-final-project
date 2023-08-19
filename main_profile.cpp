@@ -32,11 +32,11 @@ main_profile::~main_profile()
     delete ui;
 }
 
-void main_profile::fetch_hashtags(tweet tw)
+void main_profile::fetch_hashtags(tweet tweet1)
 {
-    for(auto hashtag : tw.get_hashtags())
+    for(auto hashtag : tweet1.get_hashtags())
     {
-        push_hashtag(hashtag, tw);
+        push_hashtag(hashtag, tweet1);
     }
 }
 
@@ -401,7 +401,7 @@ void main_profile::set_vars(std::unordered_map<std::string, user> per, std::unor
     {
         li_user = &(org_user[username]);
     }
-    else
+    else if (ans_user.count(username) == 1)
     {
         li_user = &(ans_user[username]);
     }
@@ -643,6 +643,7 @@ void main_profile::on_btn_search_clicked()
         if(ui->ln_search->text().toStdString()[0] == '#')
         {
             std::string hashtag = ui->ln_search->text().toStdString();
+            hashtag.erase(0,1);
             if(Hashtags.count(hashtag) == 1)
             {
                 ui->ln_search->clear();
@@ -893,7 +894,6 @@ void main_profile::on_btn_normalTweet_clicked()
     {
         tweet tw;
         tw.set_tweetType("normal");
-
         tw.set_name(li_user->get_name());
         tw.set_user_name(li_user->get_username());
         tw.set_number(li_user->get_last_number()+1);

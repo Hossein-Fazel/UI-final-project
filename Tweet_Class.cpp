@@ -284,7 +284,6 @@ void tweet::fetch_hashtags()                                                    
 {
     std::string hashtag;
     int tsize = this->self_tweet.size();
-
     for(int i = 0; i < tsize; i++)
     {
         if(this->self_tweet[i] == '#')
@@ -313,7 +312,6 @@ void tweet::fetch_hashtags()                                                    
             }
         }
     }
-
     if(!hashtag.empty())
     {
         for(int index = 0; index < hashtag.size(); index++)
