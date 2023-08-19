@@ -17,7 +17,7 @@ main_profile::main_profile(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    ====================================== set additional settings =============================================
+//====================================== set additional settings =============================================
     change_ro(1);
     ui->ln_pass->hide();
     ui->lb_pass->hide();
@@ -852,6 +852,7 @@ void main_profile::show_tweet(Base_User *user , bool first)
 // radio button normal tweet
 void main_profile::on_radio_tweet_clicked()
 {
+
     ui->te_normalTweet->setEnabled(true);
     ui->btn_normalTweet->setEnabled(true);
 
@@ -869,6 +870,8 @@ void main_profile::on_radio_tweet_clicked()
 // normal tweet
 void main_profile::on_btn_normalTweet_clicked()
 {
+    std::string tweet_text = ui->te_normalTweet->toPlainText().toStdString();
+
     if (ui->te_normalTweet->toPlainText().toStdString().empty())
     {
         QMessageBox msg;
@@ -879,7 +882,19 @@ void main_profile::on_btn_normalTweet_clicked()
 
     else
     {
+        tweet tw;
+        tw.set_tweetType("normal");
 
+        tw.set_name(li_user->get_name());
+        tw.set_user_name(li_user->get_username());
+        tw.set_number(li_user->get_last_number()+1);
+        tw.set_selfTweet(tweet_text);
+        tw.set_time();
+        tw.fetch_hashtags();
+        fetch_hashtags(tw);
+        li_user->increase_last_number();
+        li_user->Push_Tweet(tw);
+        show_tweet(li_user,false);
     }
 }
 
@@ -906,6 +921,7 @@ void main_profile::on_btn_Retweet_clicked()
 {
     std::string username = ui->ln_usrRetweet->text().toStdString();
     int tweet_number = ui->ln_tweetNumber_Retweet->text().toInt();
+    Base_User * usr = nullptr;
 
     if ((ui->ln_usrRetweet->text().toStdString().empty()) || (ui->ln_tweetNumber_Retweet->text().toStdString().empty()))
     {
@@ -923,17 +939,51 @@ void main_profile::on_btn_Retweet_clicked()
         msg.exec();
     }
 
-    else if (!(li_user->get_tweets().count(tweet_number)))
-    {
-        QMessageBox msg;
-        msg.setText("! There is no tweet with this number.");
-        msg.setWindowTitle("Error");
-        msg.exec();
-    }
+
 
     else
     {
+        if (users.count(username) == 1)
+        {
+            usr = &(users[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
 
+        else if (org_user.count(username) == 1)
+        {
+            usr = &(org_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+
+        tweet tw = usr->get_tweets()[tweet_number];
+        tweet retweet;
+        retweet.set_tweetType("retweet");
+
+        retweet.set_name(li_user->get_name());
+        retweet.set_user_name(li_user->get_username());
+        retweet.set_number(li_user->get_last_number()+1);
+
+        retweet.set_ownerName(tw.get_name());
+        retweet.set_ownerUser_name(username);
+        retweet.set_ownerTweet(tw.get_sefTweet());
+
+        retweet.set_time();
+        li_user->increase_last_number();
+        li_user->Push_Tweet(retweet);
+        show_tweet(li_user,false);
     }
 }
 
@@ -959,7 +1009,9 @@ void main_profile::on_raido_qoutetweet_clicked()
 void main_profile::on_btn_Qoutetweet_clicked()
 {
     std::string username = ui->ln_usrQoutetweet->text().toStdString();
+    std::string tweet_text = ui->te_qoutetweet->toPlainText().toStdString();
     int tweet_number = ui->ln_tweetNumber_Qoutetweet->text().toInt();
+    Base_User * usr = nullptr;
 
     if ((ui->ln_usrQoutetweet->text().toStdString().empty()) || (ui->ln_tweetNumber_Qoutetweet->text().toStdString().empty())
         || (ui->te_qoutetweet->toPlainText().toStdString().empty()))
@@ -978,17 +1030,53 @@ void main_profile::on_btn_Qoutetweet_clicked()
         msg.exec();
     }
 
-    else if (!(li_user->get_tweets().count(tweet_number)))
-    {
-        QMessageBox msg;
-        msg.setText("! There is no tweet with this number.");
-        msg.setWindowTitle("Error");
-        msg.exec();
-    }
+
 
     else
     {
+        if (users.count(username) == 1)
+        {
+            usr = &(users[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
 
+        else if (org_user.count(username) == 1)
+        {
+            usr = &(org_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        tweet tw = usr->get_tweets()[tweet_number];
+        tweet qoute;
+        qoute.set_tweetType("qoute");
+
+        qoute.set_name(li_user->get_name());
+        qoute.set_user_name(li_user->get_username());
+        qoute.set_number(li_user->get_last_number()+1);
+        qoute.set_selfTweet(tweet_text);
+
+        qoute.set_ownerName(tw.get_name());
+        qoute.set_ownerUser_name(username);
+        qoute.set_ownerTweet(tw.get_sefTweet());
+
+        qoute.fetch_hashtags();
+        fetch_hashtags(qoute);
+        qoute.set_time();
+        li_user->increase_last_number();
+        li_user->Push_Tweet(qoute);
+        show_tweet(li_user,false);
     }
 }
 
@@ -999,6 +1087,7 @@ void main_profile::on_btn_makMention_clicked()
     std::string username = ui->ln_usrMention->text().toStdString();
     std::string mention_text = ui->te_mention_text->toPlainText().toStdString();
     int tweet_number = ui->ln_tweetNumber_Mention->text().toInt();
+    Base_User * usr = nullptr;
 
     if ((ui->ln_usrMention->text().toStdString().empty()) || (ui->ln_tweetNumber_Mention->text().toStdString().empty())
             || (ui->te_mention_text->toPlainText().toStdString().empty()))
@@ -1017,17 +1106,47 @@ void main_profile::on_btn_makMention_clicked()
         msg.exec();
     }
 
-    else if (!(li_user->get_tweets().count(tweet_number)))
-    {
-        QMessageBox msg;
-        msg.setText("! There is no tweet with this number.");
-        msg.setWindowTitle("Error");
-        msg.exec();
-    }
+
 
     else
     {
+        if (users.count(username) == 1)
+        {
+            usr = &(users[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
 
+        else if (org_user.count(username) == 1)
+        {
+            usr = &(org_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        else if (ans_user.count(username) == 1)
+        {
+            usr = &(ans_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        li_user->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
     }
 }
 
@@ -1036,6 +1155,7 @@ void main_profile::on_btn_makMention_clicked()
 void main_profile::on_btn_Follow_clicked()
 {
     std::string username = ui->ln_usrfollow->text().toStdString();
+    Base_User * usr = nullptr;
 
     if (ui->ln_usrfollow->text().toStdString().empty())
     {
@@ -1053,9 +1173,37 @@ void main_profile::on_btn_Follow_clicked()
         msg.exec();
     }
 
-    else
+    else if (users.count(username) == 1)
     {
+        usr = &(users[username]);
+        usr->add_followers(li_user->get_username());
+        li_user->add_following(username);
+    }
 
+    else if (org_user.count(username))
+    {
+        usr = &(org_user[username]);
+        usr->add_followers(li_user->get_username());
+        li_user->add_following(username);
+    }
+
+    else if(ans_user.count(username) == 1)
+    {
+        QMessageBox msg;
+        msg.setText("! Anonymous users can't be followed.");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else if (li_user->get_username() == "Anonymous User")
+    {
+        if (!(users.count(username)))
+        {
+            QMessageBox msg;
+            msg.setText("! You can only follow personal users.");
+            msg.setWindowTitle("Error");
+            msg.exec();
+        }
     }
 }
 
@@ -1073,18 +1221,10 @@ void main_profile::on_btn_DeleteTweet_clicked()
         msg.exec();
     }
 
-    else if (!(li_user->get_tweets().count(tweet_number)))
+    else
     {
-        QMessageBox msg;
-        msg.setText("! There is no tweet with this number.");
-        msg.setWindowTitle("Error");
-        msg.exec();
+        li_user->delete_tweet(tweet_number);
     }
-
-//    else ()
-//    {
-
-//    }
 }
 
 //=========================================================================== Like ===========================================================================
@@ -1094,6 +1234,7 @@ void main_profile::on_btn_makeLike_Mention_clicked()
     std::string username = ui->ln_usrLike->text().toStdString();
     int tweet_number = ui->ln_tweetNumber_Like->text().toInt();
     int mention_number = ui->ln_mentionNumber_Like->text().toInt();
+    Base_User * usr = nullptr;
 
     if ((ui->ln_usrLike->text().toStdString().empty()) || (ui->ln_tweetNumber_Like->text().toStdString().empty()) ||
             (ui->ln_mentionNumber_Like->text().toStdString().empty()))
@@ -1112,18 +1253,47 @@ void main_profile::on_btn_makeLike_Mention_clicked()
         msg.exec();
     }
 
-    else if (!(li_user->get_tweets().count(tweet_number)))
+
+    else
     {
-        QMessageBox msg;
-        msg.setText("! There is no tweet with this number.");
-        msg.setWindowTitle("Error");
-        msg.exec();
+        if (users.count(username) == 1)
+        {
+            usr = &(users[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        else if (org_user.count(username) == 1)
+        {
+            usr = &(org_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        else if (ans_user.count(username) == 1)
+        {
+            usr = &(ans_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        li_user->like_mention(tweet_number, username, mention_number);
     }
-
-//    else ()
-//    {
-
-//    }
 }
 
 //-------------------------------------------------------------------------------
@@ -1132,6 +1302,7 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
 {
     std::string username = ui->ln_usrLike_tweet->text().toStdString();
     int tweet_number = ui->ln_tweetNumber_Like_2->text().toInt();
+    Base_User * usr = nullptr;
 
     if ((ui->ln_usrLike_tweet->text().toStdString().empty()) || (ui->ln_tweetNumber_Like_2->text().toStdString().empty()))
     {
@@ -1149,18 +1320,47 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
         msg.exec();
     }
 
-    else if (!(li_user->get_tweets().count(tweet_number)))
+
+    else
     {
-        QMessageBox msg;
-        msg.setText("! There is no tweet with this number.");
-        msg.setWindowTitle("Error");
-        msg.exec();
+        if (users.count(username) == 1)
+        {
+            usr = &(users[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        else if (org_user.count(username) == 1)
+        {
+            usr = &(org_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        else if (ans_user.count(username) == 1)
+        {
+            usr = &(ans_user[username]);
+            if (!(usr->get_tweets().count(tweet_number)))
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number.");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        li_user->like(username,tweet_number);
     }
-
-//    else ()
-//    {
-
-//    }
 }
 
 void main_profile::on_btn_showmention_clicked()

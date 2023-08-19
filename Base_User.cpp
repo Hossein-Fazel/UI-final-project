@@ -443,7 +443,7 @@ bool Base_User::dislike(std::string username, int number)
 
 //------------------------------------------------------------------------
 // does not have access to use this function from parent class
-bool Base_User::add_mention(int tweet_number, std::string got_name, std::string got_username)
+bool Base_User::add_mention(int tweet_number, std::string got_name, std::string got_username, std::string tweet_text)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }
@@ -562,7 +562,7 @@ std::unordered_map<std::string , std::unordered_set<int>> Base_User::get_tweetli
 
 //------------------------------------------------------------------------
 
-void Base_User::delete_tweet(int tNum, twitterak &app)
+void Base_User::delete_tweet(int tNum)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }

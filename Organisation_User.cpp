@@ -203,11 +203,10 @@ void Organisation::Edit(twitterak &app, std::string Edit_part ,std::string value
 
 //================================================================  General_Functions ===============================================================
 
-void Organisation::delete_tweet(int tNum, twitterak &app)
+void Organisation::delete_tweet(int tNum)
 {
     if(tweets.count(tNum) == 1)
     {
-        tweets[tNum].delete_hashtags(app);
         tweets.erase(tNum);
     }
     else

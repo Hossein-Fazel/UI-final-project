@@ -39,7 +39,7 @@ friend void tweet::insert_to_file();
 
 //=============== General functions =================
 
-        void delete_tweet(int, twitterak &app);                    // delete tweet
+        void delete_tweet(int);                    // delete tweet
         void Delete_Account(twitterak &);                          // delets the account of the user
         void Show_Profile(twitterak &);                            // shows the information of a user itself
         void Edit(twitterak &, std::string, std::string);          // edits the user's information                                                                    
