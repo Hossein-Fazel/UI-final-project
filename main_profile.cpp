@@ -101,7 +101,7 @@ void main_profile::fill_out()
         ui->cm_header->setCurrentText(QString::fromStdString(li_user->get_header()));
 
         ui->ln_usrtweet->setText(QString::fromStdString(li_user->get_username()));
-
+        show_tweet(li_user, true);
     }
 }
 
@@ -801,9 +801,11 @@ void main_profile::show_tweet(Base_User *user , bool first)
             QString tw;
             if(i.second.get_tweetType() == "normal")
             {
-                 tw = QString::number(i.second.get_number()) + " : \n" + "username : " + QString::fromStdString(i.second.get_user_name()) +
-                         "\nname : " + QString::fromStdString(i.second.get_name()) + "\ntweet : " + QString::fromStdString(i.second.get_sefTweet())
-                         + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
+                 tw = QString::number(i.second.get_number()) + " : \n" +
+                         "username : " + QString::fromStdString(i.second.get_user_name()) +
+                         "\nname    : " + QString::fromStdString(i.second.get_name()) +
+                         "\ntweet   : " + QString::fromStdString(i.second.get_sefTweet()) +
+                         "\nlikes   : " + QString::number(i.second.get_like_number()) + "\t mentions : "
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
 
@@ -812,11 +814,13 @@ void main_profile::show_tweet(Base_User *user , bool first)
 
             else if(i.second.get_tweetType() == "retweet")
             {
-                 tw = QString::number(i.second.get_number()) + " : \n" + "username : " + QString::fromStdString(i.second.get_user_name()) +
-                         "\nname : " + QString::fromStdString(i.second.get_name()) + "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name())
-                         + "\n    owner name : " + QString::fromStdString(i.second.get_ownerName()) +
-                         "\n    owner tweet : " + QString::fromStdString(i.second.get_ownerTweet())
-                         + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
+                 tw = QString::number(i.second.get_number()) + " : \n" +
+                         "username : " + QString::fromStdString(i.second.get_user_name()) +
+                         "\nname    : " + QString::fromStdString(i.second.get_name()) +
+                         "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name()) +
+                         "\n    owner name     : " + QString::fromStdString(i.second.get_ownerName()) +
+                         "\n    owner tweet    : " + QString::fromStdString(i.second.get_ownerTweet()) +
+                         "\nlikes   : " + QString::number(i.second.get_like_number()) + "\t mentions : "
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
 
@@ -825,12 +829,14 @@ void main_profile::show_tweet(Base_User *user , bool first)
 
             else
             {
-                 tw = QString::number(i.second.get_number()) + " : \n" + "username : " + QString::fromStdString(i.second.get_user_name()) +
-                         "\nname : " + QString::fromStdString(i.second.get_name()) + "\ntweet : " + QString::fromStdString(i.second.get_sefTweet()) +
-                         "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name())
-                         + "\n    owner name : " + QString::fromStdString(i.second.get_ownerName()) +
-                         "\n    owner tweet : " + QString::fromStdString(i.second.get_ownerTweet())
-                         + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
+                 tw = QString::number(i.second.get_number()) + " : \n" +
+                         "username : " + QString::fromStdString(i.second.get_user_name()) +
+                         "\nname    : " + QString::fromStdString(i.second.get_name()) +
+                         "\ntweet   : " + QString::fromStdString(i.second.get_sefTweet()) +
+                         "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name())+
+                         "\n    owner name     : " + QString::fromStdString(i.second.get_ownerName()) +
+                         "\n    owner tweet    : " + QString::fromStdString(i.second.get_ownerTweet())+
+                         "\nlikes   : " + QString::number(i.second.get_like_number()) + "\t mentions : "
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
 
