@@ -558,10 +558,10 @@ void Organisation::unfollow_followers(twitterak &app)
 
 //------------------------------------------------------------------------
 // 
-void Organisation::search_to_file()
+void Organisation::search_to_file(std::ofstream &write)
 {
     for (auto i : tweets)
     {
-        i.second.insert_to_file();
+        i.second.insert_to_file(write);
     }
 }

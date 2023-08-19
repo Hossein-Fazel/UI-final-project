@@ -563,10 +563,10 @@ void user::unfollow_followers(twitterak &app)
 
 //------------------------------------------------------------------------
 // 
-void user::search_to_file()
+void user::search_to_file(std::ofstream &write)
 {
     for (auto i : tweets)
     {
-        i.second.insert_to_file();
+        i.second.insert_to_file(write);
     }
 }

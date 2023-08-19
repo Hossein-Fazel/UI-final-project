@@ -41,7 +41,9 @@ std::unordered_map<std::string, std::vector<tweet>> twitterak::get_hashtags()
 void twitterak::put_users()
 {
     std::ofstream wuser;
+    std::ofstream wtweet;
     wuser.open("users.txt");
+    wtweet.open("tweet.txt");
 
     for(auto i : users)
     {
@@ -117,7 +119,7 @@ void twitterak::put_users()
         }
 
         wuser << "***" << std::endl;
-        i.second.search_to_file();
+        i.second.search_to_file(wtweet);
     }
 
     for (auto i : org_user)
@@ -192,7 +194,7 @@ void twitterak::put_users()
         }
 
         wuser << "***" << std::endl;
-        i.second.search_to_file();
+        i.second.search_to_file(wtweet);
     }
 
     for (auto i : ans_user)
@@ -255,6 +257,7 @@ void twitterak::put_users()
     }
 
     wuser.close();
+    wtweet.close();
 }
 
 //------------------------------------------------------------------------------------------
@@ -756,6 +759,7 @@ void twitterak::read_from_file()
 
             if (tweet_type == "normal")
             {
+                tw.set_tweetType("normal");
                 read_file.ignore(1000, ':');
                 getline(read_file, general, '\n');
                 tw.set_name(general);
@@ -833,6 +837,7 @@ void twitterak::read_from_file()
 
             else if (tweet_type == "retweet")
             {
+                tw.set_tweetType("retweet");
                 read_file.ignore(1000, ':');
                 getline(read_file, general, '\n');
                 tw.set_name(general);
@@ -918,7 +923,8 @@ void twitterak::read_from_file()
 
             else if (tweet_type == "qoutetweet")
             {
-                 read_file.ignore(1000, ':');
+                tw.set_tweetType("qoutetweet");
+                read_file.ignore(1000, ':');
                 getline(read_file, general, '\n');
                 tw.set_name(general);
 

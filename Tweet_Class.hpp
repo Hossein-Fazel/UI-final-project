@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <fstream>
 
 #include "Display_Class.hpp"
 
@@ -73,7 +74,7 @@ class tweet
         void mention_like(std::string, int);
         
         void push_to_tweet(mention);
-        void insert_to_file();                                                  // put all tweets and mentions in a file 
+        void insert_to_file(std::ofstream &write);                                                  // put all tweets and mentions in a file
 
     private:
         int mentionNumber = 1;

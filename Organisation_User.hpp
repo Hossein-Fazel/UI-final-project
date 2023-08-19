@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <map>
+#include <fstream>
 
 #include "Base_User.hpp"
 #include "Display_Class.hpp"
@@ -46,7 +47,7 @@ class Organisation : public Base_User
         void follow(twitterak &, std::string);                   
         void like_mention(int, std::string, int); 
         void unfollow(std::string);                               // unfollow the user name
-        void search_to_file();
+        void search_to_file(std::ofstream &write);
         std::unordered_set<std::string> get_following();
 
 //==================== Save_Organisation_Traces ====================

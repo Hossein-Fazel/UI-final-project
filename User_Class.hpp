@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <fstream>
 
 #include "Base_User.hpp"
 
@@ -21,7 +22,7 @@ class user: public Base_User
 friend void display::show_tweet(twitterak, std::string, int);           // friend with Twitterak_Class to show tweets
 friend void display::show_tweet(twitterak, std::string);                // friend with Twitterak_Class to show tweets
 friend void display::show_mentions(twitterak, std::string, int);
-friend void tweet::insert_to_file();
+friend void tweet::insert_to_file(std::ofstream &write);
 
 
     public:
@@ -58,7 +59,7 @@ friend void tweet::insert_to_file();
         void del_tweetlike(int , std::string);                    // delete a tweet like
         void unfollow(std::string);                               // unfollow the user name
         void add_following(std::string);
-        void search_to_file();
+        void search_to_file(std::ofstream &write);
 
 //================== Save_User_Traces ==================
 

@@ -11,7 +11,7 @@
 class mention
 {
     friend void tweet::mention_like(std::string, int);
-    friend void tweet::insert_to_file();
+    friend void tweet::insert_to_file(std::ofstream &write);
 
     public:
 //======================================== sets =============================================4

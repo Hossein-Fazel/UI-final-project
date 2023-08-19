@@ -164,7 +164,9 @@ void main_profile::push_hashtag(std::string hashtag, tweet tw)
 void main_profile::put_users()
 {
     std::ofstream wuser;
+    std::ofstream wtweet;
     wuser.open("users.txt");
+    wtweet.open("tweet.txt");
 
     for(auto i : users)
     {
@@ -240,7 +242,7 @@ void main_profile::put_users()
         }
 
         wuser << "***" << std::endl;
-        i.second.search_to_file();
+        i.second.search_to_file(wtweet);
     }
 
     for (auto i : org_user)
@@ -315,7 +317,7 @@ void main_profile::put_users()
         }
 
         wuser << "***" << std::endl;
-        i.second.search_to_file();
+        i.second.search_to_file(wtweet);
     }
 
     for (auto i : ans_user)
@@ -378,6 +380,7 @@ void main_profile::put_users()
     }
 
     wuser.close();
+    wtweet.close();
 }
 
 void main_profile::set_vars(std::unordered_map<std::string, user> per, std::unordered_map<std::string, Organisation> org, std::unordered_map<std::string, Anonymous> ans,
@@ -663,7 +666,7 @@ void main_profile::on_btn_search_clicked()
                          tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
                                  "\nname : " + QString::fromStdString(i.get_name()) + "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
                                  + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
-                                 "\n    owner tweet : " + QString::fromStdString(i.get_sefTweet())
+                                 "\n    owner tweet : " + QString::fromStdString(i.get_ownerTweet())
                                  + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
                                  + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
                                  + " " + QString::fromStdString(i.get_date()) + "\n\n";
@@ -677,7 +680,7 @@ void main_profile::on_btn_search_clicked()
                                  "\nname : " + QString::fromStdString(i.get_name()) + "\ntweet : " + QString::fromStdString(i.get_sefTweet()) +
                                  "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
                                  + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
-                                 "\n    owner tweet : " + QString::fromStdString(i.get_sefTweet())
+                                 "\n    owner tweet : " + QString::fromStdString(i.get_ownerTweet())
                                  + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
                                  + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
                                  + " " + QString::fromStdString(i.get_date()) + "\n\n";
@@ -764,27 +767,27 @@ void main_profile::on_btn_showtweet_clicked()
     else
     {
         if(users.count(username) == 1)
-            {
-                show_tweet(&(users[username]), 0);
-            }
-            else if(org_user.count(username) == 1)
-            {
-                show_tweet(&(org_user[username]), 0);
-            }
-            else if(ans_user.count(username) == 1)
-            {
-                QMessageBox msg;
-                msg.setText("! This user can not be tweet");
-                msg.setWindowTitle("Error");
-                msg.exec();
-            }
-            else
-            {
-                QMessageBox msg;
-                msg.setText("! This user does not exist");
-                msg.setWindowTitle("Error");
-                msg.exec();
-            }
+        {
+            show_tweet(&(users[username]), 0);
+        }
+        else if(org_user.count(username) == 1)
+        {
+            show_tweet(&(org_user[username]), 0);
+        }
+        else if(ans_user.count(username) == 1)
+        {
+            QMessageBox msg;
+            msg.setText("! This user can not be tweet");
+            msg.setWindowTitle("Error");
+            msg.exec();
+        }
+        else
+        {
+            QMessageBox msg;
+            msg.setText("! This user does not exist");
+            msg.setWindowTitle("Error");
+            msg.exec();
+        }
     }
 }
 
@@ -812,7 +815,7 @@ void main_profile::show_tweet(Base_User *user , bool first)
                  tw = QString::number(i.second.get_number()) + " : \n" + "username : " + QString::fromStdString(i.second.get_user_name()) +
                          "\nname : " + QString::fromStdString(i.second.get_name()) + "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name())
                          + "\n    owner name : " + QString::fromStdString(i.second.get_ownerName()) +
-                         "\n    owner tweet : " + QString::fromStdString(i.second.get_sefTweet())
+                         "\n    owner tweet : " + QString::fromStdString(i.second.get_ownerTweet())
                          + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
@@ -826,7 +829,7 @@ void main_profile::show_tweet(Base_User *user , bool first)
                          "\nname : " + QString::fromStdString(i.second.get_name()) + "\ntweet : " + QString::fromStdString(i.second.get_sefTweet()) +
                          "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name())
                          + "\n    owner name : " + QString::fromStdString(i.second.get_ownerName()) +
-                         "\n    owner tweet : " + QString::fromStdString(i.second.get_sefTweet())
+                         "\n    owner tweet : " + QString::fromStdString(i.second.get_ownerTweet())
                          + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";

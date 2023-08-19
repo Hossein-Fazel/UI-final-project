@@ -85,7 +85,7 @@ class Base_User
         virtual void unfollow(std::string);                               // unfollow the user name
         virtual void add_following(std::string);
 
-        virtual void search_to_file();
+        virtual void search_to_file(std::ofstream &write);
         
 //==================== Save_User_Traces ====================
 
