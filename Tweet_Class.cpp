@@ -151,7 +151,7 @@ void tweet::set_number(int number)                                              
 void tweet::set_user_age(user usr)                                                                                    // sets the age of the user 
 {
     int user_birth;
-    user_birth = std::stoi(usr.get_birthday().substr(0,4));
+    user_birth = usr.get_birthday().year();
     user_age = 2023 - user_birth;
 }
 

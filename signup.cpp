@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 
 #include <QMessageBox>
+#include <QDate>
 
 signup::signup(QWidget *parent) :
     QMainWindow(parent),
@@ -34,10 +35,10 @@ void signup::on_signup_btn_clicked()
             Ac_manager = ui->ln_manager->text().toStdString(),
             Ac_bio = ui->ln_bio->toPlainText().toStdString(),
             Ac_country = ui->ln_country->text().toStdString(),
-            Ac_birth = ui->ln_birthday->text().toStdString(),
             Ac_phone = ui->ln_phone->text().toStdString(),
             Ac_link = ui->ln_link->text().toStdString(),
             Ac_color = ui->cm_header->currentText().toStdString();
+    QDate Ac_birth = ui->ln_birthday->date();
 
     if(!Ac_username.empty() and !Ac_password.empty())
     {

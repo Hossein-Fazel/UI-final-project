@@ -77,13 +77,8 @@ void main_profile::fill_out()
 
         else
         {
-            int year = std::stoi(li_user->get_birthday().substr(0,4));
-            int month = std::stoi(li_user->get_birthday().substr(5, 6));
-            int day = std::stoi(li_user->get_birthday().substr(8, 9));
 
-            QDate date;
-            date.setDate(year,month,day);
-            ui->dt_birthday->setDate(date);
+            ui->dt_birthday->setDate(li_user->get_birthday());
 
             ui->ln_manager->setEnabled(false);
             ui->ln_follower->setText(QString::number(li_user->get_followers_num()));
@@ -136,13 +131,7 @@ void main_profile::fill_out_old()
 
         else
         {
-            int year = std::stoi(old_user.birth.substr(0,4));
-            int month = std::stoi(old_user.birth.substr(4, 6));
-            int day = std::stoi(old_user.birth.substr(8,9));
-
-            QDate date;
-            date.setDate(year,month,day);
-            ui->dt_birthday->setDate(date);
+            ui->dt_birthday->setDate(old_user.birthday);
 
             ui->ln_manager->setEnabled(false);
         }
@@ -178,7 +167,7 @@ void main_profile::put_users()
         wuser << "phone:" << i.second.get_phone() << std::endl;
         wuser << "header:" << i.second.get_header() << std::endl;
         wuser << "country:" << i.second.get_country() << std::endl;
-        wuser << "birthday:" << i.second.get_birthday() << std::endl;
+        wuser << "birthday:" << i.second.get_birthday().toString("yyyy.MM.dd").toStdString() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
 
@@ -455,7 +444,7 @@ void main_profile::on_btn_editp_clicked()
     old_user.name = ui->ln_name->text().toStdString();
     old_user.username = ui->ln_username->text().toStdString();
     old_user.manager = ui->ln_manager->text().toStdString();
-    old_user.birth = ui->dt_birthday->text().toStdString();
+    old_user.birthday = ui->dt_birthday->date();
     old_user.phone = ui->ln_phone->text().toStdString();
     old_user.country = ui->ln_country->text().toStdString();
     old_user.link = ui->ln_link->text().toStdString();
@@ -535,7 +524,7 @@ void main_profile::on_btn_save_clicked()
 
         if(users.count(li_user->get_username()) == 1)
         {
-            li_user->set_birthday(ui->dt_birthday->text().toStdString());
+            li_user->set_birthday(ui->dt_birthday->date());
         }
 
         li_user->set_country(ui->ln_country->text().toStdString());

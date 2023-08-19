@@ -136,6 +136,7 @@ bool Base_User::set_password(std::string input_pass)
     {
         Password = input_pass;
         passwords.insert(Password);
+        return true;
     }
     else if ((validate_password(input_pass)) == 0)
     {
@@ -345,7 +346,7 @@ std::string Base_User::get_biography() const
 
 //------------------------------------------------------------------------
 // does not have access to use this function from parent class
-std::string Base_User::get_birthday() const
+QDate Base_User::get_birthday() const
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }
@@ -366,7 +367,7 @@ int Base_User::get_following_num() const
 
 //------------------------------------------------------------------------
 // does not have access to use this function from parent class
-void Base_User::set_birthday(std::string birth)
+void Base_User::set_birthday(QDate)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }

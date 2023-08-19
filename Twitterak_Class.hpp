@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <QDate>
 
 class mention;
 
@@ -33,7 +34,7 @@ friend void display::login(twitterak  &, std::string);
 friend bool display::signup(twitterak &, std::string Ausername, std::string Apassword);
 friend void display::help(twitterak &);
 friend bool display::signup(twitterak &, std::string Aname, std::string Ausername, std::string Apassword, std::string bio,
-                            std::string country, std::string birth, std::string phone, std::string link, std::string color);
+                            std::string country, QDate birth, std::string phone, std::string link, std::string color);
 
 friend bool display::signupM(twitterak &, std::string Aname, std::string Ausername, std::string Apassword, std::string manager,
                              std::string bio, std::string country, std::string phone, std::string link, std::string color);

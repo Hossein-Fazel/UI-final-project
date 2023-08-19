@@ -6,6 +6,7 @@
 #include <map>
 #include <unordered_set>
 #include <unistd.h>
+#include <QDate>
 
 #include "Tweet_Class.hpp"
 //#include "main_profile.h"
@@ -53,7 +54,7 @@ class Base_User
         virtual std::unordered_map<std::string , std::unordered_set<int>> get_tweetlike_trs();
         virtual std::string get_manager_username() const;
         virtual std::string get_biography() const;                        // returns the biography of the user
-        virtual std::string get_birthday() const;                         // returns the date of birth of the user
+        virtual QDate get_birthday() const;                         // returns the date of birth of the user
         virtual int get_last_number() const;                              // returns the last number of tweet
         virtual int get_following_num() const;                            // returns the number of following 
         virtual std::unordered_map <int, tweet> get_tweets();                       // returns the tweets
@@ -63,7 +64,7 @@ class Base_User
         virtual void set_lastNum(int);
         virtual bool set_manager_username(twitterak, std::string);
         virtual void set_biography(std::string);                          // sets the biography of a user
-        virtual void set_birthday(std::string);                           // sets the date of birth of a user
+        virtual void set_birthday(QDate);                           // sets the date of birth of a user
 
 //================== General_Functions ====================
 

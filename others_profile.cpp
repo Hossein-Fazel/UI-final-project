@@ -60,13 +60,6 @@ void others_profile::fill_out(Base_User *user, std::string type)
         ui->ln_manager->setEnabled(false);
         ui->ln_phone->setText(QString::fromStdString(user->get_phone()));
 
-        std::string date = user->get_birthday();
-        int year = std::stoi(date.substr(0,4));
-        int month = std::stoi(date.substr(5, 6));
-        int day = std::stoi(date.substr(8, 9));
-
-        QDate birth;
-        birth.setDate(year,month,day);
-        ui->dt_birthday->setDate(birth);
+        ui->dt_birthday->setDate(user->get_birthday());
     }
 }

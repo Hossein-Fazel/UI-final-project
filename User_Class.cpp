@@ -14,7 +14,7 @@
 
 //==================================================================  Get_Functions =================================================================
 
-std::string user::get_birthday() const              // returns the date of birth of the user
+QDate user::get_birthday() const              // returns the date of birth of the user
 {
     return Birthday;
 }
@@ -56,7 +56,7 @@ std::unordered_map<std::string , std::unordered_set<int>> user::get_tweetlike_tr
 
 //==================================================================  Set_Functions =================================================================
 
-void user::set_birthday(std::string birth)                                     // sets the date of birth of a user
+void user::set_birthday(QDate birth)                                     // sets the date of birth of a user
 {
     Birthday = birth;
 }
@@ -76,7 +76,7 @@ void user::Show_Profile(twitterak & app)
     std::cout << "$ Header       : " << get_header() << std::endl;
     std::cout << "$ Name         : " << get_name() << std::endl;
     std::cout << "$ Username     : @" << get_username() << std::endl;
-    std::cout << "$ Birthday     : " << get_birthday() << std::endl;
+//    std::cout << "$ Birthday     : " << get_birthday() << std::endl;
     std::cout << "$ Biography    : " << get_biography() << std::endl;
     std::cout << "$ Link         : " << get_link() << std::endl;
     std::cout << "$ Phone_Number : " << get_phone() << std::endl;
@@ -136,7 +136,7 @@ void user::Edit(twitterak &app, std::string Edit_part ,std::string value)
 
     else if (Edit_part == "birthday")
     {
-        app.users[app.logedin_user].set_birthday(value);
+//        app.users[app.logedin_user].set_birthday(value);
         std::cout << "* Your " << Edit_part << " has been successfully changed.\n";
     }
 

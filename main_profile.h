@@ -18,7 +18,8 @@ class main_profile;
 
 struct user_info
 {
-    std::string name , username, manager, birth, phone, country, link, bio, pass, header;
+    std::string name , username, manager, phone, country, link, bio, pass, header;
+    QDate birthday;
 };
 
 class main_profile : public QMainWindow

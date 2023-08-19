@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <QMessageBox>
+#include <QDate>
 
 #include "Display_Class.hpp"
 #include "Twitterak_Class.hpp"
@@ -381,7 +382,7 @@ bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, 
 //------------------------------------------------------------------------------------------
 
 bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std::string Apassword,std::string bio ,std::string country,
-                     std::string birth ,std::string phone ,std::string link ,std::string color )
+                     QDate birth ,std::string phone ,std::string link ,std::string color )
 {
     bool sUsername = true, sPass = true, sPhone = true;
     user u1;
@@ -408,10 +409,8 @@ bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std
     {
         u1.set_country(country);
     }
-    if(!birth.empty())
-    {
-        u1.set_birthday(birth);
-    }
+
+    u1.set_birthday(birth);
 
     if(!phone.empty())
     {

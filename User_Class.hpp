@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <fstream>
+#include <QDate>
 
 #include "Base_User.hpp"
 
@@ -27,7 +28,7 @@ friend void tweet::insert_to_file(std::ofstream &write);
 
     public:
 //===================== Gets ======================
-        std::string get_birthday() const;                               // returns the date of birth of the user
+        QDate get_birthday() const;                               // returns the date of birth of the user
         int get_last_number() const;                                    // returns the last tweet's number
         int get_following_num() const;
         std::unordered_set< std::string> get_following();
@@ -35,7 +36,7 @@ friend void tweet::insert_to_file(std::ofstream &write);
         std::unordered_map<std::string , std::unordered_set<int>> get_tweetlike_trs();       // returns tweet_likes map
 
 //====================== sets =====================
-        void set_birthday(std::string);                           // sets the date of birth of a user
+        void set_birthday(QDate);                           // sets the date of birth of a user
         void set_lastNum(int);
 
 //=============== General functions =================
@@ -76,7 +77,7 @@ friend void tweet::insert_to_file(std::ofstream &write);
 
 
     private:
-        std::string Birthday;
+        QDate Birthday;
         int last_num = 0;
 
         std::unordered_map <int, tweet> tweets;

@@ -4,6 +4,8 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <QString>
+#include <QDate>
 
 #include "Twitterak_Class.hpp"
 #include "Display_Class.hpp"
@@ -55,7 +57,7 @@ void twitterak::put_users()
         wuser << "phone:" << i.second.get_phone() << std::endl;
         wuser << "header:" << i.second.get_header() << std::endl;
         wuser << "country:" << i.second.get_country() << std::endl;
-        wuser << "birthday:" << i.second.get_birthday() << std::endl;
+        wuser << "birthday:" << i.second.get_birthday().toString("yyyy.MM.dd").toStdString() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
 
@@ -334,7 +336,8 @@ void twitterak::read_users()
                 getline(ruser, value, '\n');
                 if(!value.empty())
                 {
-                    u1.set_birthday(value);
+                    QString date = QString::fromStdString(value);
+                    u1.set_birthday(QDate::fromString(date, "yyyy.MM.dd"));
                 }
 
                 ruser.ignore(1000, ':');
