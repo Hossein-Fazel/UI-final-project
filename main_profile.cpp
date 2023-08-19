@@ -895,6 +895,8 @@ void main_profile::on_btn_normalTweet_clicked()
         li_user->increase_last_number();
         li_user->Push_Tweet(tw);
         show_tweet(li_user,false);
+
+        ui->te_normalTweet->clear();
     }
 }
 
@@ -943,6 +945,7 @@ void main_profile::on_btn_Retweet_clicked()
 
     else
     {
+        bool status = true;
         if (users.count(username) == 1)
         {
             usr = &(users[username]);
@@ -952,6 +955,7 @@ void main_profile::on_btn_Retweet_clicked()
                 msg.setText("! There is no tweet with this number.");
                 msg.setWindowTitle("Error");
                 msg.exec();
+                status = false;
             }
         }
 
@@ -964,26 +968,33 @@ void main_profile::on_btn_Retweet_clicked()
                 msg.setText("! There is no tweet with this number.");
                 msg.setWindowTitle("Error");
                 msg.exec();
+                status = false;
             }
         }
 
 
-        tweet tw = usr->get_tweets()[tweet_number];
-        tweet retweet;
-        retweet.set_tweetType("retweet");
+        if(status == true)
+        {
+            tweet tw = usr->get_tweets()[tweet_number];
+            tweet retweet;
+            retweet.set_tweetType("retweet");
 
-        retweet.set_name(li_user->get_name());
-        retweet.set_user_name(li_user->get_username());
-        retweet.set_number(li_user->get_last_number()+1);
+            retweet.set_name(li_user->get_name());
+            retweet.set_user_name(li_user->get_username());
+            retweet.set_number(li_user->get_last_number()+1);
 
-        retweet.set_ownerName(tw.get_name());
-        retweet.set_ownerUser_name(username);
-        retweet.set_ownerTweet(tw.get_sefTweet());
+            retweet.set_ownerName(tw.get_name());
+            retweet.set_ownerUser_name(tw.get_user_name());
+            retweet.set_ownerTweet(tw.get_sefTweet());
 
-        retweet.set_time();
-        li_user->increase_last_number();
-        li_user->Push_Tweet(retweet);
-        show_tweet(li_user,false);
+            retweet.set_time();
+            li_user->increase_last_number();
+            li_user->Push_Tweet(retweet);
+            show_tweet(li_user,false);
+        }
+
+        ui->ln_usrRetweet->clear();
+        ui->ln_tweetNumber_Retweet->clear();
     }
 }
 
@@ -1034,6 +1045,7 @@ void main_profile::on_btn_Qoutetweet_clicked()
 
     else
     {
+        bool status = true;
         if (users.count(username) == 1)
         {
             usr = &(users[username]);
@@ -1043,6 +1055,7 @@ void main_profile::on_btn_Qoutetweet_clicked()
                 msg.setText("! There is no tweet with this number.");
                 msg.setWindowTitle("Error");
                 msg.exec();
+                status = false;
             }
         }
 
@@ -1055,28 +1068,36 @@ void main_profile::on_btn_Qoutetweet_clicked()
                 msg.setText("! There is no tweet with this number.");
                 msg.setWindowTitle("Error");
                 msg.exec();
+                status = false;
             }
         }
 
-        tweet tw = usr->get_tweets()[tweet_number];
-        tweet qoute;
-        qoute.set_tweetType("qoute");
+        if(status == true)
+        {
+            tweet tw = usr->get_tweets()[tweet_number];
+            tweet qoute;
+            qoute.set_tweetType("qoute");
 
-        qoute.set_name(li_user->get_name());
-        qoute.set_user_name(li_user->get_username());
-        qoute.set_number(li_user->get_last_number()+1);
-        qoute.set_selfTweet(tweet_text);
+            qoute.set_name(li_user->get_name());
+            qoute.set_user_name(li_user->get_username());
+            qoute.set_number(li_user->get_last_number()+1);
+            qoute.set_selfTweet(tweet_text);
 
-        qoute.set_ownerName(tw.get_name());
-        qoute.set_ownerUser_name(username);
-        qoute.set_ownerTweet(tw.get_sefTweet());
+            qoute.set_ownerName(tw.get_name());
+            qoute.set_ownerUser_name(tw.get_user_name());
+            qoute.set_ownerTweet(tw.get_sefTweet());
 
-        qoute.fetch_hashtags();
-        fetch_hashtags(qoute);
-        qoute.set_time();
-        li_user->increase_last_number();
-        li_user->Push_Tweet(qoute);
-        show_tweet(li_user,false);
+            qoute.fetch_hashtags();
+            fetch_hashtags(qoute);
+            qoute.set_time();
+            li_user->increase_last_number();
+            li_user->Push_Tweet(qoute);
+            show_tweet(li_user,false);
+        }
+
+        ui->ln_tweetNumber_Qoutetweet->clear();
+        ui->te_qoutetweet->clear();
+        ui->ln_usrQoutetweet->clear();
     }
 }
 
@@ -1105,8 +1126,6 @@ void main_profile::on_btn_makMention_clicked()
         msg.setWindowTitle("Error");
         msg.exec();
     }
-
-
 
     else
     {
