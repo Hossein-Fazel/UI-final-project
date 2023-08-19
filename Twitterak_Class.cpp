@@ -1278,7 +1278,7 @@ void twitterak::run()
 
                     else if(commands[1] == "tweet")
                     {
-                        li_user->delete_tweet(std::stoi(commands[2]), *this);
+//                        li_user->delete_tweet(std::stoi(commands[2]), *this);
                         // std::cin.ignore();
                     }
                 }
