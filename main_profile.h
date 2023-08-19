@@ -37,7 +37,7 @@ public:
     void fill_out();
 
     void show_tweet(Base_User *user, bool first);
-    void fecth_hashtags(tweet tw);
+    void fetch_hashtags(tweet tw);
 
 private slots:
     void on_btn_editp_clicked();
@@ -57,21 +57,15 @@ private slots:
 
     void on_btn_normalTweet_clicked();
 
-    void on_ln_follower_cursorPositionChanged(int arg1, int arg2);
-
     void on_radio_retweet_clicked();
 
     void on_btn_Retweet_clicked();
-
-    void on_radioButton_3_clicked();
 
     void on_btn_Qoutetweet_clicked();
 
     void on_raido_qoutetweet_clicked();
 
     void on_btn_makMention_clicked();
-
-    void on_btn_showtweet_2_clicked();
 
     void on_btn_DeleteTweet_clicked();
 
@@ -80,6 +74,8 @@ private slots:
     void on_btn_makeLike_Mention_clicked();
 
     void on_btn_makeLike_Tweet_clicked();
+
+    void on_btn_showmention_clicked();
 
 private:
     Ui::main_profile *ui;

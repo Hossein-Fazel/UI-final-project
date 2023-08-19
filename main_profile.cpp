@@ -8,6 +8,7 @@
 
 #include <QMessageBox>
 #include <QString>
+#include <QString>
 #include <fstream>
 
 main_profile::main_profile(QWidget *parent) :
@@ -31,7 +32,7 @@ main_profile::~main_profile()
     delete ui;
 }
 
-void main_profile::fecth_hashtags(tweet tw)
+void main_profile::fetch_hashtags(tweet tw)
 {
     for(auto hashtag : tw.get_hashtags())
     {
@@ -753,27 +754,37 @@ void main_profile::on_btn_search_clicked()
 void main_profile::on_btn_showtweet_clicked()
 {
     std::string username = ui->ln_usrtweet->text().toStdString();
-    if(users.count(username) == 1)
-    {
-        show_tweet(&(users[username]), 0);
-    }
-    else if(org_user.count(username) == 1)
-    {
-        show_tweet(&(org_user[username]), 0);
-    }
-    else if(ans_user.count(username) == 1)
+    if(username.empty())
     {
         QMessageBox msg;
-        msg.setText("! This user can not be tweet");
+        msg.setText("! Enter username");
         msg.setWindowTitle("Error");
         msg.exec();
     }
     else
     {
-        QMessageBox msg;
-        msg.setText("! This user does not exist");
-        msg.setWindowTitle("Error");
-        msg.exec();
+        if(users.count(username) == 1)
+            {
+                show_tweet(&(users[username]), 0);
+            }
+            else if(org_user.count(username) == 1)
+            {
+                show_tweet(&(org_user[username]), 0);
+            }
+            else if(ans_user.count(username) == 1)
+            {
+                QMessageBox msg;
+                msg.setText("! This user can not be tweet");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+            else
+            {
+                QMessageBox msg;
+                msg.setText("! This user does not exist");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
     }
 }
 
@@ -781,6 +792,7 @@ void main_profile::show_tweet(Base_User *user , bool first)
 {
     if(user->get_tweets().size() != 0)
     {
+        ui->te_showTweet->clear();
         for(auto i : user->get_tweets())
         {
             QString tw;
@@ -792,7 +804,7 @@ void main_profile::show_tweet(Base_User *user , bool first)
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
 
-                 ui->tx_hashtag->insertPlainText(tw);
+                 ui->te_showTweet->insertPlainText(tw);
             }
 
             else if(i.second.get_tweetType() == "retweet")
@@ -805,7 +817,7 @@ void main_profile::show_tweet(Base_User *user , bool first)
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
 
-                 ui->tx_hashtag->insertPlainText(tw);
+                 ui->te_showTweet->insertPlainText(tw);
             }
 
             else
@@ -819,7 +831,7 @@ void main_profile::show_tweet(Base_User *user , bool first)
                          + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
                          + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
 
-                 ui->tx_hashtag->insertPlainText(tw);
+                 ui->te_showTweet->insertPlainText(tw);
             }
         }
     }
@@ -834,7 +846,6 @@ void main_profile::show_tweet(Base_User *user , bool first)
             msg.exec();
         }
     }
-
 }
 
 //=========================================================================== Tweet ===========================================================================
@@ -1151,3 +1162,91 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
 
 //    }
 }
+
+void main_profile::on_btn_showmention_clicked()
+{
+    if(ui->ln_usrMention->text().toStdString().empty() and ui->ln_nummention->text().toStdString().empty())
+    {
+        QMessageBox msg;
+        msg.setText("! The input boxes can not be empty");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+
+    else
+    {
+        std::string usr = ui->ln_usrmention->text().toStdString();
+        int number = ui->ln_nummention->text().toInt();
+
+        if(users.count(usr) == 1 or org_user.count(usr) == 1)
+        {
+            Base_User *user;
+
+            if(users.count(usr) == 1)
+            {
+                user = &users[usr];
+            }
+
+            else if(org_user.count(usr) == 1)
+            {
+                user = &org_user[usr];
+            }
+
+            if(user->get_tweets().count(number) == 1)
+            {
+                QString ment;
+                if(user->get_tweets()[number].get_mentions_number() != 0)
+                {
+                    for(auto vecmen : user->get_tweets()[number].get_mentions())
+                    {
+                        for(auto mention : vecmen.second)
+                        {
+                            ment = "mention no : " + QString::number(mention.get_number()) + '\n' +
+                                    "name       : " + QString::fromStdString(mention.get_name()) + '\n' +
+                                    "username   : " + QString::fromStdString(mention.get_username()) + '\n' +
+                                    "text       : " +QString::fromStdString(mention.get_mention()) + '\n' +
+                                    "likes      : " + QString::number(mention.get_likes_number()) + "\n\n";
+
+                            ui->te_showMention->insertPlainText(ment);
+                            ment = "";
+                        }
+                    }
+                }
+
+                else
+                {
+                    QMessageBox msg;
+                    msg.setText("! There is no mentions for this tweet");
+                    msg.setWindowTitle("Error");
+                    msg.exec();
+                }
+            }
+
+            else
+            {
+                QMessageBox msg;
+                msg.setText("! There is no tweet with this number");
+                msg.setWindowTitle("Error");
+                msg.exec();
+            }
+        }
+
+        else if(ans_user.count(usr))
+        {
+            QMessageBox msg;
+            msg.setText("! This user can not have tweet");
+            msg.setWindowTitle("Error");
+            msg.exec();
+        }
+
+        else
+        {
+            QMessageBox msg;
+            msg.setText("! This user does not exist");
+            msg.setWindowTitle("Error");
+            msg.exec();
+        }
+    }
+}
+
+

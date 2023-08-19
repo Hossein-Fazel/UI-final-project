@@ -85,6 +85,11 @@ std::string tweet::get_time()
 {
     return time;
 }
+
+std::unordered_map<std::string , std::vector<mention>> tweet::get_mentions()  // return the mentions map
+{
+    return tweet_mentions;
+}
 //==================================================================  Set_Functions =================================================================
 
 void tweet::set_tweetType(std::string type)                                                                    // sets the type of a tweet(quote/retweet)

@@ -41,6 +41,7 @@ class tweet
         std::string get_time();
         std::string get_date();
         std::vector<std::string> get_hashtags();
+        std::unordered_map<std::string , std::vector<mention>> get_mentions();  // return the mentions map
 
 //================ sets =====================
 
@@ -56,7 +57,6 @@ class tweet
         void set_user_age();                                                    // sets the age of the user
         void set_time();
         void set_time(std::string , std::string);
-
 
 //============ General functions =============
 
