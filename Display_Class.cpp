@@ -71,6 +71,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
             app.is_logedin = true;
             app.logedin_user = user_name;
             app.li_user = &(app.users[app.logedin_user]);
+
             QMessageBox msg;
             msg.setText("* Login was successful.");
             msg.setWindowTitle("Login");

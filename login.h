@@ -19,6 +19,8 @@ public:
 private slots:
     void on_login_btn_clicked();
 
+    void on_btn_back_clicked();
+
 private:
     Ui::login *ui;
     twitterak app;

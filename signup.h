@@ -22,6 +22,8 @@ private slots:
 
     void on_type_currentIndexChanged(const QString &arg1);
 
+    void on_btn_back_clicked();
+
 private:
     Ui::signup *ui;
     twitterak app;

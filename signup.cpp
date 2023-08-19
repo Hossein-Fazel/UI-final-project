@@ -1,6 +1,7 @@
 #include "signup.h"
 #include "ui_signup.h"
 #include "main_profile.h"
+#include "mainwindow.h"
 
 #include <QMessageBox>
 
@@ -70,6 +71,7 @@ void signup::on_signup_btn_clicked()
                         prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
                         prof->fill_out();
                         prof->show();
+                        this->close();
                     }
                 }
             }
@@ -104,6 +106,7 @@ void signup::on_signup_btn_clicked()
                         prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
                         prof->fill_out();
                         prof->show();
+                        this->close();
                     }
                 }
             }
@@ -123,6 +126,7 @@ void signup::on_signup_btn_clicked()
                    prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), Ac_username);
                    prof->fill_out();
                    prof->show();
+                   this->close();
                }
             }
         }
@@ -198,3 +202,12 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_link->setEnabled(false);
     }
 }
+
+void signup::on_btn_back_clicked()
+{
+    MainWindow *window = nullptr;
+    window = new MainWindow;
+    window->show();
+    this->close();
+}
+

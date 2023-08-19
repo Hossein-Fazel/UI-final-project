@@ -718,6 +718,16 @@
       <string>show</string>
      </property>
     </widget>
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>451</width>
+       <height>161</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="box_menetion">
     <property name="geometry">

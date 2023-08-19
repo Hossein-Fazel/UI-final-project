@@ -268,8 +268,6 @@ int Base_User::Validating_Username(std::string user_name)
     {
         return -2;
     }
-        
-
     return 1;
 }
 

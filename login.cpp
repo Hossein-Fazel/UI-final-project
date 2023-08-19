@@ -1,6 +1,7 @@
 #include "login.h"
 #include "ui_login.h"
 #include "main_profile.h"
+#include "mainwindow.h"
 
 #include <QtDebug>
 
@@ -18,7 +19,7 @@ login::~login()
 
 void login::on_login_btn_clicked()
 {
-    main_profile *prof;
+    main_profile *prof = nullptr;
 
     bool login_status = true;
     std::string username, password;
@@ -33,5 +34,14 @@ void login::on_login_btn_clicked()
         prof->set_vars(app.get_users(), app.get_org(), app.get_ans(), app.get_hashtags(), username);
         prof->fill_out();
         prof->show();
+        this->close();
     }
+}
+
+void login::on_btn_back_clicked()
+{
+    MainWindow *window = nullptr;
+    window = new MainWindow;
+    window->show();
+    this->close();
 }

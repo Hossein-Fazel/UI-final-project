@@ -1,6 +1,7 @@
 #include "main_profile.h"
 #include "ui_main_profile.h"
 #include "others_profile.h"
+#include "mainwindow.h"
 
 #include <QMessageBox>
 #include <QString>
@@ -25,6 +26,14 @@ main_profile::main_profile(QWidget *parent) :
 main_profile::~main_profile()
 {
     delete ui;
+}
+
+void main_profile::fecth_hashtags(tweet tw)
+{
+    for(auto hashtag : tw.get_hashtags())
+    {
+        push_hashtag(hashtag, tw);
+    }
 }
 
 void main_profile::fill_out()
@@ -86,6 +95,9 @@ void main_profile::fill_out()
         ui->te_bio->setText(QString::fromStdString(li_user->get_biography()));
         ui->ln_pass->setText(QString::fromStdString(li_user->get_password()));
         ui->cm_header->setCurrentText(QString::fromStdString(li_user->get_header()));
+
+        ui->ln_usrtweet->setText(QString::fromStdString(li_user->get_username()));
+
     }
 }
 
@@ -476,7 +488,6 @@ void main_profile::on_btn_save_clicked()
         {
             if(!ui->ln_pass->text().toStdString().empty())
             {
-
                sPass = li_user->set_password(ui->ln_pass->text().toStdString());
             }
             else
@@ -605,6 +616,9 @@ void main_profile::on_btn_logout_clicked()
     if (msg.exec() == QMessageBox::Yes)
     {
         put_users();
+        MainWindow *window = nullptr;
+        window = new MainWindow;
+        window->show();
         this->close();
     }
 }
@@ -730,5 +744,91 @@ void main_profile::on_btn_search_clicked()
         msg.setText("! search box is empty");
         msg.setWindowTitle("Error");
         msg.exec();
+    }
+}
+
+void main_profile::on_btn_showtweet_clicked()
+{
+    std::string username = ui->ln_usrtweet->text().toStdString();
+    if(users.count(username) == 1)
+    {
+        show_tweet(&(users[username]), 0);
+    }
+    else if(org_user.count(username) == 1)
+    {
+        show_tweet(&(org_user[username]), 0);
+    }
+    else if(ans_user.count(username) == 1)
+    {
+        QMessageBox msg;
+        msg.setText("! This user can not be tweet");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+    else
+    {
+        QMessageBox msg;
+        msg.setText("! This user does not exist");
+        msg.setWindowTitle("Error");
+        msg.exec();
+    }
+}
+
+void main_profile::show_tweet(Base_User *user , bool first)
+{
+    if(user->get_tweets().size() != 0)
+    {
+        for(auto i : user->get_tweets())
+        {
+            QString tw;
+            if(i.second.get_tweetType() == "normal")
+            {
+                 tw = QString::number(i.second.get_number()) + " : \n" + "username : " + QString::fromStdString(i.second.get_user_name()) +
+                         "\nname : " + QString::fromStdString(i.second.get_name()) + "\ntweet : " + QString::fromStdString(i.second.get_sefTweet())
+                         + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
+                         + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
+                         + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
+
+                 ui->tx_hashtag->insertPlainText(tw);
+            }
+
+            else if(i.second.get_tweetType() == "retweet")
+            {
+                 tw = QString::number(i.second.get_number()) + " : \n" + "username : " + QString::fromStdString(i.second.get_user_name()) +
+                         "\nname : " + QString::fromStdString(i.second.get_name()) + "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name())
+                         + "\n    owner name : " + QString::fromStdString(i.second.get_ownerName()) +
+                         "\n    owner tweet : " + QString::fromStdString(i.second.get_sefTweet())
+                         + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
+                         + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
+                         + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
+
+                 ui->tx_hashtag->insertPlainText(tw);
+            }
+
+            else
+            {
+                 tw = QString::number(i.second.get_number()) + " : \n" + "username : " + QString::fromStdString(i.second.get_user_name()) +
+                         "\nname : " + QString::fromStdString(i.second.get_name()) + "\ntweet : " + QString::fromStdString(i.second.get_sefTweet()) +
+                         "\n    owner username : " + QString::fromStdString(i.second.get_ownerUser_name())
+                         + "\n    owner name : " + QString::fromStdString(i.second.get_ownerName()) +
+                         "\n    owner tweet : " + QString::fromStdString(i.second.get_sefTweet())
+                         + "\n likes : " + QString::number(i.second.get_like_number()) + "\t mentions : "
+                         + QString::number(i.second.get_mentions_number()) + "  " + QString::fromStdString(i.second.get_time())
+                         + " " + QString::fromStdString(i.second.get_date()) + "\n\n";
+
+                 ui->tx_hashtag->insertPlainText(tw);
+            }
+        }
+    }
+
+    else
+    {
+        if(first != 1)
+        {
+            QMessageBox msg;
+            msg.setText("! This user does not have any tweet");
+            msg.setWindowTitle("Error");
+            msg.exec();
+        }
     }
 }

@@ -274,7 +274,7 @@ int tweet::get_like_number() const
 }
 //------------------------------------------------------------------------
 
-void tweet::fetch_hashtags(twitterak &app)                                                    // finds and saves hashtags of user's tweet
+void tweet::fetch_hashtags()                                                    // finds and saves hashtags of user's tweet
 {
     std::string hashtag;
     int tsize = this->self_tweet.size();
@@ -294,9 +294,11 @@ void tweet::fetch_hashtags(twitterak &app)                                      
                 {
                     if(!hashtag.empty())
                     {
-                        std::string lHashtag = app.lower(hashtag);
-                        hashtags.push_back(lHashtag);
-                        app.Hashtags[lHashtag].push_back(*this);
+                        for(int index = 0; index < hashtag.size(); index++)
+                        {
+                            hashtag[index] = std::tolower(hashtag[index]);
+                        }
+                        hashtags.push_back(hashtag);
                     }
                     hashtag = "";
                     i = j;
@@ -308,12 +310,58 @@ void tweet::fetch_hashtags(twitterak &app)                                      
 
     if(!hashtag.empty())
     {
-        std::string lHashtag = app.lower(hashtag);
-        hashtags.push_back(lHashtag);
-        app.Hashtags[lHashtag].push_back(*this);
+        for(int index = 0; index < hashtag.size(); index++)
+        {
+            hashtag[index] = std::tolower(hashtag[index]);
+        }
+        hashtags.push_back(hashtag);
     }
 }
 
+void tweet::fetch_hashtags(twitterak &app)
+{
+    std::string hashtag;
+        int tsize = this->self_tweet.size();
+
+        for(int i = 0; i < tsize; i++)
+        {
+            if(this->self_tweet[i] == '#')
+            {
+
+                for(int j = i+1; j < tsize; j++)
+                {
+                    if(this->self_tweet[j] != ' ')
+                    {
+                        hashtag += this->self_tweet[j];
+                    }
+                    else
+                    {
+                        if(!hashtag.empty())
+                        {
+                            std::string lHashtag = app.lower(hashtag);
+                            hashtags.push_back(lHashtag);
+                            app.Hashtags[lHashtag].push_back(*this);
+                        }
+                        hashtag = "";
+                        i = j;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(!hashtag.empty())
+        {
+            std::string lHashtag = app.lower(hashtag);
+            hashtags.push_back(lHashtag);
+            app.Hashtags[lHashtag].push_back(*this);
+        }
+}
+
+std::vector<std::string> tweet::get_hashtags()
+{
+    return hashtags;
+}
 //-----------------------------------------------------------------------
 
 std::unordered_map<std::string, bool> tweet::operator~() const

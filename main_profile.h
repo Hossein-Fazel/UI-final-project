@@ -36,6 +36,9 @@ public:
     void fill_out_old();
     void fill_out();
 
+    void show_tweet(Base_User *user, bool first);
+    void fecth_hashtags(tweet tw);
+
 private slots:
     void on_btn_editp_clicked();
 
@@ -48,6 +51,8 @@ private slots:
     void on_btn_del_clicked();
 
     void on_btn_search_clicked();
+
+    void on_btn_showtweet_clicked();
 
 private:
     Ui::main_profile *ui;
