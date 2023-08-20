@@ -539,8 +539,23 @@ void main_profile::on_btn_save_clicked()
 
         if(!ui->ln_username->text().toStdString().empty())
         {
-            sUsername = li_user->set_username(ui->ln_username->text().toStdString());
+            if(ui->ln_username->text().toStdString() != old_user.username)
+            {
+                std::string old_username = old_user.username;
+                sUsername = li_user->set_username(ui->ln_username->text().toStdString());
+                std::unordered_map <std::string,user>::const_iterator got = users.find(old_username);
 
+                auto entry = users.find(old_username);
+
+                if (entry != end(users))
+                {
+                    auto const val = std::move(entry->second);
+                    users.erase(entry);
+                    users.insert({ui->ln_username->text().toStdString(), std::move(val)});
+
+                    li_user = &(users[ui->ln_username->text().toStdString()]);
+                }
+            }
         }
         else
         {
@@ -614,6 +629,15 @@ void main_profile::on_btn_save_clicked()
         ui->lb_header->hide();
         ui->cm_header->hide();
         ui->btn_editp->setEnabled(true);
+    }
+
+    if(org_user.count(li_user->get_username()) == 1)
+    {
+        ui->ln_manager->setEnabled(true);
+    }
+    else
+    {
+        ui->ln_manager->setEnabled(false);
     }
 
     ui->btn_change->hide();
