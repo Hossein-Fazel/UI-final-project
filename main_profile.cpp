@@ -752,9 +752,124 @@ void main_profile::on_btn_logout_clicked()
 
 void main_profile::on_btn_del_clicked()
 {
-//    li_user->Delete_Account()
+    QMessageBox msg;
+    msg.setWindowTitle("Exit");
+    msg.setWindowTitle("Logout");
+    msg.setText("? This operation cannot be reversed in any way\n Are you sure?");
+    msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    if (msg.exec() == QMessageBox::Yes)
+    {
+        delete_tweetlike(li_user);
+        delete_mention(li_user);
+        unfollow_followers(li_user);
+        for(auto i : li_user->get_tweets())
+        {
+            rm_hashtag(i.second);
+        }
+
+        if(users.count(li_user->get_username()) == 1)
+        {
+            users.erase(li_user->get_username());
+        }
+
+        else if(ans_user.count(li_user->get_username()) == 1)
+        {
+            ans_user.erase(li_user->get_username());
+        }
+
+        else if(org_user.count(li_user->get_username()) == 1)
+        {
+            org_user.erase(li_user->get_username());
+        }
+
+        put_users();
+        MainWindow *window = nullptr;
+        window = new MainWindow;
+        window->show();
+        this->close();
+    }
 }
 
+
+void main_profile::delete_tweetlike(Base_User *user)
+{
+    for(auto i: user->get_tweetlike_trs())
+    {
+        if(i.first != user->get_username())
+        {
+            if(users.count(i.first) == 1)
+            {
+                for(auto j:i.second)
+                {
+                    if(users[i.first].get_tweets().count(j))
+                    {
+                        users[i.first].del_tweetlike(j ,user->get_username());
+                    }
+                }
+            }
+
+            else if(org_user.count(i.first) == 1)
+            {
+                for(auto j:i.second)
+                {
+                    if(org_user[i.first].get_tweets().count(j))
+                    {
+                        org_user[i.first].del_tweetlike(j ,user->get_username());
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+void main_profile::delete_mention(Base_User *user)
+{
+    for(auto i : user->get_mention_trs())
+    {
+        if(i.first != user->get_username())
+        {
+            if(users.count(i.first) == 1)
+            {
+                for(auto j : i.second)
+                {
+                    if(users[i.first].get_tweets().count(j) == 1)
+                    {
+                        users[i.first].del_men(j ,user->get_username());
+                    }
+                }
+            }
+
+            else if(org_user.count(i.first) == 1)
+            {
+                for(auto j : i.second)
+                {
+                    if(org_user[i.first].get_tweets().count(j) == 1)
+                    {
+                        org_user[i.first].del_men(j ,user->get_username());
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+void main_profile::unfollow_followers(Base_User *user)
+{
+    for(auto i : user->get_following())
+    {
+        if(users.count(i) == 1)
+        {
+            users[i].unfollow(user->get_username());
+        }
+
+        else if(org_user.count(i) == 1)
+        {
+            org_user[i].unfollow(user->get_username());
+        }
+    }
+}
 
 void main_profile::on_btn_search_clicked()
 {
@@ -1267,11 +1382,6 @@ void main_profile::on_btn_makMention_clicked()
     int tweet_number = ui->ln_tweetNumber_Mention->text().toInt();
     Base_User * usr = nullptr;
 
-    for (int i = 0; i < username.size(); ++i)
-    {
-        username[i] = std::tolower(username[i]);
-    }
-
     if ((ui->ln_usrMention->text().toStdString().empty()) || (ui->ln_tweetNumber_Mention->text().toStdString().empty())
             || (ui->te_mention_text->toPlainText().toStdString().empty()))
     {
@@ -1307,7 +1417,13 @@ void main_profile::on_btn_makMention_clicked()
                 {
                     if(li_user->isin_following(usr->get_username()) == true)
                     {
-                        usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                        bool status;
+                        status = usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+
+                        if(status == true)
+                        {
+                            li_user->push_myMentions(tweet_number, username);
+                        }
                     }
                     else
                     {
@@ -1320,7 +1436,13 @@ void main_profile::on_btn_makMention_clicked()
 
                 else
                 {
-                    usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                    bool status;
+                    status = usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+
+                    if(status == true)
+                    {
+                        li_user->push_myMentions(tweet_number, username);
+                    }
                 }
             }
         }
@@ -1341,7 +1463,13 @@ void main_profile::on_btn_makMention_clicked()
                 {
                     if(li_user->isin_following(usr->get_username()) == true)
                     {
-                        usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                        bool status;
+                        status = usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+
+                        if(status == true)
+                        {
+                            li_user->push_myMentions(tweet_number, username);
+                        }
                     }
                     else
                     {
@@ -1354,7 +1482,13 @@ void main_profile::on_btn_makMention_clicked()
 
                 else
                 {
-                    usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                    bool status;
+                    status = usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+
+                    if(status == true)
+                    {
+                        li_user->push_myMentions(tweet_number, username);
+                    }
                 }
             }
         }
@@ -1507,7 +1641,7 @@ void main_profile::on_btn_makeLike_Mention_clicked()
 
             else
             {
-                usr->like_mention(tweet_number, username, mention_number);
+                usr->like_mention(tweet_number, li_user->get_username(), mention_number);
             }
         }
 
@@ -1523,7 +1657,7 @@ void main_profile::on_btn_makeLike_Mention_clicked()
             }
             else
             {
-                usr->like_mention(tweet_number, username, mention_number);
+                usr->like_mention(tweet_number, li_user->get_username(), mention_number);
             }
         }
 
@@ -1584,7 +1718,12 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
                 {
                     if(li_user->isin_following(usr->get_username()) == true)
                     {
-                        usr->like(username,tweet_number);
+                        bool status;
+                        status = usr->like(li_user->get_username(),tweet_number);
+                        if(status == true)
+                        {
+                            li_user->push_tweetLikes(tweet_number, username);
+                        }
                     }
                     else
                     {
@@ -1597,7 +1736,12 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
 
                 else
                 {
-                    usr->like(username,tweet_number);
+                    bool status;
+                    status = usr->like(li_user->get_username(),tweet_number);
+                    if(status == true)
+                    {
+                        li_user->push_tweetLikes(tweet_number, username);
+                    }
                 }
             }
         }
@@ -1618,7 +1762,12 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
                 {
                     if(li_user->isin_following(usr->get_username()) == true)
                     {
-                        usr->like(username,tweet_number);
+                        bool status;
+                        status = usr->like(li_user->get_username(),tweet_number);
+                        if(status == true)
+                        {
+                            li_user->push_tweetLikes(tweet_number, username);
+                        }
                     }
                     else
                     {
@@ -1631,7 +1780,12 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
 
                 else
                 {
-                    usr->like(username,tweet_number);
+                    bool status;
+                    status = usr->like(li_user->get_username(),tweet_number);
+                    if(status == true)
+                    {
+                        li_user->push_tweetLikes(tweet_number, username);
+                    }
                 }
             }
         }

@@ -41,6 +41,9 @@ public:
     void show_tweet(Base_User *user, bool first);
     void fetch_hashtags(tweet tw);
     void to_lower(std::string &str);
+    void delete_tweetlike(Base_User *user);
+    void delete_mention(Base_User *user);
+    void unfollow_followers(Base_User *user);
 
 private slots:
     void on_btn_editp_clicked();
