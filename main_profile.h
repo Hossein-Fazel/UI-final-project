@@ -31,6 +31,7 @@ public:
     ~main_profile();
 
     void push_hashtag(std::string hashtag, tweet tw);
+    void rm_hashtag(tweet tw);
     void change_ro(int type);
     void put_users();
     void set_vars(std::unordered_map<std::string, user> per,std::unordered_map<std::string, Organisation> org, std::unordered_map<std::string, Anonymous> ans, std::unordered_map<std::string, std::vector<tweet>> hashs, std::string username);

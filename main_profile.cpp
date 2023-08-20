@@ -55,6 +55,22 @@ void main_profile::to_lower(std::string &str)
     }
 }
 
+void main_profile::rm_hashtag(tweet tw)
+{
+    for(auto hashtag :tw.get_hashtags())
+    {
+        int vSize = Hashtags[hashtag].size();
+        for(int i = 0; i < vSize; i++)
+        {
+            if(Hashtags[hashtag][i].get_number() == tw.get_number() and Hashtags[hashtag][i].get_user_name() ==tw.get_user_name())
+            {
+                Hashtags[hashtag].erase(Hashtags[hashtag].begin() + i);
+                break;
+            }
+        }
+    }
+}
+
 void main_profile::fill_out()
 {
     QPixmap pic_addr(QString::fromStdString(li_user->get_pic()));
@@ -753,45 +769,62 @@ void main_profile::on_btn_search_clicked()
             {
                 ui->ln_search->clear();
                 ui->tx_hashtag->clear();
-                for(auto i : Hashtags[hashtag])
+
+                int size_vec = Hashtags[hashtag].size();
+                if(size_vec == 0)
                 {
-                    QString tw;
-                    if(i.get_tweetType() == "normal")
+                    QMessageBox msg;
+                    msg.setText("! There is no tweet with this hashtag");
+                    msg.setWindowTitle("Search");
+                    msg.exec();
+
+                    Hashtags.erase(hashtag);
+                }
+
+
+
+                else
+                {
+                    for(auto i : Hashtags[hashtag])
                     {
-                         tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
-                                 "\nname : " + QString::fromStdString(i.get_name()) + "\ntweet : " + QString::fromStdString(i.get_sefTweet())
-                                 + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
-                                 + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
-                                 + " " + QString::fromStdString(i.get_date()) + "\n\n";
+                        QString tw;
+                        if(i.get_tweetType() == "normal")
+                        {
+                             tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
+                                     "\nname : " + QString::fromStdString(i.get_name()) + "\ntweet : " + QString::fromStdString(i.get_sefTweet())
+                                     + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
+                                     + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
+                                     + " " + QString::fromStdString(i.get_date()) + "\n\n";
 
-                         ui->tx_hashtag->insertPlainText(tw);
-                    }
+                             ui->tx_hashtag->insertPlainText(tw);
+                        }
 
-                    else if(i.get_tweetType() == "retweet")
-                    {
-                         tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
-                                 "\nname : " + QString::fromStdString(i.get_name()) + "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
-                                 + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
-                                 "\n    owner tweet : " + QString::fromStdString(i.get_ownerTweet())
-                                 + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
-                                 + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
-                                 + " " + QString::fromStdString(i.get_date()) + "\n\n";
+                        else if(i.get_tweetType() == "retweet")
+                        {
+                             tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
+                                     "\nname : " + QString::fromStdString(i.get_name()) + "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
+                                     + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
+                                     "\n    owner tweet : " + QString::fromStdString(i.get_ownerTweet())
+                                     + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
+                                     + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
+                                     + " " + QString::fromStdString(i.get_date()) + "\n\n";
 
-                         ui->tx_hashtag->insertPlainText(tw);
-                    }
+                             ui->tx_hashtag->insertPlainText(tw);
+                        }
 
-                    else
-                    {
-                         tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
-                                 "\nname : " + QString::fromStdString(i.get_name()) + "\ntweet : " + QString::fromStdString(i.get_sefTweet()) +
-                                 "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
-                                 + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
-                                 "\n    owner tweet : " + QString::fromStdString(i.get_ownerTweet())
-                                 + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
-                                 + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
-                                 + " " + QString::fromStdString(i.get_date()) + "\n\n";
+                        else
+                        {
+                             tw = QString::number(i.get_number()) + " : \n" + "username : " + QString::fromStdString(i.get_user_name()) +
+                                     "\nname : " + QString::fromStdString(i.get_name()) + "\ntweet : " + QString::fromStdString(i.get_sefTweet()) +
+                                     "\n    owner username : " + QString::fromStdString(i.get_ownerUser_name())
+                                     + "\n    owner name : " + QString::fromStdString(i.get_ownerName()) +
+                                     "\n    owner tweet : " + QString::fromStdString(i.get_ownerTweet())
+                                     + "\n likes : " + QString::number(i.get_like_number()) + "\t mentions : "
+                                     + QString::number(i.get_mentions_number()) + "  " + QString::fromStdString(i.get_time())
+                                     + " " + QString::fromStdString(i.get_date()) + "\n\n";
 
-                         ui->tx_hashtag->insertPlainText(tw);
+                             ui->tx_hashtag->insertPlainText(tw);
+                        }
                     }
                 }
             }
@@ -1419,6 +1452,11 @@ void main_profile::on_btn_DeleteTweet_clicked()
 
     else
     {
+        if(li_user->get_tweets().count(tweet_number) == 1)
+        {
+            rm_hashtag(li_user->get_tweets()[tweet_number]);
+        }
+
         li_user->delete_tweet(tweet_number);
         show_tweet(li_user, true);
     }
