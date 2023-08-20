@@ -19,6 +19,9 @@ others_profile::~others_profile()
 
 void others_profile::fill_out(Base_User *user, std::string type)
 {
+    QPixmap pic_addr(QString::fromStdString(user->get_pic()));
+    ui->lbl_pic->setPixmap(pic_addr.scaled(ui->lbl_pic->width(), ui->lbl_pic->height(), Qt::KeepAspectRatio));
+
     ui->ln_name->setText(QString::fromStdString(user->get_name()));
     ui->ln_username->setText(QString::fromStdString(user->get_username()));
 
