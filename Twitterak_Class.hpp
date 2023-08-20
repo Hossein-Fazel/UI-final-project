@@ -31,13 +31,13 @@ friend void user::unfollow_followers(twitterak &app);
 friend bool display::login(twitterak  &,std::string, std::string);
 friend void display::login(twitterak  &);
 friend void display::login(twitterak  &, std::string);
-friend bool display::signup(twitterak &, std::string Ausername, std::string Apassword);
+friend bool display::signup(twitterak &, std::string Ausername, std::string Apassword, std::string);
 friend void display::help(twitterak &);
-friend bool display::signup(twitterak &, std::string Aname, std::string Ausername, std::string Apassword, std::string bio,
-                            std::string country, QDate birth, std::string phone, std::string link, std::string color);
+friend bool display::signup(twitterak &, std::string, std::string, std::string, std::string,
+                            std::string, QDate, std::string, std::string, std::string, std::string);
 
-friend bool display::signupM(twitterak &, std::string Aname, std::string Ausername, std::string Apassword, std::string manager,
-                             std::string bio, std::string country, std::string phone, std::string link, std::string color);
+friend bool display::signupM(twitterak &, std::string, std::string, std::string, std::string, std::string,
+                             std::string, std::string, std::string, std::string, std::string);
 friend void display::show_tweet(twitterak, std::string, int);
 friend void display::show_tweet(twitterak, std::string);
 friend void display::show_mentions(twitterak, std::string user_name, int tweet_number);

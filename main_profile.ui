@@ -364,9 +364,9 @@
     <widget class="QPushButton" name="btn_save">
      <property name="geometry">
       <rect>
-       <x>154</x>
+       <x>177</x>
        <y>555</y>
-       <width>51</width>
+       <width>23</width>
        <height>23</height>
       </rect>
      </property>
@@ -379,15 +379,25 @@
       <string>Save changes</string>
      </property>
      <property name="text">
-      <string>save</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="pictures.qrc">
+       <normaloff>:/save.png</normaloff>:/save.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
     </widget>
     <widget class="QPushButton" name="btn_discard">
      <property name="geometry">
       <rect>
-       <x>215</x>
+       <x>217</x>
        <y>555</y>
-       <width>51</width>
+       <width>23</width>
        <height>23</height>
       </rect>
      </property>
@@ -400,7 +410,17 @@
       <string>Discard changes</string>
      </property>
      <property name="text">
-      <string>discard</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="pictures.qrc">
+       <normaloff>:/discard.png</normaloff>:/discard.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
      <property name="checkable">
       <bool>false</bool>
@@ -604,14 +624,17 @@
     <property name="title">
      <string>profile picture</string>
     </property>
-    <widget class="QListWidget" name="listWidget">
+    <widget class="QLabel" name="lbl_pic">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>27</y>
-       <width>271</width>
-       <height>130</height>
+       <x>20</x>
+       <y>30</y>
+       <width>71</width>
+       <height>21</height>
       </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -664,12 +687,16 @@
      <rect>
       <x>1045</x>
       <y>33</y>
-      <width>60</width>
+      <width>20</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>search</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="pictures.qrc">
+      <normaloff>:/search blue.png</normaloff>:/search blue.png</iconset>
     </property>
    </widget>
    <widget class="QGroupBox" name="box_tweet">
@@ -1112,13 +1139,23 @@
      <property name="geometry">
       <rect>
        <x>157</x>
-       <y>33</y>
-       <width>60</width>
-       <height>20</height>
+       <y>32</y>
+       <width>22</width>
+       <height>22</height>
       </rect>
      </property>
      <property name="text">
-      <string>submit</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="pictures.qrc">
+       <normaloff>:/delete.png</normaloff>:/delete.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>22</width>
+       <height>22</height>
+      </size>
      </property>
     </widget>
    </widget>
@@ -1139,12 +1176,22 @@
       <rect>
        <x>215</x>
        <y>53</y>
-       <width>60</width>
+       <width>25</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>submit</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="pictures.qrc">
+       <normaloff>:/like.png</normaloff>:/like.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
      </property>
     </widget>
     <widget class="QLineEdit" name="ln_usrLike">
@@ -1184,12 +1231,22 @@
       <rect>
        <x>175</x>
        <y>133</y>
-       <width>60</width>
+       <width>25</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>submit</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="pictures.qrc">
+       <normaloff>:/like.png</normaloff>:/like.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
      </property>
     </widget>
     <widget class="QLineEdit" name="ln_tweetNumber_Like_2">
@@ -1281,12 +1338,14 @@
      <x>0</x>
      <y>0</y>
      <width>1141</width>
-     <height>29</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

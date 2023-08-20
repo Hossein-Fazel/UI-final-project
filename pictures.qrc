@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>back-button.png</file>
+        <file>anonymous-mask.png</file>
+        <file>like.png</file>
+        <file>search black.png</file>
+        <file>search blue.png</file>
+        <file>search bold.png</file>
+        <file>save.png</file>
+        <file>discard.png</file>
+        <file>icons8-delete-100.png</file>
+        <file>delete.png</file>
+        <file>Account.png</file>
+    </qresource>
+</RCC>

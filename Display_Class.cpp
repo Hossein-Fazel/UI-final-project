@@ -279,10 +279,11 @@ void display::login(twitterak &app)
 
 //============================================================= Sign-up_Function ============================================================= 
 
-bool display::signup(twitterak &app, std::string Ausername, std::string Apassword)
+bool display::signup(twitterak &app, std::string Ausername, std::string Apassword, std::string profile)
 {
     bool sUsername = true, sPass = true;
     Anonymous ans1;
+    ans1.set_pic(profile);
 
     sUsername = ans1.set_username(Ausername);
 
@@ -315,10 +316,11 @@ bool display::signup(twitterak &app, std::string Ausername, std::string Apasswor
 //------------------------------------------------------------------------------------------
 
 bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, std::string Apassword, std::string manager,
-                      std::string bio, std::string country, std::string phone, std::string link, std::string color)
+                      std::string bio, std::string country, std::string phone, std::string link, std::string color, std::string profile)
 {
     bool sUsername = true, sPass = true, sManager = true, sPhone = true;
     Organisation org1;
+    org1.set_pic(profile);
 
     sUsername = org1.set_username(Ausername);
 
@@ -382,10 +384,11 @@ bool display::signupM(twitterak &app, std::string Aname, std::string Ausername, 
 //------------------------------------------------------------------------------------------
 
 bool display::signup(twitterak &app,std::string Aname, std::string Ausername,std::string Apassword,std::string bio ,std::string country,
-                     QDate birth ,std::string phone ,std::string link ,std::string color )
+                     QDate birth ,std::string phone ,std::string link ,std::string color, std::string profile)
 {
     bool sUsername = true, sPass = true, sPhone = true;
     user u1;
+    u1.set_pic(profile);
 
     sUsername = u1.set_username(Ausername);
 

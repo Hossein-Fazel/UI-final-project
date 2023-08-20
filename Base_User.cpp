@@ -16,6 +16,13 @@ std::string Base_User::get_name() const
 }
 
 //------------------------------------------------------------------------
+// return frofile picture path
+std::string Base_User::get_pic()
+{
+    return picture;
+}
+
+//------------------------------------------------------------------------
 // shows the username of the user
 std::string Base_User::get_username() const                                                    
 {
@@ -85,6 +92,13 @@ void Base_User::set_name(std::string name)
     Full_Name = name;
 }
 
+//------------------------------------------------------------------------
+// set frofile picture path
+
+void Base_User::set_pic(std::string path)
+{
+    picture = path;
+}
 
 //------------------------------------------------------------------------
 // sets the username of a user with a validation

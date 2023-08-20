@@ -24,6 +24,7 @@ class Base_User
         bool set_phone(std::string);                                      // sets the phone number of a user
         void set_header(std::string);                                     // sets the color of the header that user had chosen
         void set_country(std::string);                                    // sets the country of the user
+        void set_pic(std::string path);                                   // sets the profile picture path
 
 //======================================== Get_Functions ======================================
 
@@ -37,6 +38,7 @@ class Base_User
         int get_followers_num() const;                                    // shows the number of followers
         std::unordered_set <std::string> get_followers();                 // return followers set
         std::unordered_set <std::string> get_passwords();                 // return passwords set
+        std::string get_pic();                                            // return frofile picture path
 //======================================= general functions ====================================
 
         std::string to_lower(std::string);                                // makes a string a lowercase
@@ -111,6 +113,7 @@ class Base_User
         std::string Phone_Number;
         std::string Header;
         std::string Country;
+        std::string picture;
 
     protected:
         std::string Biography;
