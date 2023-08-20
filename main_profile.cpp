@@ -82,7 +82,7 @@ void main_profile::fill_out()
 
             ui->ln_manager->setEnabled(false);
             ui->ln_follower->setText(QString::number(li_user->get_followers_num()));
-            ui->ln_following->setText(QString::number(li_user->get_followers_num()));
+            ui->ln_following->setText(QString::number(li_user->get_following_num()));
         }
 
         QString style = "background-color: " + QString::fromStdString(li_user->get_header()) + ';';
@@ -844,6 +844,10 @@ void main_profile::show_tweet(Base_User *user , bool first)
             msg.setWindowTitle("Error");
             msg.exec();
         }
+        else
+        {
+            ui->te_showTweet->clear();
+        }
     }
 }
 
@@ -1137,6 +1141,28 @@ void main_profile::on_btn_makMention_clicked()
                 msg.setWindowTitle("Error");
                 msg.exec();
             }
+            else
+            {
+                if(ans_user.count(li_user->get_username()) == 1)
+                {
+                    if(li_user->isin_following(usr->get_username()) == true)
+                    {
+                        usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                    }
+                    else
+                    {
+                        QMessageBox msg;
+                        msg.setText("! You must follow this user first");
+                        msg.setWindowTitle("Error");
+                        msg.exec();
+                    }
+                }
+
+                else
+                {
+                    usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                }
+            }
         }
 
         else if (org_user.count(username) == 1)
@@ -1149,22 +1175,43 @@ void main_profile::on_btn_makMention_clicked()
                 msg.setWindowTitle("Error");
                 msg.exec();
             }
+            else
+            {
+                if(ans_user.count(li_user->get_username()) == 1)
+                {
+                    if(li_user->isin_following(usr->get_username()) == true)
+                    {
+                        usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                    }
+                    else
+                    {
+                        QMessageBox msg;
+                        msg.setText("! You must follow this user first");
+                        msg.setWindowTitle("Error");
+                        msg.exec();
+                    }
+                }
+
+                else
+                {
+                    usr->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
+                }
+            }
         }
 
         else if (ans_user.count(username) == 1)
         {
-            usr = &(ans_user[username]);
-            if (!(usr->get_tweets().count(tweet_number)))
-            {
-                QMessageBox msg;
-                msg.setText("! There is no tweet with this number.");
-                msg.setWindowTitle("Error");
-                msg.exec();
-            }
+            QMessageBox msg;
+            msg.setText("! You must follow this user first");
+            msg.setWindowTitle("Error");
+            msg.exec();
         }
-
-        li_user->add_mention(tweet_number,li_user->get_name(),li_user->get_username(),mention_text);
     }
+
+    ui->ln_tweetNumber_Mention->clear();
+    ui->te_mention_text->clear();
+    ui->ln_usrMention->clear();
+
 }
 
 //=========================================================================== Fllow_User ===========================================================================
@@ -1195,6 +1242,7 @@ void main_profile::on_btn_Follow_clicked()
         usr = &(users[username]);
         usr->add_followers(li_user->get_username());
         li_user->add_following(username);
+        ui->ln_following->setText(QString::number(li_user->get_following_num()));
     }
 
     else if (org_user.count(username))
@@ -1202,6 +1250,7 @@ void main_profile::on_btn_Follow_clicked()
         usr = &(org_user[username]);
         usr->add_followers(li_user->get_username());
         li_user->add_following(username);
+        ui->ln_following->setText(QString::number(li_user->get_following_num()));
     }
 
     else if(ans_user.count(username) == 1)
@@ -1222,6 +1271,8 @@ void main_profile::on_btn_Follow_clicked()
             msg.exec();
         }
     }
+
+    ui->ln_usrfollow->clear();
 }
 
 //=========================================================================== Delete_Tweet ===========================================================================
@@ -1241,7 +1292,10 @@ void main_profile::on_btn_DeleteTweet_clicked()
     else
     {
         li_user->delete_tweet(tweet_number);
+        show_tweet(li_user, true);
     }
+
+    ui->ln_tweetNumber->clear();
 }
 
 //=========================================================================== Like ===========================================================================
@@ -1283,6 +1337,11 @@ void main_profile::on_btn_makeLike_Mention_clicked()
                 msg.setWindowTitle("Error");
                 msg.exec();
             }
+
+            else
+            {
+                usr->like_mention(tweet_number, username, mention_number);
+            }
         }
 
         else if (org_user.count(username) == 1)
@@ -1295,22 +1354,24 @@ void main_profile::on_btn_makeLike_Mention_clicked()
                 msg.setWindowTitle("Error");
                 msg.exec();
             }
+            else
+            {
+                usr->like_mention(tweet_number, username, mention_number);
+            }
         }
 
         else if (ans_user.count(username) == 1)
         {
-            usr = &(ans_user[username]);
-            if (!(usr->get_tweets().count(tweet_number)))
-            {
-                QMessageBox msg;
-                msg.setText("! There is no tweet with this number.");
-                msg.setWindowTitle("Error");
-                msg.exec();
-            }
+            QMessageBox msg;
+            msg.setText("! This user can not have tweet");
+            msg.setWindowTitle("Error");
+            msg.exec();
         }
-
-        li_user->like_mention(tweet_number, username, mention_number);
     }
+
+    ui->ln_mentionNumber_Like->clear();
+    ui->ln_tweetNumber_Like->clear();
+    ui->ln_usrLike->clear();
 }
 
 //-------------------------------------------------------------------------------
@@ -1337,7 +1398,6 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
         msg.exec();
     }
 
-
     else
     {
         if (users.count(username) == 1)
@@ -1349,6 +1409,28 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
                 msg.setText("! There is no tweet with this number.");
                 msg.setWindowTitle("Error");
                 msg.exec();
+            }
+            else
+            {
+                if(ans_user.count(li_user->get_username()) == 1)
+                {
+                    if(li_user->isin_following(usr->get_username()) == true)
+                    {
+                        usr->like(username,tweet_number);
+                    }
+                    else
+                    {
+                        QMessageBox msg;
+                        msg.setText("! You must follow this user first");
+                        msg.setWindowTitle("Error");
+                        msg.exec();
+                    }
+                }
+
+                else
+                {
+                    usr->like(username,tweet_number);
+                }
             }
         }
 
@@ -1362,26 +1444,46 @@ void main_profile::on_btn_makeLike_Tweet_clicked()
                 msg.setWindowTitle("Error");
                 msg.exec();
             }
+            else
+            {
+                if(ans_user.count(li_user->get_username()) == 1)
+                {
+                    if(li_user->isin_following(usr->get_username()) == true)
+                    {
+                        usr->like(username,tweet_number);
+                    }
+                    else
+                    {
+                        QMessageBox msg;
+                        msg.setText("! You must follow this user first");
+                        msg.setWindowTitle("Error");
+                        msg.exec();
+                    }
+                }
+
+                else
+                {
+                    usr->like(username,tweet_number);
+                }
+            }
         }
 
         else if (ans_user.count(username) == 1)
         {
-            usr = &(ans_user[username]);
-            if (!(usr->get_tweets().count(tweet_number)))
-            {
-                QMessageBox msg;
-                msg.setText("! There is no tweet with this number.");
-                msg.setWindowTitle("Error");
-                msg.exec();
-            }
+            QMessageBox msg;
+            msg.setText("! This user can not have tweet");
+            msg.setWindowTitle("Error");
+            msg.exec();
         }
-
-        li_user->like(username,tweet_number);
     }
+
+    ui->ln_tweetNumber_Like_2->clear();
+    ui->ln_usrLike_tweet->clear();
 }
 
 void main_profile::on_btn_showmention_clicked()
 {
+    ui->te_showMention->clear();
     if(ui->ln_usrMention->text().toStdString().empty() and ui->ln_nummention->text().toStdString().empty())
     {
         QMessageBox msg;

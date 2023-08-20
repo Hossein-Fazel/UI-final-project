@@ -952,6 +952,9 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Tweet number</string>
+     </property>
      <property name="placeholderText">
       <string>Num</string>
      </property>
@@ -990,6 +993,9 @@
        <width>30</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Mention number</string>
      </property>
      <property name="placeholderText">
       <string>Tweet Number</string>
@@ -1194,6 +1200,9 @@
        <width>30</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Tweet number</string>
      </property>
      <property name="placeholderText">
       <string>Tweet Number</string>
