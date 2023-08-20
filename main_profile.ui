@@ -604,14 +604,17 @@
     <property name="title">
      <string>profile picture</string>
     </property>
-    <widget class="QListWidget" name="listWidget">
+    <widget class="QLabel" name="lbl_pic">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>27</y>
-       <width>271</width>
-       <height>130</height>
+       <x>20</x>
+       <y>30</y>
+       <width>55</width>
+       <height>16</height>
       </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

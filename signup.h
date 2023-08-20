@@ -24,6 +24,8 @@ private slots:
 
     void on_btn_back_clicked();
 
+    void on_btn_select_clicked();
+
 private:
     Ui::signup *ui;
     twitterak app;

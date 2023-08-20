@@ -60,6 +60,7 @@ void twitterak::put_users()
         wuser << "birthday:" << i.second.get_birthday().toString("yyyy.MM.dd").toStdString() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
+        wuser << "picture:" << i.second.get_pic() << std::endl;
 
         wuser << "followers:";
         for(auto j : i.second.get_followers())
@@ -137,6 +138,7 @@ void twitterak::put_users()
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
 //        wuser << "manager:" << i.second.get_manager_username() << std::endl;
+        wuser << "picture:" << i.second.get_pic() << std::endl;
         wuser << "followers:";
         for(auto j : i.second.get_followers())
         {
@@ -204,6 +206,7 @@ void twitterak::put_users()
         wuser << "type:ans" << std::endl;
         wuser << "username:" << i.second.get_username() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
+        wuser << "picture:" << i.second.get_pic() << std::endl;
 
         wuser << "followings:";
         for(auto j : i.second.get_following())
@@ -352,6 +355,13 @@ void twitterak::read_users()
                 if(!value.empty())
                 {
                     u1.set_lastNum(std::stoi(value));
+                }
+
+                ruser.ignore(1000, ':');
+                getline(ruser, value, '\n');
+                if(!value.empty())
+                {
+                    u1.set_pic(value);
                 }
 
                 ruser.ignore(1000, ':');
@@ -533,6 +543,13 @@ void twitterak::read_users()
                 getline(ruser, value, '\n');
                 if(!value.empty())
                 {
+                    org1.set_pic(value);
+                }
+
+                ruser.ignore(1000, ':');
+                getline(ruser, value, '\n');
+                if(!value.empty())
+                {
                     std::string follower;
                     std::stringstream str;
                     str << value;
@@ -645,6 +662,13 @@ void twitterak::read_users()
                 if(!value.empty())
                 {
                     ans1.set_pass_wHash(value);
+                }
+
+                ruser.ignore(1000, ':');
+                getline(ruser, value, '\n');
+                if(!value.empty())
+                {
+                    ans1.set_pic(value);
                 }
 
                 ruser.ignore(1000, ':');

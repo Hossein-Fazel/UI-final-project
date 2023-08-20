@@ -10,6 +10,7 @@
 #include <QString>
 #include <QString>
 #include <fstream>
+#include <QPixmap>
 
 main_profile::main_profile(QWidget *parent) :
     QMainWindow(parent),
@@ -42,6 +43,7 @@ void main_profile::fetch_hashtags(tweet tweet1)
 
 void main_profile::fill_out()
 {
+//    QPixmap pic_addr(QString::fromStdString(li_user->get_pic()));
     if(li_user->get_name() == "Anonymous User")
     {
         ui->ln_name->setText(QString::fromStdString(li_user->get_name()));
@@ -178,6 +180,7 @@ void main_profile::put_users()
         wuser << "birthday:" << i.second.get_birthday().toString("yyyy.MM.dd").toStdString() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
+        wuser << "picture:" << i.second.get_pic() << std::endl;
 
         wuser << "followers:";
         for(auto j : i.second.get_followers())
@@ -255,6 +258,7 @@ void main_profile::put_users()
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
 //        wuser << "manager:" << i.second.get_manager_username() << std::endl;
+        wuser << "picture:" << i.second.get_pic() << std::endl;
         wuser << "followers:";
         for(auto j : i.second.get_followers())
         {
@@ -322,6 +326,7 @@ void main_profile::put_users()
         wuser << "type:ans" << std::endl;
         wuser << "username:" << i.second.get_username() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
+        wuser << "picture:" << i.second.get_pic() << std::endl;
 
         wuser << "followings:";
         for(auto j : i.second.get_following())

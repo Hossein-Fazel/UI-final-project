@@ -5,6 +5,7 @@
 
 #include <QMessageBox>
 #include <QDate>
+#include <QFileDialog>
 
 signup::signup(QWidget *parent) :
     QMainWindow(parent),
@@ -39,6 +40,11 @@ void signup::on_signup_btn_clicked()
             Ac_link = ui->ln_link->text().toStdString(),
             Ac_color = ui->cm_header->currentText().toStdString();
     QDate Ac_birth = ui->ln_birthday->date();
+
+    for(int i = 0; i < Ac_username.size(); i++)
+    {
+        Ac_username[i] = std::tolower(Ac_username[i]);
+    }
 
     if(!Ac_username.empty() and !Ac_password.empty())
     {
@@ -162,6 +168,9 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_phone->setEnabled(true);
         ui->ln_manager->setEnabled(false);
         ui->ln_link->setEnabled(true);
+        ui->ln_pic_address->clear();
+        ui->ln_pic_address->setReadOnly(true);
+        ui->btn_select->setEnabled(true);
     }
 
     else if (arg1 == "Organisation User")
@@ -182,6 +191,9 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_phone->setEnabled(true);
         ui->ln_manager->setEnabled(true);
         ui->ln_link->setEnabled(true);
+        ui->ln_pic_address->clear();
+        ui->ln_pic_address->setReadOnly(true);
+        ui->btn_select->setEnabled(true);
     }
 
     else if(arg1 == "Anonymous User")
@@ -201,6 +213,9 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_phone->setEnabled(false);
         ui->ln_manager->setEnabled(false);
         ui->ln_link->setEnabled(false);
+        ui->ln_pic_address->setText(":/anonymous-mask.png");
+        ui->ln_pic_address->setReadOnly(true);
+        ui->btn_select->setEnabled(false);
     }
 }
 
@@ -210,5 +225,12 @@ void signup::on_btn_back_clicked()
     window = new MainWindow;
     window->show();
     this->close();
+}
+
+
+void signup::on_btn_select_clicked()
+{
+    QString address = QFileDialog::getOpenFileName();
+    ui->ln_pic_address->setText(address);
 }
 

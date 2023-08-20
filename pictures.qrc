@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>back-button.png</file>
+        <file>anonymous-mask.png</file>
+    </qresource>
+</RCC>
