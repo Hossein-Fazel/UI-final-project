@@ -617,3 +617,17 @@ bool Base_User:: set_manager_username(twitterak, std::string)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }
+
+//------------------------------------------------------------------------
+
+void Base_User::change_name(std::string str)
+{
+    std::cout << "! This feature can't be reached for your account.\n";
+}
+
+//------------------------------------------------------------------------
+
+void Base_User::change_username(std::string str)
+{
+    std::cout << "! This feature can't be reached for your account.\n";
+}

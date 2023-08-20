@@ -89,6 +89,8 @@ class Base_User
         virtual void add_following(std::string);
 
         virtual void search_to_file(std::ofstream &write);
+        virtual void change_username(std::string str);
+        virtual void change_name(std::string str);
         
 //==================== Save_User_Traces ====================
 

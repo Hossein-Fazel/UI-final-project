@@ -49,6 +49,8 @@ class Organisation : public Base_User
         void unfollow(std::string);                               // unfollow the user name
         void search_to_file(std::ofstream &write);
         std::unordered_set<std::string> get_following();
+        void change_username(std::string str);            // change username in tweets
+        void change_name(std::string str);                // change name in tweets
 
 //==================== Save_Organisation_Traces ====================
 

@@ -552,6 +552,7 @@ void main_profile::on_btn_save_clicked()
         if(!ui->ln_name->text().toStdString().empty())
         {
             li_user->set_name(ui->ln_name->text().toStdString());
+            li_user->change_name(ui->ln_name->text().toStdString());
         }
         else
         {
@@ -581,6 +582,9 @@ void main_profile::on_btn_save_clicked()
                         users.insert({ui->ln_username->text().toStdString(), std::move(val)});
 
                         li_user = &(users[ui->ln_username->text().toStdString()]);
+                        ui->ln_usrtweet->setText(ui->ln_username->text());
+                        li_user->change_username(ui->ln_username->text().toStdString());
+                        show_tweet(li_user,true);
                     }
                 }
                 else if(org_user.count(old_username) == 1)
@@ -597,6 +601,9 @@ void main_profile::on_btn_save_clicked()
                         org_user.insert({ui->ln_username->text().toStdString(), std::move(val)});
 
                         li_user = &(org_user[ui->ln_username->text().toStdString()]);
+                        li_user->change_username(ui->ln_username->text().toStdString());
+                        ui->ln_usrtweet->setText(ui->ln_username->text());
+                        show_tweet(li_user,true);
                     }
                 }
             }

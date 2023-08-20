@@ -61,6 +61,8 @@ friend void tweet::insert_to_file(std::ofstream &write);
         void unfollow(std::string);                               // unfollow the user name
         void add_following(std::string);
         void search_to_file(std::ofstream &write);
+        void change_username(std::string str);            // change username in tweets
+        void change_name(std::string str);                // change name in tweets
 
 //================== Save_User_Traces ==================
 

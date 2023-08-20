@@ -570,3 +570,23 @@ void user::search_to_file(std::ofstream &write)
         i.second.insert_to_file(write);
     }
 }
+
+//------------------------------------------------------------------------
+// change username in tweets
+void user::change_username(std::string str)
+{
+    for(auto &tweet : tweets)
+    {
+        tweet.second.set_user_name(str);
+    }
+}
+
+//------------------------------------------------------------------------
+// change name in tweets
+void user::change_name(std::string str)
+{
+    for(auto &tweet : tweets)
+    {
+        tweet.second.set_name(str);
+    }
+}
