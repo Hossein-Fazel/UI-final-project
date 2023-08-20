@@ -46,6 +46,15 @@ void main_profile::fetch_hashtags(tweet tweet1)
     }
 }
 
+void main_profile::to_lower(std::string &str)
+{
+    int size = str.size();
+    for(int i = 0; i < size ; i ++)
+    {
+        str[i] = std::tolower(str[i]);
+    }
+}
+
 void main_profile::fill_out()
 {
     QPixmap pic_addr(QString::fromStdString(li_user->get_pic()));
@@ -495,7 +504,23 @@ void main_profile::on_btn_save_clicked()
         {
             if(!ui->ln_username->text().toStdString().empty())
             {
-                sUsername = li_user->set_username(ui->ln_username->text().toStdString());
+                if(ui->ln_username->text().toStdString() != old_user.username)
+                {
+                    std::string old_username = old_user.username;
+                    sUsername = li_user->set_username(ui->ln_username->text().toStdString());
+//                    std::unordered_map <std::string,user>::const_iterator got = ans_user.find(old_username);
+
+                    auto entry = ans_user.find(old_username);
+
+                    if (entry != end(ans_user))
+                    {
+                        auto const val = std::move(entry->second);
+                        ans_user.erase(entry);
+                        ans_user.insert({ui->ln_username->text().toStdString(), std::move(val)});
+
+                        li_user = &(ans_user[ui->ln_username->text().toStdString()]);
+                    }
+                }
             }
             else
             {
@@ -542,18 +567,37 @@ void main_profile::on_btn_save_clicked()
             if(ui->ln_username->text().toStdString() != old_user.username)
             {
                 std::string old_username = old_user.username;
-                sUsername = li_user->set_username(ui->ln_username->text().toStdString());
-                std::unordered_map <std::string,user>::const_iterator got = users.find(old_username);
-
-                auto entry = users.find(old_username);
-
-                if (entry != end(users))
+                if(users.count(old_username) == 1)
                 {
-                    auto const val = std::move(entry->second);
-                    users.erase(entry);
-                    users.insert({ui->ln_username->text().toStdString(), std::move(val)});
+                    sUsername = li_user->set_username(ui->ln_username->text().toStdString());
+//                    std::unordered_map <std::string,user>::const_iterator got = users.find(old_username);
 
-                    li_user = &(users[ui->ln_username->text().toStdString()]);
+                    auto entry = users.find(old_username);
+
+                    if (entry != end(users))
+                    {
+                        auto const val = std::move(entry->second);
+                        users.erase(entry);
+                        users.insert({ui->ln_username->text().toStdString(), std::move(val)});
+
+                        li_user = &(users[ui->ln_username->text().toStdString()]);
+                    }
+                }
+                else if(org_user.count(old_username) == 1)
+                {
+                    sUsername = li_user->set_username(ui->ln_username->text().toStdString());
+//                    std::unordered_map <std::string,user>::const_iterator got = users.find(old_username);
+
+                    auto entry = org_user.find(old_username);
+
+                    if (entry != end(org_user))
+                    {
+                        auto const val = std::move(entry->second);
+                        org_user.erase(entry);
+                        org_user.insert({ui->ln_username->text().toStdString(), std::move(val)});
+
+                        li_user = &(org_user[ui->ln_username->text().toStdString()]);
+                    }
                 }
             }
         }
@@ -696,6 +740,7 @@ void main_profile::on_btn_search_clicked()
         if(ui->ln_search->text().toStdString()[0] == '#')
         {
             std::string hashtag = ui->ln_search->text().toStdString();
+            to_lower(hashtag);
             hashtag.erase(0,1);
             if(Hashtags.count(hashtag) == 1)
             {
@@ -756,6 +801,7 @@ void main_profile::on_btn_search_clicked()
         else if(ui->ln_search->text().toStdString()[0] == '@')
         {
             std::string username = ui->ln_search->text().toStdString().erase(0, 1);
+            to_lower(username);
             ui->ln_search->clear();
             ui->tx_hashtag->clear();
             if(users.count(username) == 1)
@@ -811,6 +857,8 @@ void main_profile::on_btn_search_clicked()
 void main_profile::on_btn_showtweet_clicked()
 {
     std::string username = ui->ln_usrtweet->text().toStdString();
+    to_lower(username);
+
     if(username.empty())
     {
         QMessageBox msg;
@@ -988,6 +1036,7 @@ void main_profile::on_radio_retweet_clicked()
 void main_profile::on_btn_Retweet_clicked()
 {
     std::string username = ui->ln_usrRetweet->text().toStdString();
+    to_lower(username);
     int tweet_number = ui->ln_tweetNumber_Retweet->text().toInt();
     Base_User * usr = nullptr;
 
@@ -1086,6 +1135,7 @@ void main_profile::on_raido_qoutetweet_clicked()
 void main_profile::on_btn_Qoutetweet_clicked()
 {
     std::string username = ui->ln_usrQoutetweet->text().toStdString();
+    to_lower(username);
     std::string tweet_text = ui->te_qoutetweet->toPlainText().toStdString();
     int tweet_number = ui->ln_tweetNumber_Qoutetweet->text().toInt();
     Base_User * usr = nullptr;
@@ -1172,6 +1222,7 @@ void main_profile::on_btn_Qoutetweet_clicked()
 void main_profile::on_btn_makMention_clicked()
 {
     std::string username = ui->ln_usrMention->text().toStdString();
+    to_lower(username);
     std::string mention_text = ui->te_mention_text->toPlainText().toStdString();
     int tweet_number = ui->ln_tweetNumber_Mention->text().toInt();
     Base_User * usr = nullptr;
@@ -1288,6 +1339,7 @@ void main_profile::on_btn_makMention_clicked()
 void main_profile::on_btn_Follow_clicked()
 {
     std::string username = ui->ln_usrfollow->text().toStdString();
+    to_lower(username);
     Base_User * usr = nullptr;
 
     if (ui->ln_usrfollow->text().toStdString().empty())
@@ -1372,6 +1424,7 @@ void main_profile::on_btn_DeleteTweet_clicked()
 void main_profile::on_btn_makeLike_Mention_clicked()
 {
     std::string username = ui->ln_usrLike->text().toStdString();
+    to_lower(username);
     int tweet_number = ui->ln_tweetNumber_Like->text().toInt();
     int mention_number = ui->ln_mentionNumber_Like->text().toInt();
     Base_User * usr = nullptr;
@@ -1448,6 +1501,7 @@ void main_profile::on_btn_makeLike_Mention_clicked()
 void main_profile::on_btn_makeLike_Tweet_clicked()
 {
     std::string username = ui->ln_usrLike_tweet->text().toStdString();
+    to_lower(username);
     int tweet_number = ui->ln_tweetNumber_Like_2->text().toInt();
     Base_User * usr = nullptr;
 
@@ -1564,11 +1618,8 @@ void main_profile::on_btn_showmention_clicked()
     else
     {
         std::string usr = ui->ln_usrmention->text().toStdString();
+        to_lower(usr);
 
-        for (int i = 0; i < usr.size(); ++i)
-        {
-            usr[i] = std::tolower(usr[i]);
-        }
         int number = ui->ln_nummention->text().toInt();
 
         if(users.count(usr) == 1 or org_user.count(usr) == 1)

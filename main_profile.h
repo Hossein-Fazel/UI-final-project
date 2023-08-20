@@ -39,6 +39,7 @@ public:
 
     void show_tweet(Base_User *user, bool first);
     void fetch_hashtags(tweet tw);
+    void to_lower(std::string &str);
 
 private slots:
     void on_btn_editp_clicked();
