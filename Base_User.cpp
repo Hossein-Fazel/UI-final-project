@@ -122,7 +122,8 @@ bool Base_User::set_username(std::string user_name)
         if (Username[0] == '@')
             Username = remove_atsing(user_name);
 
-        Username = to_lower(user_name);
+        user_name = to_lower(user_name);
+        Username = user_name;
         return true;
     }
 }

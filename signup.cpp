@@ -40,6 +40,11 @@ void signup::on_signup_btn_clicked()
             Ac_color = ui->cm_header->currentText().toStdString();
     QDate Ac_birth = ui->ln_birthday->date();
 
+    for (int i = 0; i < Ac_username.size(); ++i)
+    {
+        Ac_username[i] = std::tolower(Ac_username[i]);
+    }
+
     if(!Ac_username.empty() and !Ac_password.empty())
     {
         if(ui->type->currentText() == "Personal User")
