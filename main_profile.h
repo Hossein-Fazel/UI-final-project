@@ -18,7 +18,7 @@ class main_profile;
 
 struct user_info
 {
-    std::string name , username, manager, phone, country, link, bio, pass, header;
+    std::string name , username, manager, phone, country, link, bio, pass, header, pic;
     QDate birthday;
 };
 
@@ -77,6 +77,8 @@ private slots:
     void on_btn_makeLike_Tweet_clicked();
 
     void on_btn_showmention_clicked();
+
+    void on_btn_change_clicked();
 
 private:
     Ui::main_profile *ui;

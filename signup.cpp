@@ -123,7 +123,7 @@ void signup::on_signup_btn_clicked()
 
         else if(ui->type->currentText() == "Anonymous User")
         {
-            is_complete = app.d1.signup(app, Ac_username, Ac_password,profile_pic);
+            is_complete = app.d1.signup(app, Ac_username, Ac_password, profile_pic);
             if(is_complete == true)
             {
                bool login_status = true;
@@ -152,7 +152,6 @@ void signup::on_signup_btn_clicked()
 
 void signup::on_type_currentIndexChanged(const QString &arg1)
 {
-    QPixmap
     if(arg1 == "Personal User")
     {
         ui->ln_username->setPlaceholderText("Required *");
@@ -173,7 +172,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_link->setEnabled(true);
         ui->ln_pic_address->clear();
 
-        ui->ln_pic_address->setText(":/Account.png");
+        ui->ln_pic_address->setText(":/account.png");
         ui->ln_pic_address->setReadOnly(true);
         ui->btn_select->setEnabled(true);
     }
@@ -198,7 +197,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_link->setEnabled(true);
         ui->ln_pic_address->clear();
 
-        ui->ln_pic_address->setText(":/Account.png");
+        ui->ln_pic_address->setText(":/account.png");
         ui->ln_pic_address->setReadOnly(true);
         ui->btn_select->setEnabled(true);
 
@@ -223,7 +222,7 @@ void signup::on_type_currentIndexChanged(const QString &arg1)
         ui->ln_manager->setEnabled(false);
         ui->ln_link->setEnabled(false);
 
-        ui->ln_pic_address->setText(":/anonymous-mask.png");
+        ui->ln_pic_address->setText(":/anonymous.png");
         ui->ln_pic_address->setReadOnly(true);
         ui->btn_select->setEnabled(false);
     }

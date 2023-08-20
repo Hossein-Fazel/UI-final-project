@@ -8,9 +8,10 @@
 
 #include <QMessageBox>
 #include <QString>
-#include <QString>
+#include <QFileDialog>
 #include <fstream>
 #include <QPixmap>
+
 
 main_profile::main_profile(QWidget *parent) :
     QMainWindow(parent),
@@ -26,6 +27,10 @@ main_profile::main_profile(QWidget *parent) :
     ui->btn_save->hide();
     ui->lb_header->hide();
     ui->cm_header->hide();
+
+    ui->btn_change->hide();
+    ui->lbl_pic_2->hide();
+    ui->ln_pic->hide();
 }
 
 main_profile::~main_profile()
@@ -43,7 +48,10 @@ void main_profile::fetch_hashtags(tweet tweet1)
 
 void main_profile::fill_out()
 {
-//    QPixmap pic_addr(QString::fromStdString(li_user->get_pic()));
+    QPixmap pic_addr(QString::fromStdString(li_user->get_pic()));
+    ui->lbl_pic->setPixmap(pic_addr.scaled(ui->lbl_pic->width(), ui->lbl_pic->height(), Qt::KeepAspectRatio));
+    ui->ln_pic->setText(QString::fromStdString(li_user->get_pic()));
+
     if(li_user->get_name() == "Anonymous User")
     {
         ui->ln_name->setText(QString::fromStdString(li_user->get_name()));
@@ -113,6 +121,7 @@ void main_profile::fill_out()
 
 void main_profile::fill_out_old()
 {
+    ui->ln_pic->setText(QString::fromStdString(old_user.pic));
     if(li_user->get_name() == "Anonymous User")
     {
         ui->ln_name->setText(QString::fromStdString(old_user.name));
@@ -446,6 +455,9 @@ void main_profile::on_btn_editp_clicked()
     else
     {
         change_ro(0);
+        ui->btn_change->show();
+        ui->lbl_pic_2->show();
+        ui->ln_pic->show();
     }
     ui->ln_pass->show();
     ui->lb_pass->show();
@@ -464,6 +476,7 @@ void main_profile::on_btn_editp_clicked()
     old_user.bio = ui->te_bio->toPlainText().toStdString();
     old_user.pass = ui->ln_pass->text().toStdString();
     old_user.header = ui->cm_header->currentText().toStdString();
+    old_user.pic = ui->ln_pic->text().toStdString();
 
     QMessageBox msg;
     msg.setWindowTitle("Message");
@@ -475,7 +488,7 @@ void main_profile::on_btn_editp_clicked()
 
 void main_profile::on_btn_save_clicked()
 {
-    bool sPass = true, sName = true, sUsername = true, sPhone = true;
+    bool sPass = true, sName = true, sUsername = true, sPhone = true, sPicture = true;
     if(li_user->get_name() == "Anonymous User")
     {
         if(ui->ln_username->text().toStdString() != old_user.username)
@@ -508,6 +521,7 @@ void main_profile::on_btn_save_clicked()
             }
         }
     }
+
     else
     {
         if(!ui->ln_name->text().toStdString().empty())
@@ -580,6 +594,11 @@ void main_profile::on_btn_save_clicked()
         }
     }
 
+    li_user->set_pic(ui->ln_pic->text().toStdString());
+    QPixmap pic_addr(QString::fromStdString(li_user->get_pic()));
+    ui->lbl_pic->setPixmap(pic_addr.scaled(ui->lbl_pic->width(), ui->lbl_pic->height(), Qt::KeepAspectRatio));
+    ui->ln_pic->setText(QString::fromStdString(li_user->get_pic()));
+
     if(sPass == true and sPhone == true and sUsername == true and sName == true)
     {
         QMessageBox msg;
@@ -596,6 +615,10 @@ void main_profile::on_btn_save_clicked()
         ui->cm_header->hide();
         ui->btn_editp->setEnabled(true);
     }
+
+    ui->btn_change->hide();
+    ui->lbl_pic_2->hide();
+    ui->ln_pic->hide();
 }
 
 
@@ -614,6 +637,9 @@ void main_profile::on_btn_discard_clicked()
     ui->lb_header->hide();
     ui->cm_header->hide();
     ui->btn_editp->setEnabled(true);
+    ui->btn_change->hide();
+    ui->lbl_pic_2->hide();
+    ui->ln_pic->hide();
 }
 
 void main_profile::on_btn_logout_clicked()
@@ -1592,4 +1618,11 @@ void main_profile::on_btn_showmention_clicked()
     }
 }
 
+
+
+void main_profile::on_btn_change_clicked()
+{
+    QString pic = QFileDialog::getOpenFileName();
+    ui->ln_pic->setText(pic);
+}
 
