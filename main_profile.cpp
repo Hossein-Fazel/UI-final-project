@@ -59,6 +59,14 @@ void main_profile::fill_out()
         ui->ln_following->setText(QString::number(li_user->get_following_num()));
 
         ui->ln_pass->setText(QString::fromStdString(li_user->get_password()));
+
+        ui->box_deleteTweet->setEnabled(false);
+        ui->box_makeTweet->setEnabled(false);
+
+        ui->ln_usrLike->setEnabled(false);
+        ui->ln_tweetNumber_Like->setEnabled(false);
+        ui->ln_mentionNumber_Like->setEnabled(false);
+        ui->btn_makeLike_Mention->setEnabled(false);
     }
 
     else
