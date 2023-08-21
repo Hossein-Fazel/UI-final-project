@@ -1,17 +1,12 @@
 #ifndef ORGANISATION_USER_HPP
 #define ORGANISATION_USER_HPP
-
 #include <iostream>
 #include <map>
 #include <fstream>
-
 #include "Base_User.hpp"
 #include "Display_Class.hpp"
-
-
 class Organisation : public Base_User
 {    
-
     public:
 //========================================= Get_Functions =====================================
         std::string get_manager_username() const;                                // shows the usernsmae of an organisation's manager 
@@ -38,19 +33,14 @@ class Organisation : public Base_User
         void change_name(std::string str);                // change name in tweets
         void del_men(int, std::string);                           // delete a mention
         void del_tweetlike(int , std::string);                    // delete a tweet like
-
 //==================== Save_Organisation_Traces ====================
-
         void push_myMentions(int, std::string);                                 // save my mention traces
         void push_tweetLikes(int, std::string);                                 // save my tweet likes traces
-
     private:
         user *manager;
         std::unordered_map<int , tweet> tweets;
         int last_number = 0;
-
         std::unordered_set<std::string> following;
-
         std::unordered_map<std::string , std::unordered_set<int>> my_mentions;
         std::unordered_map<std::string , std::unordered_set<int>> tweetLikes;
 };
