@@ -8,5 +8,6 @@
         <file>delete.png</file>
         <file>account.png</file>
         <file>anonymous.png</file>
+        <file>twitter.png</file>
     </qresource>
 </RCC>

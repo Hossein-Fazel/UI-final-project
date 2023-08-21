@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Signup</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/twitter.png</normaloff>:/twitter.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="type">
     <property name="geometry">

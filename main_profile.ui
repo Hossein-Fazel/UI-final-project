@@ -18,6 +18,10 @@
   <property name="windowTitle">
    <string>Twitterak</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/twitter.png</normaloff>:/twitter.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Twitterak</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/twitter.png</normaloff>:/twitter.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="signup_btn">
     <property name="geometry">
@@ -136,6 +140,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

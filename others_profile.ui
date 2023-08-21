@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Twitterak</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/twitter.png</normaloff>:/twitter.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
@@ -329,7 +333,7 @@
       <rect>
        <x>10</x>
        <y>250</y>
-       <width>50</width>
+       <width>71</width>
        <height>16</height>
       </rect>
      </property>
@@ -347,7 +351,7 @@
       <rect>
        <x>10</x>
        <y>280</y>
-       <width>50</width>
+       <width>71</width>
        <height>16</height>
       </rect>
      </property>
@@ -400,6 +404,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

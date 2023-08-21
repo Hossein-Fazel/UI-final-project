@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Login</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/twitter.png</normaloff>:/twitter.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="login_btn">
     <property name="geometry">
