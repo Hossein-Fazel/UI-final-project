@@ -22,6 +22,7 @@ SOURCES += \
     main_profile.cpp \
     mainwindow.cpp \
     others_profile.cpp \
+    sha256.cpp \
     signup.cpp
 
 HEADERS += \
@@ -37,6 +38,7 @@ HEADERS += \
     main_profile.h \
     mainwindow.h \
     others_profile.h \
+    sha256.h \
     signup.h
 
 FORMS += \

@@ -93,7 +93,7 @@ void main_profile::fill_out()
         ui->ln_follower->setEnabled(false);
         ui->ln_following->setText(QString::number(li_user->get_following_num()));
 
-        ui->ln_pass->setText(QString::fromStdString(li_user->get_password()));
+        ui->ln_pass->setText(QString());
 
         ui->box_deleteTweet->setEnabled(false);
         ui->box_makeTweet->setEnabled(false);
@@ -137,7 +137,7 @@ void main_profile::fill_out()
         ui->ln_country->setText(QString::fromStdString(li_user->get_country()));
         ui->ln_link->setText(QString::fromStdString(li_user->get_link()));
         ui->te_bio->setText(QString::fromStdString(li_user->get_biography()));
-        ui->ln_pass->setText(QString::fromStdString(li_user->get_password()));
+        ui->ln_pass->setText(QString());
         ui->cm_header->setCurrentText(QString::fromStdString(li_user->get_header()));
 
         ui->ln_usrtweet->setText(QString::fromStdString(li_user->get_username()));
@@ -161,8 +161,6 @@ void main_profile::fill_out_old()
         ui->te_bio->setEnabled(false);
         ui->dt_birthday->setEnabled(false);
         ui->cm_header->setEnabled(false);
-
-        ui->ln_pass->setText(QString::fromStdString(old_user.pass));
     }
 
     else
@@ -186,7 +184,6 @@ void main_profile::fill_out_old()
         ui->ln_country->setText(QString::fromStdString(old_user.country));
         ui->ln_link->setText(QString::fromStdString(old_user.link));
         ui->te_bio->setText(QString::fromStdString(old_user.bio));
-        ui->ln_pass->setText(QString::fromStdString(old_user.pass));
         ui->cm_header->setCurrentText(QString::fromStdString(old_user.header));
     }
 }
@@ -501,7 +498,6 @@ void main_profile::on_btn_editp_clicked()
     old_user.country = ui->ln_country->text().toStdString();
     old_user.link = ui->ln_link->text().toStdString();
     old_user.bio = ui->te_bio->toPlainText().toStdString();
-    old_user.pass = ui->ln_pass->text().toStdString();
     old_user.header = ui->cm_header->currentText().toStdString();
     old_user.pic = ui->ln_pic->text().toStdString();
 
@@ -549,7 +545,7 @@ void main_profile::on_btn_save_clicked()
             }
         }
 
-        if(ui->ln_pass->text().toStdString() != old_user.pass)
+        if(!ui->ln_pass->text().toStdString().empty())
         {
             if(!ui->ln_pass->text().toStdString().empty())
             {
@@ -661,7 +657,7 @@ void main_profile::on_btn_save_clicked()
         QString style = "background-color: " + QString::fromStdString(li_user->get_header()) + ';';
         ui->gb_picture->setStyleSheet(style);
 
-        if(ui->ln_pass->text().toStdString() != old_user.pass)
+        if(!ui->ln_pass->text().toStdString().empty())
         {
             if(!ui->ln_pass->text().toStdString().empty())
             {

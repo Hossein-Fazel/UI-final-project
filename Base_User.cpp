@@ -6,7 +6,7 @@
 
 #include "Base_User.hpp"
 #include "Twitterak_Class.hpp"
-
+#include "sha256.h"
 
 //============================================== get functions ================================================
 // shows the name of the user
@@ -149,7 +149,8 @@ bool Base_User::set_password(std::string input_pass)
 
     if ((validate_password(input_pass)) == 1)
     {
-        Password = input_pass;
+        SHA256 encypt;
+        Password = encypt(input_pass);
         passwords.insert(Password);
         return true;
     }
@@ -177,6 +178,8 @@ bool Base_User::set_password(std::string input_pass)
         msg.exec();
         return false;
     }
+
+    std::cout << validate_password(input_pass);
 }
 
 //------------------------------------------------------------------------
@@ -239,6 +242,11 @@ void Base_User::add_to_passwords(std::string pass)
 // validating the acoount's password
 int Base_User::validate_password(std::string pass)   
 {
+    for (auto i:passwords)
+    {
+        std::cout << i << "  ";
+    }
+    SHA256 encrypt;
     if (pass.length() < 6)
         return 2;
     
@@ -248,10 +256,10 @@ int Base_User::validate_password(std::string pass)
             return 1;
     }
     
-    pass = pass;
+//    pass = encrypt(pass);
 
-    if (passwords.count(pass) == 1)
-        return -1;
+//    if (passwords.count(encrypt(pass)))
+//        return -1;
 
     return 0;
 }

@@ -6,6 +6,7 @@
 
 #include "Display_Class.hpp"
 #include "Twitterak_Class.hpp"
+#include "sha256.h"
 
 void display::show_normal(tweet tw)
 {
@@ -59,6 +60,8 @@ void display::show_re(tweet tw)
 
 bool display::login(twitterak &app, std::string user_name, std::string password)
 {    
+    SHA256 encrypt;
+
     user_name = app.lower(user_name);
     if(user_name[0] == '@')
     {
@@ -67,7 +70,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
 
     if (app.users.count(user_name) == 1)                                           // login to personal user
     {
-        if (app.users[user_name].get_password() == password)
+        if (app.users[user_name].get_password() == encrypt(password))
         {
             app.is_logedin = true;
             app.logedin_user = user_name;
@@ -91,7 +94,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
 
     else if (app.org_user.count(user_name) == 1)                                      // login to organisation user
     {
-        if (app.org_user[user_name].get_password() == password)
+        if (app.org_user[user_name].get_password() == encrypt(password))
         {
             app.is_logedin = true;
             app.logedin_user = user_name;
@@ -114,7 +117,7 @@ bool display::login(twitterak &app, std::string user_name, std::string password)
 
     else if (app.ans_user.count(user_name) == 1)                                          // login to anonymous user
     {
-        if (app.ans_user[user_name].get_password() == password)
+        if (app.ans_user[user_name].get_password() == encrypt(password))
         {
             app.is_logedin = true;
             app.logedin_user = user_name;
