@@ -20,9 +20,6 @@
 class user: public Base_User
 {
 //=================== Friends ===================
-friend void display::show_tweet(twitterak, std::string, int);           // friend with Twitterak_Class to show tweets
-friend void display::show_tweet(twitterak, std::string);                // friend with Twitterak_Class to show tweets
-friend void display::show_mentions(twitterak, std::string, int);
 friend void tweet::insert_to_file(std::ofstream &write);
 
 
@@ -42,11 +39,6 @@ friend void tweet::insert_to_file(std::ofstream &write);
 //=============== General functions =================
 
         void delete_tweet(int);                    // delete tweet
-        void Delete_Account(twitterak &);                          // delets the account of the user
-        void Show_Profile(twitterak &);                            // shows the information of a user itself
-        void Edit(twitterak &, std::string, std::string);          // edits the user's information                                                                    
-        void edit_tweet(int, twitterak &);
-        void Tweet(std::string , twitterak &);                     // make a normal tweet
         void Push_Tweet(tweet);                                    // push a tweet into a vector
         void increase_last_number();                                        // plus plus last_num variable
         void print_likers(int);
@@ -68,14 +60,6 @@ friend void tweet::insert_to_file(std::ofstream &write);
 
         void push_myMentions(int , std::string);
         void push_tweetLikes(int, std::string);
-        void pop_tweetLikes(int, std::string);
-
-//================= Delete_User_Traces =================
-        
-        void del_myMentions(twitterak &);
-        void cls_hashtags(twitterak &);
-        void del_tweetLikes(twitterak &);
-        void unfollow_followers(twitterak &app);                                // delete you from your followers list
 
 
     private:

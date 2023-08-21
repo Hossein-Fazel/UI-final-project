@@ -45,7 +45,6 @@ class Base_User
         std::string remove_atsing(std::string);                           // removes @ from the first of the user name
         int Validating_Username(std::string);                             // the validation of a user's username
         int validate_password(std::string);                               // validating the acoount's password
-        void Logout(twitterak &);                                         // logs out of the user's account
         void add_followers(std::string);                                  // add a new follower to set
         bool validate_phone_number(std::string);                          // validate user's phone_number
         void add_to_passwords(std::string);                               // add to passwords set
@@ -71,18 +70,10 @@ class Base_User
 //================== General_Functions ====================
 
         virtual void delete_tweet(int);                                   // delete tweet
-        virtual void Delete_Account(twitterak &);                         // delets the account of the user
-        virtual void Show_Profile(twitterak &);                           // shows the information of a user itself
-        virtual void Edit(twitterak &, std::string, std::string);         // edits the user's information                                                                    
-        virtual void edit_tweet(int, twitterak &);                        // edits user's tweet
-        virtual void Tweet(std::string , twitterak &);                    // make a normal tweet
         virtual void Push_Tweet(tweet);                                   // push a tweet into a vector
-        virtual void increase_last_number();                                       // plus plus last_num variable
-        virtual void print_likers(int);                                   // print tweet likers
+        virtual void increase_last_number();                              // plus plus last_num variable
         virtual bool like(std::string ,int);                              // like a tweet
-        virtual bool dislike(std::string, int);                           // dislike a tweet
         virtual bool add_mention(int, std::string, std::string,std::string);          // add a mention to a tweet
-        virtual void follow(twitterak &, std::string);                    // follow a user
         virtual void like_mention(int, std::string, int);                 // like a mention
         virtual bool isin_following(std::string);                         // check the user name exist in following
         virtual void unfollow(std::string);                               // unfollow the user name
@@ -96,16 +87,7 @@ class Base_User
 
         virtual void push_myMentions(int, std::string);                   // save my mention traces
         virtual void push_tweetLikes(int, std::string);                   // save my tweet likes traces
-        virtual void pop_tweetLikes(int, std::string);                    // delete a like of a tweet
 
-//=================== Delete_User_Traces ===================
-
-        virtual void del_men(int, std::string);                           // delete a mention
-        virtual void del_tweetlike(int , std::string);                    // delete a tweet like
-        virtual void del_myMentions(twitterak &);                         // delete mention traces
-        virtual void cls_hashtags(twitterak &);                           // delete hashtag traces
-        virtual void del_tweetLikes(twitterak &);                         // delete tweet like traces
-        virtual void unfollow_followers(twitterak &app);                  // delete you from your followers list
 
     private:
         std::string Full_Name;

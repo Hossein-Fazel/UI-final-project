@@ -17,14 +17,7 @@ class Organisation;
 
 class tweet
 {
-    friend void display::show_normal(tweet);
-    friend void display::show_re(tweet);
-    friend void display::show_qoute(tweet);
-    friend void display::show_tweet(twitterak,std:: string, int);
-    friend void display::show_tweet(twitterak,std:: string);
-    friend void display::show_mentions(twitterak, std::string user_name, int tweet_number);
-
-    public:
+        public:
         
 //================ gets =====================
         std::string get_tweetType() const;                                      // returns the type of a tweet(quote/retweet)
@@ -61,15 +54,12 @@ class tweet
 
 //============ General functions =============
 
-        void edit_tweet(twitterak &);                                           // edits a tweet of a user
-        void rq_tweet(twitterak&, std::string);                                 // quote tweet or retweet
         bool tweet_like(std::string user_name);
         bool tweet_dislike(std::string user_name);
         void fetch_hashtags();                                       // finds and saves hashtags of user's tweet
         void fetch_hashtags(twitterak &app);
         void creat_mention(std::string, std::string, std::string);
         void delete_mentions(std::string);
-        void delete_hashtags(twitterak &);
         void dLike(std::string);
         void mention_like(std::string, int);
         

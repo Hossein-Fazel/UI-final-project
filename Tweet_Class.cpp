@@ -90,6 +90,11 @@ std::unordered_map<std::string , std::vector<mention>> tweet::get_mentions()  //
 {
     return tweet_mentions;
 }
+
+int tweet::get_like_number() const
+{
+    return likes.size();
+}
 //==================================================================  Set_Functions =================================================================
 
 void tweet::set_tweetType(std::string type)                                                                    // sets the type of a tweet(quote/retweet)
@@ -207,78 +212,6 @@ void tweet::set_time(std::string got_time, std::string got_date)
 }
 
 //================================================================  General_Functions ===============================================================
-
-void tweet::edit_tweet(twitterak &app)                                                                                              // edits a tweet of a user
-{
-    if(user_age >= 18)
-    {
-        if(hashtags.size() != 0)
-        {
-            this->delete_hashtags(app);
-            this->hashtags.clear();
-        }
-        std::string E_tweet;
-
-        std::cout << this->get_number() << " : " << this->get_sefTweet() << std::endl;
-        std::cout << "* Enter new text for tweet " << this->get_number() << " : ";
-        std::getline(std::cin, E_tweet);
-
-        this->set_selfTweet(E_tweet);
-        this->fetch_hashtags(app);
-        std::cout << "* You're tweet has been successfully changed.\n";
-        // std::cin.ignore();
-    }
-    else
-    {
-        std::cout << "! Your age is less than 18.\n";
-    }
-}
-
-//------------------------------------------------------------------------
-
-void tweet::rq_tweet(twitterak &app, std::string type)                                                                // quote tweet or retweet
-{
-    tweet rq_tweet;
-    rq_tweet.set_tweetType(type);
-    rq_tweet.set_ownerTweet(this->self_tweet);
-    rq_tweet.set_ownerUser_name(this->user_name);
-    rq_tweet.set_ownerName(this->name);
-
-    rq_tweet.set_name(app.li_user->get_name());
-    rq_tweet.set_user_name(app.li_user->get_username());
-    rq_tweet.set_number(app.li_user->get_last_number() + 1);
-    app.li_user->increase_last_number();
-
-    if(type == "qoute")
-    {
-        std::string tweet;
-        std::cout << "$ your tweet : ";
-        std::getline(std::cin, tweet);
-        // std::cin.ignore();
-
-        while (tweet.empty())
-        {
-            std::cout << "! Please enter your tweet\n";
-            std::cout << "$ your tweet : ";
-            std::getline(std::cin, tweet);
-            // std::cin.ignore();
-        }
-
-        rq_tweet.set_selfTweet(tweet);
-        rq_tweet.fetch_hashtags(app);
-    }
-
-    rq_tweet.set_time();
-    app.li_user->Push_Tweet(rq_tweet);
-}
-
-//------------------------------------------------------------------------
-
-int tweet::get_like_number() const
-{
-    return likes.size();
-}
-//------------------------------------------------------------------------
 
 void tweet::fetch_hashtags()                                                    // finds and saves hashtags of user's tweet
 {
@@ -435,24 +368,6 @@ int tweet::get_mentions_number() const
     }
 
     return size;
-}
-
-//-----------------------------------------------------------------------
-
-void tweet::delete_hashtags(twitterak &app)
-{
-    for(auto hashtag :hashtags)
-    {
-        int vSize = app.Hashtags[hashtag].size();
-        for(int i = 0; i < vSize; i++)
-        {
-            if(app.Hashtags[hashtag][i].get_number() == this->get_number() and app.Hashtags[hashtag][i].get_user_name() == this->get_user_name())
-            {
-                app.Hashtags[hashtag].erase(app.Hashtags[hashtag].begin() + i);
-                break;
-            }
-        }
-    }
 }
 
 //-----------------------------------------------------------------------

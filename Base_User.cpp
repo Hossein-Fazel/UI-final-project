@@ -309,14 +309,6 @@ std::string Base_User::remove_atsing(std::string str)
 }
 
 //------------------------------------------------------------------------
-// logs out of the user's account
-void Base_User::Logout(twitterak & app)
-{
-    app.is_logedin = false;
-    std::cout << "* You have successfully logged out.\n";
-}
-
-//------------------------------------------------------------------------
 // validate user's phone_number
 bool Base_User::validate_phone_number(std::string phone)                            
 {
@@ -336,13 +328,6 @@ bool Base_User::validate_phone_number(std::string phone)
         return false;
 
     return true;
-}
-
-//============================================== Virtuals ===============================================
-// does not have access to use this function from parent class
-void Base_User::follow(twitterak & app, std::string uName)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
 }
 
 //------------------------------------------------------------------------
@@ -393,41 +378,6 @@ void Base_User::set_birthday(QDate)
 
 //------------------------------------------------------------------------
 // does not have access to use this function from parent class
-void Base_User::Delete_Account(twitterak & app)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::Show_Profile(twitterak & app)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::Edit(twitterak & app, std::string edit_part, std::string value)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::edit_tweet(int tNum, twitterak & app)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::Tweet(std::string tweet_text, twitterak & app)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
 void Base_User::Push_Tweet(tweet tw)
 {
     std::cout << "! This feature can't be reached for your account.\n";
@@ -442,25 +392,10 @@ void Base_User::increase_last_number()
 
 //------------------------------------------------------------------------
 // does not have access to use this function from parent class
-void Base_User::print_likers(int number)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
 bool Base_User::like(std::string username, int number)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-bool Base_User::dislike(std::string username, int number)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
 //------------------------------------------------------------------------
 // does not have access to use this function from parent class
 bool Base_User::add_mention(int tweet_number, std::string got_name, std::string got_username, std::string tweet_text)
@@ -478,34 +413,6 @@ void Base_User::push_myMentions(int number, std::string uName)
 //------------------------------------------------------------------------
 // does not have access to use this function from parent class
 void Base_User::push_tweetLikes(int number, std::string uName)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::pop_tweetLikes(int number, std::string uName)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::del_myMentions(twitterak & app)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::cls_hashtags(twitterak & app)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-// does not have access to use this function from parent class
-void Base_User::del_tweetLikes(twitterak & app)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }
@@ -532,29 +439,8 @@ bool Base_User::isin_following(std::string)
 }
 
 //------------------------------------------------------------------------
-// delete a mention
-void Base_User::del_men(int, std::string)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}                     
-
-//------------------------------------------------------------------------
-// delete a tweet like
-void Base_User::del_tweetlike(int tNum, std::string user_name)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
 
 void Base_User::unfollow(std::string user_name)
-{
-    std::cout << "! This feature can't be reached for your account.\n";
-}
-
-//------------------------------------------------------------------------
-
-void Base_User::unfollow_followers(twitterak &app)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }
