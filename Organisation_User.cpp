@@ -191,7 +191,10 @@ void Organisation::add_following(std::string user_name)
 // delete a mention
 void Organisation::del_men(int tNum, std::string user_name)                           
 {
-    tweets[tNum].delete_mentions(user_name);
+    if(tweets.count(tNum) == 1)
+    {
+        tweets[tNum].delete_mentions(user_name);
+    }
 }
 
 //------------------------------------------------------------------------

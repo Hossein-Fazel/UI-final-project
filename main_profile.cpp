@@ -759,13 +759,9 @@ void main_profile::on_btn_del_clicked()
     msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     if (msg.exec() == QMessageBox::Yes)
     {
-        qDebug() << "o1";
         delete_tweetlike(li_user);
-        qDebug() << "o2";
         delete_mention(li_user);
-        qDebug() << "o3";
         unfollow_followers(li_user);
-        qDebug() << "o4";
         if(ans_user.count(li_user->get_username()) != 1)
         {
             for(auto i : li_user->get_tweets())
@@ -773,7 +769,6 @@ void main_profile::on_btn_del_clicked()
                 rm_hashtag(i.second);
             }
         }
-        qDebug() << "o5";
         if(users.count(li_user->get_username()) == 1)
         {
             users.erase(li_user->get_username());
@@ -788,7 +783,6 @@ void main_profile::on_btn_del_clicked()
         {
             org_user.erase(li_user->get_username());
         }
-        qDebug() << "o6";
         put_users();
         MainWindow *window = nullptr;
         window = new MainWindow;
