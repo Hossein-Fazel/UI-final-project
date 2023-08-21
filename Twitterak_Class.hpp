@@ -47,7 +47,7 @@ friend void tweet::edit_tweet(twitterak &);                               // fri
 friend void tweet::fetch_hashtags(twitterak &);                           // friend with Twitterak_Class to fecth hashtags from tweets
 friend void tweet::delete_hashtags(twitterak &); 
 
-friend bool Organisation::set_manager_username(twitterak ,std::string);
+friend bool Organisation::set_manager_username(twitterak &,std::string);
 friend void Organisation::Edit(twitterak &, std::string, std::string);
 friend void Organisation::follow(twitterak &app, std::string uName);
 friend void Organisation::del_myMentions(twitterak &);

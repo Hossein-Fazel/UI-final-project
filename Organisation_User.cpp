@@ -45,8 +45,8 @@ std::unordered_map<std::string , std::unordered_set<int>> Organisation::get_twee
 }
 
 //==================================================================  Set_Functions =================================================================
-// sets the usernsmae of an organisation's manager 
-bool Organisation::set_manager_username(twitterak app,std::string username)
+// sets the usernsmae of an organisation's manager
+bool Organisation::set_manager_username(twitterak &app,std::string username)
 {
     QMessageBox msg;
     if (username[0] == '@')

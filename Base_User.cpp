@@ -242,10 +242,6 @@ void Base_User::add_to_passwords(std::string pass)
 // validating the acoount's password
 int Base_User::validate_password(std::string pass)   
 {
-    for (auto i:passwords)
-    {
-        std::cout << i << "  ";
-    }
     SHA256 encrypt;
     if (pass.length() < 6)
         return 2;
@@ -256,10 +252,10 @@ int Base_User::validate_password(std::string pass)
             return 1;
     }
     
-//    pass = encrypt(pass);
+    pass = encrypt(pass);
 
-//    if (passwords.count(encrypt(pass)))
-//        return -1;
+    if (passwords.count(pass) == 1)
+        return -1;
 
     return 0;
 }
@@ -621,7 +617,7 @@ std::string Base_User::get_manager_username() const
 
 //------------------------------------------------------------------------
 
-bool Base_User:: set_manager_username(twitterak, std::string)
+bool Base_User:: set_manager_username(twitterak&, std::string)
 {
     std::cout << "! This feature can't be reached for your account.\n";
 }

@@ -64,7 +64,7 @@ class Base_User
 
 //========================= sets ==========================
         virtual void set_lastNum(int);
-        virtual bool set_manager_username(twitterak, std::string);
+        virtual bool set_manager_username(twitterak &, std::string);
         virtual void set_biography(std::string);                          // sets the biography of a user
         virtual void set_birthday(QDate);                           // sets the date of birth of a user
 

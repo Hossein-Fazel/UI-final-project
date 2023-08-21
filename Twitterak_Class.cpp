@@ -137,7 +137,7 @@ void twitterak::put_users()
         wuser << "country:" << i.second.get_country() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
-//        wuser << "manager:" << i.second.get_manager_username() << std::endl;
+        wuser << "manager:" << i.second.get_manager_username() << std::endl;
         wuser << "picture:" << i.second.get_pic() << std::endl;
         wuser << "followers:";
         for(auto j : i.second.get_followers())

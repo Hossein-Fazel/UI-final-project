@@ -26,7 +26,7 @@ class Organisation : public Base_User
 
 //========================================= Set_Functions =====================================
 
-        bool set_manager_username(twitterak, std::string);                       // sets the usernsmae of an organisation's manager
+        bool set_manager_username(twitterak &, std::string);                       // sets the usernsmae of an organisation's manager
         void set_biography(std::string);                                         // sets the biography of an organisation
         void set_lastNum(int);
 
@@ -67,7 +67,7 @@ class Organisation : public Base_User
         void unfollow_followers(twitterak &app);                  // delete you from your followers list
 
     private:
-        user * manager;
+        user *manager;
         std::unordered_map<int , tweet> tweets;
         int last_number = 0;
 

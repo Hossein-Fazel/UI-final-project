@@ -116,6 +116,8 @@ void main_profile::fill_out()
             ui->dt_birthday->setEnabled(false);
             ui->ln_manager->setEnabled(true);
             ui->ln_manager->setReadOnly(true);
+            ui->ln_manager->setText(QString::fromStdString(li_user->get_manager_username()));
+
             ui->ln_follower->setText(QString::number(li_user->get_followers_num()));
             ui->ln_following->setEnabled(false);
         }
@@ -290,7 +292,7 @@ void main_profile::put_users()
         wuser << "country:" << i.second.get_country() << std::endl;
         wuser << "password:" << i.second.get_password() << std::endl;
         wuser << "last_num:" << i.second.get_last_number() << std::endl;
-//        wuser << "manager:" << i.second.get_manager_username() << std::endl;
+        wuser << "manager:" << i.second.get_manager_username() << std::endl;
         wuser << "picture:" << i.second.get_pic() << std::endl;
         wuser << "followers:";
         for(auto j : i.second.get_followers())
