@@ -1079,7 +1079,7 @@
       </rect>
      </property>
      <property name="toolTip">
-      <string>Mention number</string>
+      <string>Tweet number</string>
      </property>
      <property name="placeholderText">
       <string>Tweet Number</string>

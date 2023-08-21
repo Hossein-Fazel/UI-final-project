@@ -297,6 +297,7 @@ bool display::signup(twitterak &app, std::string Ausername, std::string Apasswor
     }
 
     sPass = ans1.set_password(Apassword);
+    ans1.set_header("gray");
 
     if(sPass == true and sUsername == true)
     {

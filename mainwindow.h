@@ -23,6 +23,8 @@ private slots:
 
     void on_signup_btn_clicked();
 
+    void on_btn_about_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

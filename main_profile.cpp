@@ -11,7 +11,7 @@
 #include <QFileDialog>
 #include <fstream>
 #include <QPixmap>
-
+#include <QDebug>
 
 main_profile::main_profile(QWidget *parent) :
     QMainWindow(parent),
@@ -97,6 +97,8 @@ void main_profile::fill_out()
 
         ui->box_deleteTweet->setEnabled(false);
         ui->box_makeTweet->setEnabled(false);
+
+        ui->cm_header->setCurrentText(QString::fromStdString(li_user->get_header()));
 
         ui->ln_usrLike->setEnabled(false);
         ui->ln_tweetNumber_Like->setEnabled(false);
@@ -759,14 +761,21 @@ void main_profile::on_btn_del_clicked()
     msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     if (msg.exec() == QMessageBox::Yes)
     {
+        qDebug() << "o1";
         delete_tweetlike(li_user);
+        qDebug() << "o2";
         delete_mention(li_user);
+        qDebug() << "o3";
         unfollow_followers(li_user);
-        for(auto i : li_user->get_tweets())
+        qDebug() << "o4";
+        if(ans_user.count(li_user->get_username()) != 1)
         {
-            rm_hashtag(i.second);
+            for(auto i : li_user->get_tweets())
+            {
+                rm_hashtag(i.second);
+            }
         }
-
+        qDebug() << "o5";
         if(users.count(li_user->get_username()) == 1)
         {
             users.erase(li_user->get_username());
@@ -781,7 +790,7 @@ void main_profile::on_btn_del_clicked()
         {
             org_user.erase(li_user->get_username());
         }
-
+        qDebug() << "o6";
         put_users();
         MainWindow *window = nullptr;
         window = new MainWindow;

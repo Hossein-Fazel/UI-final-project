@@ -42,3 +42,12 @@ void MainWindow::on_signup_btn_clicked()
     signup_page->show();
     this->close();
 }
+
+void MainWindow::on_btn_about_clicked()
+{
+    QMessageBox msg;
+    msg.setWindowTitle("About");
+    msg.setText("Twitterak v3.0\nGraphic version\nGithub: https://github.com/Hossein-Fazel/UI-final-project");
+    msg.exec();
+}
+

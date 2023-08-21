@@ -417,6 +417,7 @@ void twitterak::read_users()
                     
                     else
                     {
+                        std::cout << "t1";
                         int size = value.size();
                         auto fcolon = value.find(':');
                         std::string user_name = value.substr(0, fcolon);
@@ -429,7 +430,7 @@ void twitterak::read_users()
                         {
                             u1.push_myMentions(num, user_name);
                         }
-
+                        std::cout << "t2";
                         getline(ruser, value, '\n');
                     }
                 }
@@ -819,14 +820,17 @@ void twitterak::read_from_file()
                 }
 
                 getline(read_file, general, '\n');
+
                 while (general != "---")
                 {
                     mention mt;
 
-                    read_file.ignore(1000, ':');
-                    getline(read_file, general, '\n');
-                    mt.set_number(std::stoi(general));
+                    int size = general.size();
+                    auto fcolon = general.find(':');
+                    std::string extra = general.substr(0, fcolon);
+                    std::string num = general.substr(fcolon+1, size);
 
+                    mt.set_number(std::stoi(num));
                     read_file.ignore(1000, ':');
                     getline(read_file, general, '\n');
                     mt.set_name(general);
@@ -909,9 +913,12 @@ void twitterak::read_from_file()
                 {
                     mention mt;
 
-                    read_file.ignore(1000, ':');
-                    getline(read_file, general, '\n');
-                    mt.set_number(std::stoi(general));
+                    int size = general.size();
+                    auto fcolon = general.find(':');
+                    std::string extra = general.substr(0, fcolon);
+                    std::string num = general.substr(fcolon+1, size);
+
+                    mt.set_number(std::stoi(num));
 
                     read_file.ignore(1000, ':');
                     getline(read_file, general, '\n');
@@ -999,9 +1006,12 @@ void twitterak::read_from_file()
                 {
                     mention mt;
 
-                    read_file.ignore(1000, ':');
-                    getline(read_file, general, '\n');
-                    mt.set_number(std::stoi(general));
+                    int size = general.size();
+                    auto fcolon = general.find(':');
+                    std::string extra = general.substr(0, fcolon);
+                    std::string num = general.substr(fcolon+1, size);
+
+                    mt.set_number(std::stoi(num));
 
                     read_file.ignore(1000, ':');
                     getline(read_file, general, '\n');
